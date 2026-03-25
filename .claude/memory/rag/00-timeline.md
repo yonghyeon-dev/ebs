@@ -43,6 +43,21 @@
 - 영상 파이프라인 가이드: `ep01-video-pipeline-guide.md`
 - 14개 클립 ID (RW-0100~0601) → Runway/Kling 설정 매핑 완료
 
+### 의사결정: ComfyUI 환경 기반 재설계 (2026-03-26)
+- 실제 ComfyUI 환경 확인: v0.18.2, 포트 8000, RTX 4070 (12GB), 1226 노드
+- Kling/Runway가 외부 서비스가 아닌 ComfyUI 노드로 통합되어 있음 확인
+- Wan Video 노드 100+ 설치 확인 — AnimateDiff 대체 가능성
+- 모델 다운로드 완료: DreamShaperXL_Turbo_v2_1, sdxl_vae(fp16-fix), ral-wtrclr-sdxl, ral-crztlgls-sdxl
+- LoRA trigger word: ral-wtrclr (수채화), ral-crztlgls (크리스탈)
+- 워크플로우 모델명 수정 PR 대기 중 (character-2, visual 작업 중)
+- ComfyUI MCP 전역 설정 완료 (포트 8000)
+- **TODO**: 영상 생성 워크플로우를 ComfyUI 노드(Kling/Wan) 기반으로 재설계
+
+### 미해결 이슈
+- character-2 evaluator 피드백 5건 (뭉이 LoRA weight, IP-Adapter 모델명, Clip Skip, 정규화 이미지, 학습 장수)
+- 워크플로우 모델명 수정 PR 미머지 (character-2 브랜치 커밋 미확인)
+- 영상 파이프라인 Runway 웹 기반 → ComfyUI 노드 기반 재설계 필요
+
 ## Phase 4~6: 미착수
 
 - Phase 4 (3/28): 캐릭터 애니메이션 + 합성 (WI-013~015)
