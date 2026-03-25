@@ -46,20 +46,74 @@ disallowedTools: Edit, Write
   - 해소 방법: 인터페이스 mock으로 한쪽 unblock → 실 구현 후 교체
 - **5-6 태스크/팀원**: 한 팀원에게 과다 할당 금지
 
-### 4단계: 팀원 Spawn
-각 팀원은 Agent tool의 team-worker 서브에이전트로 spawn합니다:
+### 3.5단계: 스프린트 계약 협상
+
+각 WI에 대해 **리드-생성자-평가자 3자가 합의**하는 스프린트 계약을 작성합니다.
+
+**협상 프로세스:**
+1. **리드가 초안 작성** — `.flowset/contracts/sprint-template.md` 기반으로 수용 기준 + 검증 방법 작성
+2. **생성자(팀원)가 리뷰** — 구현 가능한지 확인. 비현실적 기준은 수정 요청.
+3. **평가자가 리뷰** — 검증 가능한지 확인. 모호한 기준은 구체화 요청.
+4. **3자 합의** — 계약 상태 체크박스 전부 체크 후 확정.
+
+**합의 전 구현 시작 금지.** 스프린트 계약의 수용 기준이 구체적이지 않으면 평가가 주관적이 됨.
+
+**계약 핵심:**
+- **수용 기준**: 예/아니오로 판정 가능한 구체적 조건 (추상적 기준 금지)
+- **검증 방법**: 평가자가 수용 기준을 확인하는 구체적 절차
+- **산출물**: 완료 시 존재해야 할 파일 경로
+- **평가 유형**: `code` 또는 `visual`
+
+**중요**: 스프린트 계약이 있는 WI는 TaskCompleted hook이 평가자 검증을 강제합니다.
+
+### 4단계: Agent Teams 팀 생성
+
+**서브에이전트(일회성)가 아닌 Agent Teams(상주 팀원)로 생성합니다.**
+
+자연어로 팀 생성을 요청합니다:
 ```
-Agent(
-  description: "{팀명} 팀 작업",
-  prompt: "당신은 {TEAM_NAME} 팀원입니다.
-  할당된 태스크: {태스크 목록}
-  소유 디렉토리: {ownership.json의 해당 팀 경로}",
-  subagent_type: "team-worker"
-)
+에이전트 팀을 만들어줘.
+팀원 구성:
+- character 팀: WI-001, WI-002 담당. 소유 디렉토리: production/characters/**, production/prompts/characters/**
+- visual 팀: WI-003 담당. 소유 디렉토리: production/episodes/**, production/prompts/scenes/**
+
+각 팀원은 .claude/agents/team-worker.md를 읽고 초기화.
+팀원은 세션 내내 유지되며, 태스크를 공유 리스트에서 claim하여 작업.
 ```
 
-### 5단계: 결과 통합
-- 각 팀원 결과 확인
+**Agent Teams vs 서브에이전트 차이:**
+| | 서브에이전트 | Agent Teams (이 방식) |
+|---|---|---|
+| 수명 | 태스크 1개 → 종료 | 세션 내내 유지 |
+| 소통 | 결과만 반환 | 팀원 간 직접 메시징 |
+| 태스크 | 호출 시 지정 | 공유 리스트에서 self-claim |
+| 컨텍스트 | 매번 새로 시작 | 이전 작업 맥락 누적 |
+
+**팀원에게 전달할 컨텍스트:**
+- `.claude/agents/team-worker.md` — 역할 + 초기화 절차
+- `.claude/rules/team-roles.md` — 팀 역할 정의
+- `.flowset/contracts/sprint-{NNN}.md` — 해당 WI 스프린트 계약
+- `.flowset/ownership.json` — 소유 디렉토리 매핑
+
+### 5단계: 평가자 검증 + 결과 통합
+
+팀원이 태스크를 완료하면 **evaluator 서브에이전트**로 채점합니다.
+(evaluator는 일회성 채점이므로 서브에이전트가 적합)
+
+```
+evaluator 서브에이전트로 WI-{NNN}을 평가해줘.
+스프린트 계약: .flowset/contracts/sprint-{NNN}.md
+변경 파일: {변경 파일 목록}
+```
+
+**평가 루프:**
+1. evaluator가 채점표(EVAL_RESULT) 반환
+2. PASS (7.0+) → `mkdir -p .flowset/eval-results && touch .flowset/eval-results/WI-{NNN}.pass` → 태스크 완료
+3. FAIL (<7.0) → ISSUES를 해당 팀원에게 직접 메시지 → 수정 → 재평가 (최대 3회)
+4. 3회 FAIL → 리드가 직접 판단 또는 사용자에게 에스컬레이션
+
+**결과 통합:**
+- 모든 WI PASS 확인
 - 실패 태스크 재할당 또는 에스컬레이션
 - 모든 태스크 완료 시 PR 생성/리뷰
 
