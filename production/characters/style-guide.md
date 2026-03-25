@@ -111,23 +111,24 @@ volumetric light scattering, subsurface scattering on translucent bodies
 
 ### 4.1 박초은 (초은이)
 
-**기본 정보**: 7세 한국인 소녀. 호기심이 많고 활발함. 트레이드마크는 노란 머리띠와 돋보기.
+**기본 정보**: 7세 한국인 소녀. 호기심이 많고 활발함. 트레이드마크는 목에 건 황동 돋보기와 파스텔 민트 탐험 조끼.
 
 **현실 세계 스타일**:
 - 수채화 피부톤: 따뜻한 피치 계열, 장밋빛 볼
 - 선 처리: 부드러운 색연필 느낌, 외곽선 최소화
 - 눈: 크고 반짝이는 눈. 동공에 하이라이트 2점 (호기심 표현)
-- 머리카락: 검은 단발, 수채화 특유의 파란빛 하이라이트
-- 의상: 무지개 자수 흰 티셔츠 + 파란 멜빵바지 (고정). 에피소드별 변형 없음
-- 소품: 돋보기 (금속 테두리, 유리 렌즈 빛 반사)
+- 머리카락: 검은 단발, 오른쪽에 하늘색 구슬로 묶은 작은 땋은 머리 (식별 포인트)
+- 의상: 파스텔 민트 탐험 조끼 + 크림색 긴팔 셔츠 + 카키 반바지(큰 주머니 달린) + 양말 짝짝이(줄무늬 파랑+점무늬 초록) + 낡은 갈색 끈 부츠 (고정). 에피소드별 변형 없음
+- 소품: 황동 돋보기 (가죽 끈으로 목에 걸림, 앤틱 느낌, 렌즈에 빛 반사)
 - 표정 핵심: "눈이 반짝이는 호기심" (살짝 벌린 입, 크게 뜬 눈)
 
 **미시 세계 스타일**:
 - 기본 실루엣과 의상 동일하되, 프리즘 환경광이 의상과 피부에 반사
-- 옷에 은은한 무지개빛 반사가 추가 (환경 반사)
+- 조끼 표면에 무지개빛 빛 입자 반사 오버레이 (환경 반사)
 - 눈의 하이라이트가 프리즘 색으로 변화 (무지개빛 반짝임)
 - 피부에 미세한 투과광 효과 (서브서피스 스캐터링)
-- 머리띠의 노란색이 프리즘 환경에서 골든 글로우로 강화
+- 황동 돋보기가 포착된 빛으로 은은하게 발광
+- 구슬 땋은머리의 하늘색 구슬이 프리즘 환경에서 무지개빛으로 반사
 
 **포즈 가이드**:
 - 기본 포즈: 돋보기를 눈 앞에 들고 들여다보는 자세
@@ -139,13 +140,13 @@ volumetric light scattering, subsurface scattering on translucent bodies
 **기본 정보**: 은퇴한 과학자. 마이크로 렌즈 발명가. 인자하고 지혜로운 이미지.
 
 **현실 세계 스타일**:
-- 수채화 피부톤: 따뜻한 밀색, 잔주름은 부드러운 선으로 표현
-- 체형: 약간 둥글고 편안한 체형. 키가 크지 않음 (친근함)
-- 머리카락: 은백색. 약간 헝클어진 과학자 스타일
-- 안경: 둥근 금속테 (구리/골드톤). 렌즈에 빛 반사
-- 의상: 크림색 셔츠 + 갈색 니트 가디건 + 편한 바지 (연구실 캐주얼)
-- 소품: 마이크로 렌즈(안경형 장치), 무전기, 호주머니에 각종 도구
-- 표정 핵심: 인자한 미소, 지혜로운 눈빛
+- 수채화 피부톤: 따뜻한 밀색, 잔주름은 부드러운 선으로 표현, 손등에 세월의 혈관 표현
+- 체형: 키가 크고 약간 구부정한 자세 (현미경 앞에서 평생을 보낸 학자 느낌)
+- 머리카락: 은백색, 윗머리는 빈약하나 옆머리는 민들레 홀씨처럼 솜털 같은 풍성함
+- 안경: 둥근 은색 와이어 프레임, 넓은 코 위에 낮게 걸침. 렌즈에 빛 반사
+- 의상: 낡은 카멜 브라운 코르듀로이 카디건(팔꿈치 가죽 패치) + 빛바랜 체크 플란넬 셔츠 + 진한 갈색 울 바지 + 갈색 가죽 실내화 (연구실 캐주얼)
+- 소품: 마이크로 렌즈(황동 고글 형태 + 수정체 프리즘 렌즈, 이마에 올리거나 목에 걸림), 레트로 무전기(올리브 그린+황동, 짧은 안테나, 카디건 주머니에 클립), 호주머니에 각종 도구
+- 표정 핵심: 인자한 미소, 지혜로운 눈빛, 눈꺼풀이 거의 닫힐 듯한 초승달 미소
 
 **미시 세계에서의 등장 방식**:
 - 직접 등장하지 않음 (현실 세계에서만 물리적 등장)
@@ -158,13 +159,16 @@ volumetric light scattering, subsurface scattering on translucent bodies
 **기본 정보**: 미시 세계의 물곰(타디그레이드). 초은이의 미시 세계 가이드이자 친구.
 
 **미시 세계 스타일 (전용)**:
-- 체형: 실제 타디그레이드 기반이되 극도로 귀엽게 변형. 둥글둥글한 젤리 같은 몸체
-- 다리: 8개. 짧고 뭉툭한 다리로 뒤뚱뒤뚱 이동
-- 투명도: 60~70%. 몸체 내부 장기가 파스텔 톤으로 은은하게 비침
-- 눈: 몸체 대비 매우 큰 원형 눈. 검은 동공 + 큰 하이라이트 (캐릭터성 핵심)
-- 표정: 기본 느긋하고 평화로운 표정. 위험 시 눈이 커지며 놀란 표정
-- 움직임 특성: 뒤뚱뒤뚱 걷기, 몸체가 젤리처럼 탄력 있게 흔들림
-- 발광: 몸체 가장자리에 은은한 바이오루미네선스 (파스텔 민트~스카이블루)
+- 체형: 실제 타디그레이드 기반의 배럴(통) 형태 유지. 둥글고 통통한 반투명 몸체. 과도한 의인화 지양 — "cute anime mascot" 탈피, 실제 물곰의 체형 존중
+- 다리: 8개 짧고 뭉툭한 다리, 4쌍 대칭 배치. 각 다리 끝에 둥근 투명 발톱. 뒤뚱뒤뚱 교차 보행
+- 투명도: 60~70%. 반투명 피부를 통해 내부가 은은하게 빛나는 '살아있는 보석' 컨셉
+- 피부 표면: 비누방울 같은 프리즘 무지개빛(이리데선스)이 체표면에 감돌며 물방울 세계관과 시각적 통일
+- 눈: 몸체 대비 매우 큰 원형 눈. 검은 동공 + 큰 하이라이트 (캐릭터성 핵심). 프리즘 세계를 반사하는 작은 스파클
+- 입: 작고 둥근 입. 코 없음 → 단순하지만 표정이 풍부한 디자인
+- 머리/목: 부드럽게 몸체와 연결, 별도의 목 구분 없음
+- 표정: 기본 느긋하고 평화로운 표정 (입꼬리가 약간 올라간 영구적 미소). 위험 시 눈이 커지며 놀란 표정
+- 움직임 특성: 뒤뚱뒤뚱 걷기, 몸체가 젤리처럼 탄력 있게 흔들림, 걸을 때마다 프리즘 빛이 물결침
+- 발광: 몸체 가장자리에 은은한 바이오루미네선스 (외곽선 대체). 감정 고조 시 내부 발광 강화
 
 **캐릭터 표면 질감**:
 ```
@@ -269,7 +273,7 @@ subsurface scattering on translucent skin, iridescent body surface
 | 학습 이미지 수 | 최소 20장, 권장 30~40장 |
 | 필수 포즈 | 정면, 좌45도, 우45도, 후면, 전신, 상반신, 얼굴 클로즈업 |
 | 필수 표정 | 기본(호기심), 기쁨, 놀람, 집중, 웃음 |
-| 태그 규칙 | `1girl, choeun, 7yo, short black hair, yellow hairband, white shirt, rainbow embroidery, blue overalls, magnifying glass` |
+| 태그 규칙 | `1girl, choeun_girl, 7yo, short bobbed black hair, sky-blue bead braid, pastel mint explorer vest, cream shirt, khaki cargo shorts, mismatched socks, brown boots, brass magnifying glass on leather cord` |
 | 정규화 이미지 | 수채화 스타일 다른 아동 캐릭터 20장 |
 | 학습 에폭 | 25 |
 | 추론 가중치 | 0.7~0.8 (현실 세계) / 0.6~0.7 (미시 세계, 환경 반사 허용) |
@@ -281,7 +285,7 @@ subsurface scattering on translucent skin, iridescent body surface
 | 학습 이미지 수 | 최소 15장, 권장 20~25장 |
 | 필수 포즈 | 정면, 좌45도, 우45도, 전신, 상반신, 얼굴 클로즈업 |
 | 필수 표정 | 기본(인자한 미소), 걱정, 설명하는 표정, 웃음 |
-| 태그 규칙 | `1man, grandpa_park, elderly, silver hair, round glasses, gold frame, cream shirt, brown cardigan, warm smile` |
+| 태그 규칙 | `1man, grandpa_scientist, elderly, silver-white dandelion puff hair, round wire-rimmed glasses, plaid flannel shirt, camel corduroy cardigan with elbow patches, retro walkie-talkie, brass micro-lens goggles` |
 | 정규화 이미지 | 수채화 스타일 노인 캐릭터 15장 |
 | 학습 에폭 | 20 |
 | 추론 가중치 | 0.7~0.8 (현실 세계 전용) |
@@ -422,26 +426,32 @@ flat 2D, no depth, no perspective shift
 
 **초은이 (현실 세계)**:
 ```
-7-year-old Korean girl Choeun, short black hair with yellow hairband,
-white t-shirt with rainbow embroidery, blue overalls,
+7-year-old Korean girl, short bobbed black hair with a single tiny braid on the right side tied with a sky-blue bead,
+round face with large expressive dark brown eyes, slightly chubby cheeks with natural blush,
+pastel mint field-explorer vest over cream-colored long-sleeve shirt,
+khaki cargo shorts with oversized pockets, mismatched socks, worn brown lace-up boots,
+brass magnifying glass hanging from leather cord around neck,
 curious bright expression, sparkling eyes with two highlight points,
-rosy watercolor cheeks, holding magnifying glass,
 ```
 
 **초은이 (미시 세계)**:
 ```
-7-year-old Korean girl Choeun in microscopic world,
-short black hair with yellow hairband reflecting prismatic light,
-white t-shirt with rainbow embroidery, blue overalls,
+7-year-old Korean girl miniaturized to microscopic scale,
+short bobbed black hair with sky-blue bead braid reflecting prismatic light,
+pastel mint field-explorer vest shimmering with iridescent light particles,
+cream shirt with faint light refractions, khaki cargo shorts, mismatched socks, worn brown boots,
+brass magnifying glass on leather cord glowing faintly with captured light,
 prismatic environment reflections on clothing and skin,
 eyes with rainbow-prismatic highlights, subtle subsurface scattering on skin,
 ```
 
 **할아버지 (현실 세계 전용)**:
 ```
-elderly Korean scientist grandfather, warm gentle smile,
-silver-white slightly messy hair, round gold-framed glasses with lens reflection,
-cream colored shirt under brown knit cardigan,
+68-year-old Korean man, retired scientist grandfather, warm gentle smile,
+silver-white hair thinning on top but fluffy at sides like dandelion puffs,
+round wire-rimmed glasses perched low on broad nose, deep smile lines and crow's feet,
+faded plaid flannel shirt under camel-brown corduroy cardigan with elbow patches,
+chunky retro walkie-talkie clipped to cardigan pocket,
 kind wise eyes, soft wrinkles rendered in watercolor lines,
 ```
 
@@ -547,8 +557,8 @@ squishy bouncy body, microscopic water bear, adorable expression,
 - [ ] 수채화 스타일이 섞이지 않았는가
 
 ### 캐릭터 일관성 체크리스트
-- [ ] 초은이: 노란 머리띠, 무지개 자수 흰 티, 파란 멜빵바지 동일한가
+- [ ] 초은이: 하늘색 구슬 땋은머리, 파스텔 민트 탐험 조끼, 카키 반바지, 양말 짝짝이, 갈색 부츠, 황동 돋보기(목걸이) 동일한가
 - [ ] 초은이: 표정이 호기심/밝음 계열인가
-- [ ] 할아버지: 은발, 둥근 안경, 갈색 가디건 동일한가
+- [ ] 할아버지: 은백 민들레 옆머리, 와이어 둥근 안경, 코르듀로이 카디건(팔꿈치 패치), 무전기, 마이크로렌즈 고글 동일한가
 - [ ] 뭉이: 투명 둥근 몸체, 큰 눈, 8개 다리 동일한가
 - [ ] 전환 전후로 캐릭터 실루엣이 유지되는가
