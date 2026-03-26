@@ -1,67 +1,30 @@
 {
   "_meta": {
     "title": "WI-012 EP01 Scene 6: 다음 화 예고 — 배경 이미지 2종",
-    "description": "Scene 6 (2:45~3:00)의 1개 서브씬 2파트. 6-1A 초은이+장미꽃(수채화), 6-1B 장미꽃잎 매크로 줌(수채화→매크로 전환 + 미시 힌트).",
-    "version": "1.0.0",
+    "description": "Scene 6 (2:45~3:00)의 1개 서브씬 2파트. 6-1A 초은이+장미꽃(수채화), 6-1B 장미꽃잎 매크로 줌(수채화→매크로 전환 + 미시 힌트). animagineXL v3.1 + Danbooru 태그 기반.",
+    "version": "2.0.0",
     "episode": "EP01",
     "scene": "Scene 6 — 다음 화 예고",
     "style": "watercolor + macro transition",
+    "checkpoint": "animagineXL31_v31.safetensors",
     "outputs": [
       "bg-s06-01a-rose-garden (초은이 + 장미꽃 수채화)",
       "bg-s06-01b-rose-macro (장미꽃잎 매크로 + 미시 힌트)"
     ],
     "source_prompts": "production/prompts/scenes/ep01-scene06-teaser.md",
     "runway_prompts": "production/prompts/scenes/ep01-runway-prompts.md (Scene 6)",
-    "notes": "키프레임 A→B를 Runway에 시작/끝 이미지로 입력. 줌 트랜지션은 Runway가 보간."
+    "notes": "키프레임 A→B를 Kling/Runway ComfyUI 노드에 시작/끝 이미지로 입력. 줌 트랜지션은 보간."
   },
   "1": {
     "class_type": "CheckpointLoaderSimple",
     "inputs": {
-      "ckpt_name": "DreamShaperXL_Turbo_v2_1.safetensors"
+      "ckpt_name": "animagineXL31_v31.safetensors"
     }
   },
   "2": {
     "class_type": "VAELoader",
     "inputs": {
       "vae_name": "sdxl_vae.safetensors"
-    }
-  },
-  "3": {
-    "class_type": "LoraLoader",
-    "_meta": {
-      "title": "LoRA - Watercolor Style (6-1A 수채화)"
-    },
-    "inputs": {
-      "model": [
-        "1",
-        0
-      ],
-      "clip": [
-        "1",
-        1
-      ],
-      "lora_name": "ral-wtrclr-sdxl.safetensors",
-      "strength_model": 0.7,
-      "strength_clip": 0.7
-    }
-  },
-  "4": {
-    "class_type": "LoraLoader",
-    "_meta": {
-      "title": "LoRA - Watercolor Style 약화 (6-1B 매크로 전환용)"
-    },
-    "inputs": {
-      "model": [
-        "1",
-        0
-      ],
-      "clip": [
-        "1",
-        1
-      ],
-      "lora_name": "ral-wtrclr-sdxl.safetensors",
-      "strength_model": 0.4,
-      "strength_clip": 0.4
     }
   },
   "10": {
@@ -71,10 +34,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-wtrclr, watercolor animation style, hand-painted texture, soft brush strokes,\n7-year-old Korean girl Choeun in garden, gazing at a beautiful rose bush with curiosity,\nshort bobbed black hair with a single tiny braid on the right side tied with a sky-blue bead, round face with large expressive dark brown eyes,\nwearing a pastel mint field-explorer vest over a cream-colored long-sleeve shirt, khaki cargo shorts with oversized pockets,\nmismatched socks and worn brown lace-up boots, a brass magnifying glass hanging from a leather cord around her neck,\nholding the brass magnifying glass up toward a blooming red rose, tilting head with wonder,\nmischievous excited smile, eyes already imagining the next microscopic adventure,\nwarm late afternoon golden sunlight, garden bathed in amber glow,\nvibrant red and pink roses in foreground, lush green garden background,\nsoft watercolor rendering of rose petals with visible dew drops,\nmedium shot of Choeun, rose bush occupying right third of frame,\ndepth of field: Choeun in focus, garden background in soft watercolor bokeh,\nchildren's animation, Studio Ghibli-inspired warm ending moment,\nsense of curiosity never satisfied, promise of more adventures to come"
+      "text": "masterpiece, best quality, absurdres, highres,\n1girl, child, 7 years old, korean,\nwatercolor (medium), illustration, warm colors, hand-painted texture, soft brush strokes,\nshort bob hair, black hair, single braid, blue bead hair tie, round face, large expressive dark brown eyes,\npastel mint vest, cream long sleeve shirt, khaki cargo shorts, oversized pockets,\nmismatched socks, brown lace-up boots, brass magnifying glass, leather cord necklace,\nholding magnifying glass toward blooming red rose, tilting head, wonder,\nmischievous excited smile, eyes imagining next adventure,\ngarden, warm late afternoon golden sunlight, amber glow,\nvibrant red and pink roses in foreground, lush green garden background,\nrose petals with visible dew drops, watercolor rendering,\nmedium shot, rose bush occupying right third of frame,\ndepth of field, garden background in soft watercolor bokeh,\nchildren's animation, warm ending moment,\ncuriosity never satisfied, promise of more adventures"
     }
   },
   "11": {
@@ -84,10 +47,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "photorealistic, 3D render, CGI, plastic texture,\nsurreal prismatic style,\ndark mood, night scene, cold lighting,\nwilted roses, dead flowers, thorns prominent,\nadult proportions, mature face,\ntext, watermark, signature, logo, UI elements,\nlow quality, blurry, pixelated, jpeg artifacts, noise,\noversaturated, harsh shadows,\ndeformed face, extra fingers, bad anatomy,\nsad expression, bored look, disinterested pose,\nindoor scene, urban, artificial flowers"
+      "text": "lowres, bad anatomy, bad hands, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, blurry, 3d, photorealistic, surreal prismatic style, dark mood, night scene, cold lighting, wilted roses, dead flowers, thorns prominent, adult proportions, mature face, oversaturated, harsh shadows, deformed face, extra fingers, sad expression, bored look, indoor scene, urban, artificial flowers"
     }
   },
   "12": {
@@ -108,7 +71,7 @@
     },
     "inputs": {
       "model": [
-        "3",
+        "1",
         0
       ],
       "positive": [
@@ -124,10 +87,10 @@
         0
       ],
       "seed": 1202601,
-      "steps": 35,
-      "cfg": 7.5,
-      "sampler_name": "dpmpp_2m",
-      "scheduler": "karras",
+      "steps": 30,
+      "cfg": 6.5,
+      "sampler_name": "euler",
+      "scheduler": "normal",
       "denoise": 1.0
     }
   },
@@ -164,10 +127,10 @@
     },
     "inputs": {
       "clip": [
-        "4",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-wtrclr, watercolor-to-macro transition style,\nextreme close-up of a red rose petal, zooming into microscopic surface structure,\nmacro photography composition with watercolor artistic base gradually shifting,\nvisible petal surface texture: tiny cellular patterns, microscopic ridges and grooves,\nsurface cells arranged in cone-shaped papillae creating velvet-like texture,\nhint of surreal prismatic light beginning to emerge from the cellular structures,\na faint glow of otherworldly iridescence between the cells suggesting hidden microscopic universe,\nsoft transition from warm watercolor rendering to sharper macro detail,\nrose petal color: deep crimson red with pink gradients at edges,\ntiny water droplets on petal surface catching prismatic rainbow glints,\nthe very last frame hints at a vast microscopic world within the flower,\ncamera movement: zoomed deep into petal surface,\ncolor grading shifting from warm garden tones toward mysterious rose-red and magenta micro world,\nsense of invitation to the next adventure, cliffhanger ending,\nscientific accuracy: rose petal surface has conical epidermal cells (papillae) that create velvet appearance"
+      "text": "masterpiece, best quality, absurdres, highres,\nscenery, no humans, macro, close-up,\nwatercolor (medium), illustration, warm colors,\nextreme close-up of red rose petal, zooming into microscopic surface structure,\nmacro photography composition, watercolor base gradually shifting,\npetal surface texture, tiny cellular patterns, microscopic ridges and grooves,\nsurface cells, cone-shaped papillae, velvet-like texture,\nhint of surreal prismatic light emerging from cellular structures,\nfaint glow of otherworldly iridescence between cells, hidden microscopic universe,\nsoft transition from warm watercolor to sharper macro detail,\nrose petal color, deep crimson red, pink gradients at edges,\ntiny water droplets on petal surface, prismatic rainbow glints,\nlast frame hinting vast microscopic world within flower,\nzoomed deep into petal surface,\ncolor shifting from warm garden tones toward mysterious rose-red and magenta micro world,\ninvitation to next adventure, cliffhanger ending,\nscientific accuracy, conical epidermal cells, papillae, velvet appearance"
     }
   },
   "21": {
@@ -177,10 +140,10 @@
     },
     "inputs": {
       "clip": [
-        "4",
+        "1",
         1
       ],
-      "text": "flat smooth petal surface,\nno zoom effect, no transition implied, static composition,\ncompletely surreal prismatic,\ndead wilted brown petal, dried flower, autumn decay,\ntext, watermark, signature, logo, UI elements,\nlow quality, blurry, pixelated, jpeg artifacts, noise,\nartificial plastic flower, silk flower texture,\nno cellular structure visible,\nfully realistic photograph only,\nblack background, dark void, scary microscopic view,\ncompletely watercolor only,\nincorrect cell structure"
+      "text": "lowres, bad anatomy, bad hands, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, blurry, 3d, photorealistic, flat smooth petal surface, no zoom effect, no transition, static composition, dead wilted brown petal, dried flower, artificial plastic flower, silk flower texture, no cellular structure, black background, dark void, scary microscopic view, incorrect cell structure"
     }
   },
   "22": {
@@ -201,7 +164,7 @@
     },
     "inputs": {
       "model": [
-        "4",
+        "1",
         0
       ],
       "positive": [
@@ -217,8 +180,8 @@
         0
       ],
       "seed": 1203601,
-      "steps": 40,
-      "cfg": 8.0,
+      "steps": 35,
+      "cfg": 7.0,
       "sampler_name": "dpmpp_2m",
       "scheduler": "karras",
       "denoise": 1.0

@@ -11,7 +11,7 @@
 
 | 항목 | 값 |
 |------|-----|
-| Base Model | SDXL 1.0 (DreamShaperXL_Turbo_v2_1 또는 juggernautXL_v9) |
+| Base Model | SDXL 1.0 (animagineXL31_v31) |
 | VAE | sdxl_vae.safetensors |
 | 학습 프레임워크 | kohya_ss (sd-scripts) 권장 |
 | 학습 해상도 | 1024x1024 (버킷 리사이즈 활성화) |
@@ -382,7 +382,7 @@ lora-training/
 
 ### 5.3 정규화 이미지 생성 방법
 
-1. 베이스 모델(DreamShaperXL)로 해당 클래스의 이미지를 배치 생성
+1. 베이스 모델(animagineXL31)로 해당 클래스의 이미지를 배치 생성
 2. 프롬프트 예시 (초은이용): `watercolor illustration, young girl, children's book character, full body, white background`
 3. 해상도: 1024x1024 (학습 해상도와 동일)
 4. 캡션 파일 불필요 (정규화 이미지는 클래스명만 사용)
@@ -401,7 +401,7 @@ lora-training/
 | 학습 후 | trigger word 반응 | trigger word만으로 캐릭터가 생성되는지 확인 |
 | 학습 후 | 의상 일관성 | 조끼/셔츠/반바지 등 의상 요소가 정확한지 확인 |
 | 학습 후 | 색상 일관성 | color-palette.md의 HEX 값과 생성 결과 비교 |
-| 학습 후 | 스타일 호환성 | watercolor LoRA / prismatic LoRA와 동시 적용 테스트 |
+| 학습 후 | 스타일 호환성 | animagineXL31 체크포인트에서 Danbooru 태그 기반 스타일 전환 테스트 (watercolor 태그 / surreal+prismatic 태그) |
 | 학습 후 | weight 범위 | 0.5 / 0.7 / 0.9에서 각각 생성하여 최적 범위 확인 |
 
 ### 6.2 캐릭터별 합격 기준
@@ -419,11 +419,9 @@ models/loras/
   choeun_girl_v1.safetensors        # 초은이 LoRA
   grandpa_scientist_v1.safetensors  # 할아버지 LoRA
   mungyi_tardigrade_v1.safetensors  # 뭉이 LoRA
-  ral-wtrclr-sdxl.safetensors       # 수채화 스타일 LoRA (trigger: ral-wtrclr)
-  ral-crztlgls-sdxl.safetensors     # 크리스탈/프리즘 스타일 LoRA (trigger: ral-crztlgls)
 ```
 
-> 캐릭터 LoRA와 스타일 LoRA는 동시 적용 가능. 캐릭터 LoRA weight + 스타일 LoRA weight 합계가 1.5를 넘지 않도록 주의.
+> animagineXL31에서는 스타일 LoRA를 사용하지 않는다. 캐릭터 LoRA만 적용하며, 스타일은 Danbooru 태그로 제어한다. 캐릭터 LoRA weight는 0.6~0.9 범위에서 조절.
 
 ---
 

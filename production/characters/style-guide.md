@@ -253,7 +253,7 @@ subsurface scattering on translucent skin, iridescent body surface
 
 | 파라미터 | 권장값 | 비고 |
 |----------|--------|------|
-| 베이스 모델 | SDXL 1.0 | 1024x1024 기본 해상도 |
+| 베이스 모델 | animagineXL v3.1 (SDXL 기반) | 1024x1024 기본 해상도 |
 | 네트워크 타입 | LoRA (Low-Rank Adaptation) | LyCORIS보다 호환성 우선 |
 | Network Dim (Rank) | 32 | 캐릭터 디테일 유지에 충분 |
 | Network Alpha | 16 | Dim의 절반 (안정적 학습) |
@@ -273,7 +273,7 @@ subsurface scattering on translucent skin, iridescent body surface
 | 학습 이미지 수 | 최소 20장, 권장 30~40장 |
 | 필수 포즈 | 정면, 좌45도, 우45도, 후면, 전신, 상반신, 얼굴 클로즈업 |
 | 필수 표정 | 기본(호기심), 기쁨, 놀람, 집중, 웃음 |
-| 태그 규칙 | `1girl, choeun_girl, 7yo, short bobbed black hair, sky-blue bead braid, pastel mint explorer vest, cream shirt, khaki cargo shorts, mismatched socks, brown boots, brass magnifying glass on leather cord` |
+| 태그 규칙 | `1girl, choeun_girl, 7yo, child, korean, black hair, bob cut, single side braid, blue bead hair tie, dark brown eyes, green vest, cream shirt, khaki shorts, cargo shorts, mismatched socks, brown boots, magnifying glass, brass, leather cord` |
 | 정규화 이미지 | 수채화 스타일 다른 아동 캐릭터 20장 |
 | 학습 에폭 | 25 |
 | 추론 가중치 | 0.7~0.8 (현실 세계) / 0.6~0.7 (미시 세계, 환경 반사 허용) |
@@ -285,7 +285,7 @@ subsurface scattering on translucent skin, iridescent body surface
 | 학습 이미지 수 | 최소 15장, 권장 20~25장 |
 | 필수 포즈 | 정면, 좌45도, 우45도, 전신, 상반신, 얼굴 클로즈업 |
 | 필수 표정 | 기본(인자한 미소), 걱정, 설명하는 표정, 웃음 |
-| 태그 규칙 | `1man, grandpa_scientist, elderly, silver-white dandelion puff hair, round wire-rimmed glasses, plaid flannel shirt, camel corduroy cardigan with elbow patches, retro walkie-talkie, brass micro-lens goggles` |
+| 태그 규칙 | `1boy, grandpa_scientist, elderly, 68yo, korean, silver hair, white hair, fluffy side hair, round glasses, wire-rimmed glasses, brown cardigan, corduroy, elbow patches, plaid shirt, flannel shirt, walkie-talkie, brass goggles` |
 | 정규화 이미지 | 수채화 스타일 노인 캐릭터 15장 |
 | 학습 에폭 | 20 |
 | 추론 가중치 | 0.7~0.8 (현실 세계 전용) |
@@ -297,20 +297,14 @@ subsurface scattering on translucent skin, iridescent body surface
 | 학습 이미지 수 | 최소 20장, 권장 30~40장 |
 | 필수 포즈 | 정면, 좌45도, 우45도, 걷기, 기쁨(발 올림), 놀람 |
 | 배경 처리 | 투명 배경 또는 단색 배경 (투명체 특성상 배경 분리 주의) |
-| 태그 규칙 | `mungyi, tardigrade, cute water bear, translucent body, 8 stubby legs, big round eyes, jelly-like, bioluminescent` |
+| 태그 규칙 | `mungyi_tardigrade, no humans, creature, tardigrade, water bear, cute, round body, barrel-shaped body, translucent, semi-transparent, 8 legs, four pairs of legs, large eyes, bioluminescent` |
 | 정규화 이미지 | 초현실 스타일 귀여운 미생물 캐릭터 20장 |
 | 학습 에폭 | 25~30 (투명체 질감 학습에 더 많은 에폭 필요) |
 | 추론 가중치 | 0.8~0.9 (미시 세계 전용) |
 
-#### 수채화 스타일 LoRA (Watercolor Style LoRA)
+#### 수채화 스타일 (animagineXL 내장)
 
-| 항목 | 요건 |
-|------|------|
-| 학습 이미지 수 | 50~100장 |
-| 이미지 소스 | 수채화 일러스트레이션, 아동 그림책 삽화, 수채화 애니메이션 배경 |
-| 태그 규칙 | `watercolor, hand-painted, soft brush strokes, paper texture, color bleeding` |
-| 학습 에폭 | 15~20 |
-| 추론 가중치 | 0.6~0.8 (현실 세계), 0.3~0.4 (전환 씬, 점진 감소), 0.0 (미시 세계) |
+animagineXL v3.1은 `watercolor (medium)` 태그만으로 수채화 스타일 생성이 가능하므로, 별도 수채화 LoRA가 불필요하다. 미시 세계 스타일은 `fantasy, surreal, prismatic, iridescent` 태그 조합으로 표현한다.
 
 ### 7.3 LoRA 품질 검증 체크리스트
 
@@ -326,12 +320,12 @@ subsurface scattering on translucent skin, iridescent body surface
 
 ### 8.1 현실 세계 프리픽스 (Positive)
 
-모든 현실 세계 씬의 프롬프트 시작부에 붙인다.
+모든 현실 세계 씬의 프롬프트 시작부에 붙인다. (animagineXL Danbooru 태그 기반)
 
 ```
-masterpiece, best quality, watercolor animation style, hand-painted texture,
-soft brush strokes, warm color palette, children's animation,
-Studio Ghibli-inspired environment,
+masterpiece, best quality, absurdres, highres,
+watercolor (medium), illustration, warm colors, soft lighting,
+children's book illustration,
 ```
 
 ### 8.2 현실 세계 서픽스 (Positive)
@@ -339,34 +333,29 @@ Studio Ghibli-inspired environment,
 모든 현실 세계 씬의 프롬프트 끝부분에 붙인다.
 
 ```
-, gentle shading, soft ambient lighting, watercolor bleed edges,
-paper grain texture, pastel tones, cozy warm atmosphere,
-transparent color layering, 16:9 aspect ratio, animation background plate
+, soft shading, soft ambient lighting, color bleeding,
+paper texture, pastel colors, cozy atmosphere,
+transparent coloring, 16:9 aspect ratio
 ```
 
 ### 8.3 현실 세계 네거티브 프롬프트 (고정)
 
 ```
-photorealistic, 3D render, CGI, plastic texture, harsh shadows,
-dark mood, horror, night scene, urban, indoor (unless specified),
-text, watermark, signature, logo, UI elements,
-low quality, blurry, pixelated, jpeg artifacts, noise,
-oversaturated neon colors, flat lighting, monochrome,
-anime screencap, manga panel, comic book style,
-deformed, extra fingers, mutated hands, bad anatomy, bad proportions,
-cross-eyed, asymmetric face, wrong eye direction,
-extra limbs, missing limbs, fused fingers, too many fingers
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits,
+worst quality, low quality, normal quality, jpeg artifacts,
+signature, watermark, username, blurry,
+3d, photorealistic, neon colors, dark atmosphere, horror,
+monochrome, flat lighting
 ```
 
 ### 8.4 미시 세계 프리픽스 (Positive)
 
-모든 미시 세계 씬의 프롬프트 시작부에 붙인다.
+모든 미시 세계 씬의 프롬프트 시작부에 붙인다. (animagineXL Danbooru 태그 기반)
 
 ```
-masterpiece, best quality, surreal microscopic universe art,
-scientific illustration meets ethereal fantasy,
-bioluminescent glow, prismatic light refraction,
-crystal clear translucent structures,
+masterpiece, best quality, absurdres, highres,
+fantasy, surreal, prismatic, iridescent, transparent, crystal,
+bioluminescent, microscopic world,
 ```
 
 ### 8.5 미시 세계 서픽스 (Positive)
@@ -374,50 +363,40 @@ crystal clear translucent structures,
 모든 미시 세계 씬의 프롬프트 끝부분에 붙인다.
 
 ```
-, volumetric lighting, chromatic aberration, rainbow caustics,
-ethereal dreamy atmosphere, microscopic scale, detailed molecular structures,
-subsurface scattering, refractive index visualization,
-surreal scientific beauty, 16:9 aspect ratio
+, volumetric lighting, chromatic aberration, rainbow, caustics,
+ethereal, dreamlike atmosphere, microscopic scale,
+subsurface scattering, light refraction,
+16:9 aspect ratio
 ```
 
 ### 8.6 미시 세계 네거티브 프롬프트 (고정)
 
 ```
-watercolor style, hand-painted, paper texture, brush strokes,
-cartoon, flat 2D, no depth, clipart, simple illustration,
-realistic underwater scene, ocean, aquarium, swimming pool,
-dark murky water, dirty water, cloudy opaque liquid,
-text, watermark, signature, logo, UI elements,
-low quality, blurry, pixelated, jpeg artifacts, noise,
-horror, scary, dark gothic atmosphere,
-deformed, extra fingers, mutated hands, bad anatomy, bad proportions,
-cross-eyed, asymmetric face, wrong eye direction,
-monochrome, desaturated, flat lighting,
-fish, marine life (unless episode-specific)
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits,
+worst quality, low quality, normal quality, jpeg artifacts,
+signature, watermark, username, blurry,
+watercolor (medium), paper texture, photorealistic,
+dark atmosphere, horror, monochrome, desaturated, flat coloring
 ```
 
 ### 8.7 전환 씬 프리픽스 (Positive)
 
-현실->미시 전환 시퀀스 전용.
+현실->미시 전환 시퀀스 전용. (animagineXL Danbooru 태그 기반)
 
 ```
-masterpiece, best quality, magical transformation sequence,
-style morphing from soft watercolor to surreal prismatic digital art,
-particle dispersion effect, body dissolving into luminous light particles,
-kaleidoscopic tunnel effect, rapid scale shift from macro to micro,
+masterpiece, best quality, absurdres, highres,
+magical transformation, style change, particle effects, dissolving into light,
+kaleidoscope, scale shift, macro to micro,
 ```
 
 ### 8.8 전환 씬 네거티브 프롬프트 (고정)
 
 ```
-static image, no motion implied, boring flat composition,
-horror transformation, body horror, painful expression, scary,
-dark palette, gothic, gloomy,
-text, watermark, signature, logo,
-low quality, blurry, pixelated, jpeg artifacts,
-realistic human anatomy during transformation,
-no color transition, no style change,
-flat 2D, no depth, no perspective shift
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits,
+worst quality, low quality, normal quality, jpeg artifacts,
+signature, watermark, username, blurry,
+static, horror, body horror, dark atmosphere, gothic,
+flat coloring, monochrome
 ```
 
 ### 8.9 캐릭터별 프롬프트 삽입구
@@ -426,42 +405,40 @@ flat 2D, no depth, no perspective shift
 
 **초은이 (현실 세계)**:
 ```
-7-year-old Korean girl, short bobbed black hair with a single tiny braid on the right side tied with a sky-blue bead,
-round face with large expressive dark brown eyes, slightly chubby cheeks with natural blush,
-pastel mint field-explorer vest over cream-colored long-sleeve shirt,
-khaki cargo shorts with oversized pockets, mismatched socks, worn brown lace-up boots,
-brass magnifying glass hanging from leather cord around neck,
-curious bright expression, sparkling eyes with two highlight points,
+1girl, solo, 7yo, child, korean, black hair, bob cut, single side braid, blue bead hair tie,
+dark brown eyes, round face, chubby cheeks, blush, small nose,
+green vest, cream shirt, long sleeves, khaki shorts, cargo shorts,
+mismatched socks, brown boots, lace-up boots,
+magnifying glass, brass, leather cord, neck strap,
+curious, sparkling eyes,
 ```
 
 **초은이 (미시 세계)**:
 ```
-7-year-old Korean girl miniaturized to microscopic scale,
-short bobbed black hair with sky-blue bead braid reflecting prismatic light,
-pastel mint field-explorer vest shimmering with iridescent light particles,
-cream shirt with faint light refractions, khaki cargo shorts, mismatched socks, worn brown boots,
-brass magnifying glass on leather cord glowing faintly with captured light,
-prismatic environment reflections on clothing and skin,
-eyes with rainbow-prismatic highlights, subtle subsurface scattering on skin,
+1girl, solo, 7yo, child, korean, black hair, bob cut, single side braid, blue bead hair tie,
+dark brown eyes, round face, chubby cheeks,
+green vest, cream shirt, khaki shorts, mismatched socks, brown boots,
+magnifying glass, brass, leather cord, glowing,
+miniaturized, prismatic, iridescent, rainbow reflection,
 ```
 
 **할아버지 (현실 세계 전용)**:
 ```
-68-year-old Korean man, retired scientist grandfather, warm gentle smile,
-silver-white hair thinning on top but fluffy at sides like dandelion puffs,
-round wire-rimmed glasses perched low on broad nose, deep smile lines and crow's feet,
-faded plaid flannel shirt under camel-brown corduroy cardigan with elbow patches,
-chunky retro walkie-talkie clipped to cardigan pocket,
-kind wise eyes, soft wrinkles rendered in watercolor lines,
+1boy, solo, elderly, 68yo, korean, old man, grandfather, scientist,
+silver hair, white hair, fluffy side hair, round glasses, wire-rimmed glasses,
+smile lines, crow's feet, wrinkles, bushy eyebrows, silver eyebrows,
+brown cardigan, corduroy, elbow patches, plaid shirt, flannel shirt,
+walkie-talkie, clipped to pocket,
+warm smile, kind eyes,
 ```
 
 **뭉이 (미시 세계 전용)**:
 ```
-cute tardigrade character Mungyi, translucent jelly-like round body,
-8 stubby short legs waddling, big round friendly eyes with large highlights,
-soft bioluminescent mint-blue glow around body edges,
-pastel-colored internal organs faintly visible through translucent skin,
-squishy bouncy body, microscopic water bear, adorable expression,
+no humans, creature, tardigrade, water bear, cute, round body, barrel-shaped body,
+translucent, semi-transparent, bioluminescent, internal glow,
+8 legs, four pairs of legs, stubby legs,
+large eyes, round eyes, friendly eyes, gentle smile,
+iridescent skin, prismatic, rainbow light,
 ```
 
 ---
@@ -499,18 +476,18 @@ squishy bouncy body, microscopic water bear, adorable expression,
 
 각 에피소드의 미시 세계 비주얼 톤은 color-palette.md에 정의된 색감을 따른다. 여기서는 스타일 적용 규칙만 요약한다.
 
-| 에피소드 | 미시 세계 추가 키워드 | 특수 LoRA/설정 |
-|----------|---------------------|---------------|
-| 1화 물방울 속 우주 | `prismatic refraction, transparent sphere interior, light spectrum` | Prismatic/Crystal LoRA 0.8 |
-| 2화 꽃잎 위의 별빛 | `velvet petal texture, pollen particles, organic micro-surface` | Macro Flora LoRA 0.7 |
-| 3화 나비 날개의 비밀 | `nano structural color, scale patterns, diffraction grating` | Iridescent Surface LoRA 0.8 |
-| 4화 흙 속 지하도시 | `soil particles, mycelium network, underground cavern` | Earth Texture LoRA 0.7 |
-| 5화 눈 결정 미로 | `hexagonal crystal lattice, ice prism, symmetric fractal` | Crystal/Ice LoRA 0.8 |
-| 6화 산호 왕국의 밤 | `fluorescent marine life, bioluminescence, deep sea glow` | Bioluminescence LoRA 0.8 |
-| 7화 과일 속 세포 마을 | `cell wall, chloroplast, vacuole, organic cellular` | Cellular Biology LoRA 0.7 |
-| 8화 나뭇잎 혈관 탐험 | `leaf vein network, water channels, transmitted light` | Botanical Micro LoRA 0.7 |
-| 9화 거미줄 다리 | `silk fiber, dew drops, geometric web structure` | Silk/Fiber LoRA 0.7 |
-| 10화 빗방울 대모험 | `cloud vapor, raindrop descent, earth impact splash` | Atmospheric LoRA 0.7 |
+| 에피소드 | 미시 세계 추가 키워드 | 설정 |
+|----------|---------------------|------|
+| 1화 물방울 속 우주 | `prismatic refraction, transparent sphere interior, light spectrum` | CFG 6.5, Steps 30 |
+| 2화 꽃잎 위의 별빛 | `velvet petal texture, pollen particles, organic micro-surface` | CFG 6.0, Steps 30 |
+| 3화 나비 날개의 비밀 | `nano structural color, scale patterns, diffraction grating` | CFG 6.5, Steps 30 |
+| 4화 흙 속 지하도시 | `soil particles, mycelium network, underground cavern` | CFG 6.0, Steps 30 |
+| 5화 눈 결정 미로 | `hexagonal crystal lattice, ice prism, symmetric fractal` | CFG 6.5, Steps 30 |
+| 6화 산호 왕국의 밤 | `fluorescent marine life, bioluminescence, deep sea glow` | CFG 7.0, Steps 35 |
+| 7화 과일 속 세포 마을 | `cell wall, chloroplast, vacuole, organic cellular` | CFG 6.0, Steps 30 |
+| 8화 나뭇잎 혈관 탐험 | `leaf vein network, water channels, transmitted light` | CFG 6.0, Steps 30 |
+| 9화 거미줄 다리 | `silk fiber, dew drops, geometric web structure` | CFG 6.0, Steps 30 |
+| 10화 빗방울 대모험 | `cloud vapor, raindrop descent, earth impact splash` | CFG 6.0, Steps 30 |
 
 ---
 
@@ -520,13 +497,13 @@ squishy bouncy body, microscopic water bear, adorable expression,
 
 | 파라미터 | 현실 세계 | 미시 세계 | 전환 씬 |
 |----------|----------|----------|---------|
+| Checkpoint | animagineXL31_v31.safetensors | animagineXL31_v31.safetensors | animagineXL31_v31.safetensors |
 | Resolution | 1920x1080 | 1920x1080 | 1920x1080 |
-| CFG Scale | 7.0~7.5 | 7.5~8.5 | 7.0 |
-| Sampler | DPM++ 2M Karras | DPM++ 2M Karras | DPM++ 2M Karras |
-| Steps | 30~35 | 35~45 | 35 |
+| CFG Scale | 5.0~6.0 | 6.0~7.0 | 6.0 |
+| Sampler | euler normal | dpmpp_2m karras | dpmpp_2m karras |
+| Steps | 25~30 | 28~35 | 30 |
 | Clip Skip | 2 | 2 | 2 |
-| 캐릭터 LoRA | 0.7~0.8 | 0.6~0.7 | 없음 (자유 전환) |
-| 스타일 LoRA | Watercolor 0.6~0.8 | 에피소드별 0.7~0.8 | 없음 |
+| 스타일 LoRA | 없음 (animagine 자체 스타일) | 없음 | 없음 |
 | ControlNet | OpenPose (캐릭터) | Depth (공간감) | 없음 |
 | IP-Adapter | 0.5~0.6 (초은이) | 0.4~0.5 (초은이) | 없음 |
 

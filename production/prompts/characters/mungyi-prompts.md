@@ -1,15 +1,19 @@
 # 뭉이 — 물곰 타디그레이드 (에피소드 1 친구 캐릭터) — 캐릭터 프롬프트 세트
 
-> ComfyUI SDXL 즉시 사용 가능 프롬프트. 뭉이는 미시 세계 캐릭터이므로 대부분 초현실 스타일.
+> ComfyUI animagineXL v3.1 Danbooru 태그 기반 프롬프트. 뭉이는 미시 세계 캐릭터이므로 대부분 초현실 스타일.
 > 현실 세계 엔딩(뭉이 인사 장면)용 수채화풍 1종 포함.
 
 ---
 
-## 공통 캐릭터 기술 (Character Description Token)
+## 공통 캐릭터 태그 (Character Tag Block)
 
 ```
-# 모든 프롬프트 앞에 붙여 사용하는 캐릭터 기본 토큰
-mungyi_base = "cute tardigrade character (water bear), round plump barrel-shaped translucent body with a soft internal glow visible through semi-transparent skin, body has a faint prismatic iridescence like a soap bubble, 8 short stubby legs arranged in 4 pairs along the body (each leg ending in tiny rounded claws), large round friendly dark eyes with a gentle upward curve suggesting a perpetual calm smile, small round mouth, no visible nose, the head blends smoothly into the body without a distinct neck, overall size relative to the microscopic world: about the height of a human knee when standing next to miniaturized Choeun, body color: translucent pale blue-green with rainbow light refracting through the semi-transparent skin revealing soft internal structures like a living jewel"
+# 모든 프롬프트에 삽입하는 캐릭터 기본 태그
+mungyi_tags = "no humans, creature, tardigrade, water bear, cute, round body, barrel-shaped body, translucent, semi-transparent, bioluminescent, internal glow, iridescent skin, prismatic"
+
+mungyi_features = "8 legs, four pairs of legs, stubby legs, short legs, symmetrical, rounded claws, large eyes, round eyes, dark eyes, friendly eyes, gentle smile, small round mouth, no nose, smooth head"
+
+mungyi_color = "translucent pale blue-green body, rainbow light, soft warm glow, soap bubble iridescence"
 ```
 
 <!-- 캐릭터 정체성 메모:
@@ -28,14 +32,14 @@ mungyi_base = "cute tardigrade character (water bear), round plump barrel-shaped
 
 | 항목 | 권장 값 |
 |------|--------|
-| **Checkpoint** | DreamShaperXL_Turbo_v2_1.safetensors 또는 juggernautXL_v9.safetensors |
-| **Sampler** | DPM++ SDE Karras (초현실 기본) / DPM++ 2M Karras (수채화풍) |
-| **Steps** | 35~45 (투명체 표현에 높은 스텝 권장) |
-| **CFG Scale** | 6.0~7.0 (투명도/반투명 표현을 위해 약간 낮게) |
+| **Checkpoint** | animagineXL31_v31.safetensors |
+| **Sampler** | dpmpp_2m karras (초현실 기본) / euler normal (수채화풍) |
+| **Steps** | 28~35 |
+| **CFG Scale** | 5.0~7.0 (투명도/반투명 표현을 위해 낮게) |
 | **Resolution** | 1024x1024 (정사각) 또는 896x1152 (세로 캐릭터 시트) |
 | **Seed** | 캐릭터 일관성용 고정 시드 사용 권장 |
 | **VAE** | sdxl_vae.safetensors |
-| **LoRA** | ral-crztlgls-sdxl (미시 세계, trigger: `ral-crztlgls`) / ral-wtrclr-sdxl (수채화 인서트, trigger: `ral-wtrclr`) |
+| **LoRA** | 없음 (animagineXL 자체 스타일 지원) |
 
 ---
 
@@ -46,22 +50,23 @@ mungyi_base = "cute tardigrade character (water bear), round plump barrel-shaped
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, character reference sheet, front view, full body,
-cute tardigrade character (water bear), round plump barrel-shaped body with semi-transparent translucent skin, soft internal bioluminescent glow visible through the body like light through frosted glass, body surface has prismatic soap-bubble iridescence with subtle rainbow refractions shifting across the skin,
-8 short stubby legs arranged symmetrically in 4 pairs along the barrel body, each leg ending in tiny rounded translucent claws, the front pair of legs slightly raised in a friendly greeting gesture,
-large round friendly dark eyes with gentle upward curve suggesting a calm perpetual smile, a subtle sparkle highlight in each eye reflecting the prismatic world, small round mouth in a content expression, smooth head blending into body without neck,
-body color: translucent pale blue-green base with rainbow prismatic light playing across the surface, internal structures faintly visible as soft warm glowing shapes,
-standing on a prismatic rainbow surface inside a water droplet, floating light particles and water molecules around,
-surreal microscopic world, iridescent volumetric lighting, prismatic color palette with dominant transparent blues and rainbow accents,
-character design emphasis, clean composition with subtle microscopic world background, creature design reference sheet
+masterpiece, best quality, absurdres, highres,
+no humans, creature, tardigrade, water bear, cute, round body, barrel-shaped body, translucent, semi-transparent, bioluminescent, internal glow,
+iridescent skin, soap bubble, prismatic, rainbow refraction,
+8 legs, four pairs of legs, stubby legs, short legs, symmetrical, rounded claws, front legs raised, greeting gesture,
+large eyes, round eyes, dark eyes, friendly eyes, gentle smile, sparkle in eyes, small round mouth, no nose, smooth head,
+translucent pale blue-green body, rainbow light, internal structures visible, soft warm glow,
+character reference sheet, front view, full body, standing,
+fantasy, surreal, prismatic, iridescent, crystal, inside water droplet, floating particles, water molecules, microscopic world,
+volumetric lighting, prismatic color palette, creature design reference sheet
 ```
 
 **Negative Prompt:**
 ```
-photorealistic microscope photo, realistic tardigrade, scary bug, insect horror, dark creepy creature, too many eyes, hairy body, slimy gross texture, opaque solid body with no translucency, human face on animal body, bipedal standing upright, wearing clothes, anthropomorphic with human proportions, chibi anime mascot with hair bow, generic cartoon blob, dark atmosphere, horror, extra limbs beyond 8 legs, deformed, blurry, low quality, watermark, signature, text, logo, oversaturated neon, monochrome, flat coloring with no transparency effect
+lowres, bad anatomy, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, photorealistic, realistic tardigrade, scary bug, insect horror, dark creepy, hairy body, slimy, opaque solid body, human face, bipedal, wearing clothes, anthropomorphic, chibi anime mascot, hair bow, generic cartoon blob, extra limbs, monochrome, flat coloring
 ```
 
-**Parameters:** Steps 40, CFG 6.5, Sampler DPM++ SDE Karras, 896x1152
+**Parameters:** Steps 30, CFG 6.0, Sampler dpmpp_2m karras, 896x1152
 
 ---
 
@@ -71,22 +76,22 @@ photorealistic microscope photo, realistic tardigrade, scary bug, insect horror,
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, character reference sheet, side view, full body, profile view,
-cute tardigrade character seen from the side, round plump barrel-shaped semi-transparent body clearly showing the elongated oval profile, translucent skin with prismatic iridescence and soft internal glow,
-8 stubby legs visible from the side: 4 legs on the near side arranged in evenly spaced pairs from front to back, each short and rounded, the walking pair showing a mid-stride waddle position with alternating legs lifted,
-large round eye visible in profile with gentle curve and sparkle, small round mouth, smooth rounded head profile blending into barrel body,
-body color from the side: translucent pale blue-green with light passing through and creating prismatic rainbow caustic patterns on the ground beneath,
-waddling gait frozen mid-step on a prismatic surface inside a water droplet,
-surreal microscopic world, iridescent volumetric side lighting showing the translucency of the body beautifully, prismatic color palette,
-character design emphasis, clean composition, side profile reference
+masterpiece, best quality, absurdres, highres,
+no humans, creature, tardigrade, water bear, cute, round body, barrel-shaped body, translucent, semi-transparent, iridescent skin, internal glow,
+8 legs, four pairs of legs, stubby legs, walking, mid-stride, waddle, alternating legs,
+large round eye, profile, gentle smile, small round mouth, smooth rounded head,
+translucent pale blue-green body, light passing through, rainbow caustic patterns on ground,
+character reference sheet, side view, full body, profile view,
+fantasy, surreal, prismatic, iridescent, inside water droplet, microscopic world,
+volumetric side lighting, translucency effects, prismatic color palette, creature design, side profile reference
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, realistic tardigrade, scary bug, insect horror, dark creepy creature, hairy body, opaque solid body, human proportions, wearing clothes, chibi anime, generic cartoon, dark atmosphere, horror, extra limbs, deformed, blurry, low quality, watermark, signature, text, logo, facing camera, front view, monochrome, flat coloring
+lowres, bad anatomy, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, photorealistic, realistic tardigrade, scary bug, dark creepy, hairy body, opaque solid body, human proportions, wearing clothes, chibi anime, dark atmosphere, horror, extra limbs, facing camera, front view, monochrome, flat coloring
 ```
 
-**Parameters:** Steps 40, CFG 6.5, Sampler DPM++ SDE Karras, 896x1152
+**Parameters:** Steps 30, CFG 6.0, Sampler dpmpp_2m karras, 896x1152
 
 ---
 
@@ -97,22 +102,22 @@ photorealistic, realistic tardigrade, scary bug, insect horror, dark creepy crea
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, character reference sheet, top-down view, bird's eye view, looking straight down,
-cute tardigrade character seen from directly above, round plump barrel-shaped semi-transparent body viewed from top showing the oval dorsal outline, translucent skin with prismatic soap-bubble iridescence viewed from above creating concentric rainbow rings on the body surface,
-8 stubby legs splayed outward symmetrically: 4 pairs visible from above, left and right sides mirroring each other perfectly, each leg ending in tiny rounded claws, legs spread in a relaxed standing position like a starfish-meets-barrel shape,
-the top of the round head visible at one end of the barrel shape, large round eyes partially visible peeking from the front edge,
-internal structures visible through the translucent body from above: soft glowing warm shapes arranged symmetrically inside, like looking into a living lantern,
-resting on a translucent prismatic surface, the creature's body casting rainbow caustic light patterns on the surface below it due to its translucency,
-surreal microscopic world, top-down lighting creating beautiful translucency effects, iridescent color palette,
-character design emphasis, anatomical reference from above
+masterpiece, best quality, absurdres, highres,
+no humans, creature, tardigrade, water bear, cute, round body, barrel-shaped body, translucent, semi-transparent, iridescent skin, soap bubble, concentric rainbow rings,
+8 legs, four pairs of legs, stubby legs, splayed outward, symmetrical, rounded claws, relaxed standing,
+top of head visible, large round eyes peeking from front edge,
+internal structures visible, soft glowing shapes, living lantern,
+character reference sheet, top-down view, bird's eye view, looking straight down, from above,
+fantasy, surreal, prismatic, translucent surface, rainbow caustic light patterns, microscopic world,
+top-down lighting, translucency effects, iridescent color palette, anatomical reference from above
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, realistic tardigrade, scanning electron microscope image, scary bug, dark creepy, hairy body, opaque solid body, human proportions, chibi anime, dark atmosphere, horror, extra limbs, deformed, blurry, low quality, watermark, signature, text, logo, side view, front view, monochrome, flat coloring, no translucency
+lowres, bad anatomy, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, photorealistic, realistic tardigrade, scanning electron microscope, scary bug, dark creepy, hairy body, opaque solid body, human proportions, chibi anime, dark atmosphere, horror, extra limbs, side view, front view, monochrome, flat coloring
 ```
 
-**Parameters:** Steps 40, CFG 6.0, Sampler DPM++ SDE Karras, 1024x1024
+**Parameters:** Steps 30, CFG 5.5, Sampler dpmpp_2m karras, 1024x1024
 
 ---
 
@@ -123,22 +128,22 @@ photorealistic, realistic tardigrade, scanning electron microscope image, scary 
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, character action pose, full body, three-quarter view,
-cute tardigrade character waddling forward in an adorable clumsy walk, round plump barrel-shaped semi-transparent body tilting slightly side to side with each step, prismatic iridescence rippling across the translucent skin with each movement,
-8 stubby legs in an alternating walking pattern: the front-right and back-left pairs lifted mid-step while front-left and back-right pairs planted firmly, creating a characteristic slow wobbling gait, tiny rounded claws gripping the surface,
-large round friendly eyes looking ahead with a calm welcoming expression, small round mouth curved in a gentle content smile, overall body language: unhurried and confident, a reliable guide taking its time,
-slight motion blur on the lifted legs suggesting gentle movement, small prismatic light particles kicked up with each step,
-walking across a rainbow prismatic light path inside a water droplet, floating water molecules in the background,
-surreal microscopic world, warm iridescent volumetric lighting, the translucent body catching and scattering light beautifully with each wobble,
-dynamic but gentle movement, character personality through locomotion
+masterpiece, best quality, absurdres, highres,
+no humans, creature, tardigrade, water bear, cute, round body, barrel-shaped body, translucent, semi-transparent, iridescent skin, prismatic rippling,
+8 legs, four pairs of legs, stubby legs, walking, alternating legs, wobbling gait, front-right and back-left lifted, mid-step,
+large round eyes, looking ahead, calm, friendly, gentle smile, content expression, unhurried,
+motion blur on lifted legs, prismatic light particles, rainbow trail,
+character action pose, full body, three-quarter view,
+fantasy, surreal, prismatic, rainbow light path, inside water droplet, floating water molecules, microscopic world,
+warm iridescent volumetric lighting, dynamic gentle movement, character personality
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, realistic tardigrade, scary bug, running fast, aggressive charge, static standing still, dark creepy, opaque solid body, human bipedal walk, chibi anime, dark atmosphere, horror, extra limbs, deformed, blurry, low quality, watermark, signature, text, logo, monochrome, flat coloring, rigid stiff pose
+lowres, bad anatomy, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, photorealistic, realistic tardigrade, scary bug, running fast, aggressive, static standing still, dark creepy, opaque solid body, bipedal, chibi anime, dark atmosphere, horror, extra limbs, monochrome, flat coloring, rigid stiff pose
 ```
 
-**Parameters:** Steps 40, CFG 6.5, Sampler DPM++ SDE Karras, 1152x896 (가로 - 이동 방향 강조)
+**Parameters:** Steps 30, CFG 6.0, Sampler dpmpp_2m karras, 1152x896 (가로 - 이동 방향 강조)
 
 ---
 
@@ -149,22 +154,22 @@ photorealistic, realistic tardigrade, scary bug, running fast, aggressive charge
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, dynamic action pose, full body,
-cute tardigrade character surfing on the elastic surface tension of water inside a water droplet, round plump barrel-shaped semi-transparent body leaning forward with momentum, prismatic iridescence intensified by speed creating streaking rainbow trails behind,
-8 stubby legs spread wide for balance on the bouncy transparent water surface: front 4 legs gripping the surface membrane, back 4 legs lifted slightly as if riding a wave, the elastic water surface visibly bending and dimpling under the creature's weight like a trampoline,
-visible water molecule chains (small connected spheres holding hands) forming the surface tension layer beneath, the molecules stretching but holding together,
-large round eyes wide with exhilarated joy, small mouth open in a gleeful expression, body language radiating pure fun,
-dynamic motion lines, prismatic spray of light particles from the sliding movement, rainbow light refracting through the curved water droplet walls in background,
-surreal microscopic world, dynamic volumetric prismatic lighting, action scene with scientific accuracy (surface tension visualization),
-joyful adventure, sense of speed on a microscopic scale
+masterpiece, best quality, absurdres, highres,
+no humans, creature, tardigrade, water bear, cute, round body, barrel-shaped body, translucent, semi-transparent, iridescent skin, speed lines, rainbow trails,
+8 legs, four pairs of legs, stubby legs, front legs gripping surface, back legs lifted, surfing, balance, leaning forward,
+large round eyes, wide eyes, joyful, open mouth, gleeful, exhilarated,
+elastic water surface, transparent, dimpling, trampoline-like, water molecule chains, connected spheres,
+dynamic pose, full body, action,
+fantasy, surreal, prismatic, rainbow light, inside water droplet, microscopic world,
+dynamic volumetric lighting, motion lines, prismatic spray, speed, adventure
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, realistic tardigrade, scary bug, static pose, standing still, ocean surfing with surfboard, beach waves, dark creepy, opaque solid body, chibi anime, dark atmosphere, horror, extra limbs, deformed, blurry, low quality, watermark, signature, text, logo, monochrome, flat coloring, slow movement, sad expression
+lowres, bad anatomy, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, photorealistic, realistic tardigrade, scary bug, static pose, standing still, ocean surfing, surfboard, beach waves, dark creepy, opaque solid body, chibi anime, dark atmosphere, horror, extra limbs, monochrome, flat coloring, sad expression
 ```
 
-**Parameters:** Steps 40, CFG 7.0, Sampler DPM++ SDE Karras, 1152x896 (가로 - 서핑 역동성)
+**Parameters:** Steps 30, CFG 7.0, Sampler dpmpp_2m karras, 1152x896 (가로 - 서핑 역동성)
 
 ---
 
@@ -175,22 +180,21 @@ photorealistic, realistic tardigrade, scary bug, static pose, standing still, oc
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, emotional character pose, full body, front-facing three-quarter view,
-cute tardigrade character waving farewell, round plump barrel-shaped semi-transparent body standing upright with a slight backward lean to raise front legs, prismatic iridescence on translucent skin glowing warmly,
-front pair of 2 stubby legs raised and waving gently in a farewell gesture, remaining 6 legs planted firmly on the ground supporting the slightly tilted-back posture, tiny rounded claws on the waving legs spread open in a friendly wave,
-large round eyes glistening with a bittersweet but warm emotion, a gentle brave smile on the small round mouth, overall expression: "see you next time" — not sad but hopeful,
-the translucent body glowing slightly brighter from within as if radiating warmth and affection, internal bioluminescence intensified by emotion,
-standing in a water droplet world flooded with brilliant warm sunlight making everything glow like jewels, prismatic rainbow light surrounding the scene,
-surreal microscopic world, warm golden-prismatic lighting, emotional farewell scene,
-the small creature's gesture carrying enormous warmth and meaning
+masterpiece, best quality, absurdres, highres,
+no humans, creature, tardigrade, water bear, cute, round body, barrel-shaped body, translucent, semi-transparent, iridescent skin, glowing brighter, intensified internal glow,
+front legs raised, waving, farewell gesture, 6 legs on ground, tilted back, tiny claws spread open,
+large round eyes, glistening eyes, bittersweet, brave smile, small round mouth, hopeful expression,
+emotional pose, full body, front-facing three-quarter view,
+fantasy, surreal, prismatic, warm golden prismatic lighting, inside water droplet, brilliant warm sunlight, glowing like jewels,
+emotional farewell, warm affection, small creature big heart
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, realistic tardigrade, scary bug, crying tears, devastated sadness, dark gloomy, depressing, opaque solid body, human hand waving, chibi anime with accessories, dark atmosphere, horror, extra limbs, deformed, blurry, low quality, watermark, signature, text, logo, monochrome, flat coloring, cold lighting, indifferent expression
+lowres, bad anatomy, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, photorealistic, realistic tardigrade, scary bug, crying, devastated, dark gloomy, depressing, opaque solid body, human hand, chibi anime, dark atmosphere, horror, extra limbs, monochrome, flat coloring, cold lighting, indifferent
 ```
 
-**Parameters:** Steps 40, CFG 6.5, Sampler DPM++ SDE Karras, 896x1152
+**Parameters:** Steps 30, CFG 6.0, Sampler dpmpp_2m karras, 896x1152
 
 ---
 
@@ -201,20 +205,20 @@ photorealistic, realistic tardigrade, scary bug, crying tears, devastated sadnes
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, watercolor illustration insert, full body,
-cute tardigrade character reimagined in warm watercolor illustration style, the same round plump barrel-shaped body but rendered with soft watercolor washes instead of translucent CG, body painted in gentle robin-egg blue with soft watercolor edges bleeding into the paper, subtle hint of rainbow in the watercolor pigment suggesting its prismatic nature,
-8 short stubby legs painted with confident brushstrokes, large round friendly dark eyes rendered with careful watercolor detail, small content smile,
-sitting calmly on a watercolor-painted leaf with a water droplet nearby reflecting rainbow light,
-warm watercolor illustration style matching the real-world segments, soft diffused natural lighting, traditional watercolor texture with visible paper grain and gentle pigment granulation, hand-painted quality, Studio Ghibli-inspired creature design,
-children's book illustration quality, the microscopic creature rendered approachable and lovable in traditional art style
+masterpiece, best quality, absurdres, highres,
+no humans, creature, tardigrade, water bear, cute, round body, barrel-shaped body,
+robin egg blue, soft color, subtle rainbow hint,
+8 legs, four pairs of legs, stubby legs, large round eyes, friendly eyes, content smile,
+sitting, on leaf, water droplet nearby, rainbow reflection,
+watercolor (medium), illustration, warm colors, soft natural lighting, paper texture, visible brush strokes, hand-painted quality, children's book illustration, gentle creature design
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, 3d render, realistic tardigrade, scanning electron microscope, scary bug, digital art look, glossy CG render, dark atmosphere, horror, extra limbs, deformed, blurry, low quality, watermark, signature, text, logo, oversaturated neon, monochrome, prismatic surreal lighting, microscopic world background, complex detailed background
+lowres, bad anatomy, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, 3d, photorealistic, realistic tardigrade, scanning electron microscope, scary bug, digital art, glossy CG, dark atmosphere, horror, extra limbs, neon colors, monochrome, prismatic surreal lighting, microscopic world background
 ```
 
-**Parameters:** Steps 35, CFG 7.0, Sampler DPM++ 2M Karras, 1024x1024
+**Parameters:** Steps 28, CFG 6.0, Sampler euler normal, 1024x1024
 
 ---
 
@@ -225,30 +229,30 @@ photorealistic, 3d render, realistic tardigrade, scanning electron microscope, s
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, character turnaround sheet, multiple views on single image, model sheet,
-cute tardigrade character shown in 4 angles arranged horizontally: front view, right side view, back view, left side view,
-consistent design across all views: round plump barrel-shaped semi-transparent body with prismatic iridescence, 8 short stubby legs in 4 symmetrical pairs, large round friendly dark eyes (visible in front and side views), small round mouth, smooth head blending into barrel body,
-translucent pale blue-green body color consistent across all angles, soft internal glow visible from every direction, prismatic rainbow light playing across the surface,
-each view clearly showing the leg arrangement from that angle: front view (4 legs visible - 2 left 2 right), side view (4 legs visible on near side), back view (4 legs visible - 2 left 2 right, no face), left side view (4 legs on near side),
-neutral standing pose consistent across all 4 views, on a simple reflective prismatic surface,
-clean white background with subtle prismatic light effects, character design turnaround reference sheet, consistent proportions across all views,
-technical reference quality, suitable for LoRA training and animation reference
+masterpiece, best quality, absurdres, highres,
+no humans, creature, tardigrade, water bear, cute, round body, barrel-shaped body, translucent, semi-transparent, iridescent skin, prismatic,
+8 legs, four pairs of legs, stubby legs, symmetrical,
+large round eyes, friendly, small round mouth, smooth head,
+translucent pale blue-green body, soft internal glow, rainbow light,
+character turnaround sheet, multiple views, model sheet, front view, right side view, back view, left side view, 4 angles, horizontally arranged,
+consistent design, neutral standing pose, simple reflective prismatic surface,
+clean white background, prismatic light effects, consistent proportions, technical reference quality
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, realistic tardigrade, scary bug, inconsistent design between views, different sizes, different colors between views, dark atmosphere, horror, opaque solid body, human proportions, chibi anime, extra limbs, deformed, blurry, low quality, watermark, signature, text, logo, complex background, single view only, monochrome, flat coloring, action pose
+lowres, bad anatomy, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, photorealistic, realistic tardigrade, scary bug, inconsistent design, different sizes, different colors between views, dark atmosphere, horror, opaque solid body, human proportions, chibi anime, extra limbs, complex background, single view only, monochrome, flat coloring, action pose
 ```
 
-**Parameters:** Steps 45, CFG 7.0, Sampler DPM++ SDE Karras, 1536x640 (초와이드 - 4뷰 가로 배치) 또는 1152x896
+**Parameters:** Steps 35, CFG 7.0, Sampler dpmpp_2m karras, 1536x640 (초와이드 - 4뷰 가로 배치) 또는 1152x896
 
 ---
 
 ## 사용 가이드
 
 ### 투명 몸체 표현 팁
-1. **CFG를 낮게 유지 (6.0~6.5)**: 높은 CFG는 몸체를 불투명하게 만드는 경향이 있음
-2. **Steps를 높게 (40~45)**: 투명체 내부 디테일이 충분히 렌더링되려면 높은 스텝 필요
+1. **CFG를 낮게 유지 (5.0~6.0)**: 높은 CFG는 몸체를 불투명하게 만드는 경향이 있음
+2. **Steps를 적절히 (28~35)**: animagineXL은 적은 스텝으로도 충분한 품질 도달
 3. **ControlNet Depth 활용**: 뭉이의 둥근 형태를 유지하면서 투명도를 확보하려면 Depth Map 가이드 권장
 4. **후처리**: 투명도가 부족한 결과물은 ComfyUI의 Opacity/Blend 노드로 보정 가능
 

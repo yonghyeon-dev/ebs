@@ -1,14 +1,18 @@
 # 할아버지 — '박사 할배' (68세) — 캐릭터 프롬프트 세트
 
-> ComfyUI SDXL 즉시 사용 가능 프롬프트. 현실 세계(수채화풍)와 미시 세계(초현실) 두 스타일 버전 포함.
+> ComfyUI animagineXL v3.1 Danbooru 태그 기반 프롬프트. 현실 세계(수채화풍) 전용.
 
 ---
 
-## 공통 캐릭터 기술 (Character Description Token)
+## 공통 캐릭터 태그 (Character Tag Block)
 
 ```
-# 모든 프롬프트 앞에 붙여 사용하는 캐릭터 기본 토큰
-grandpa_base = "68-year-old Korean man, retired scientist, warm and wise grandfather figure, silver-white hair thinning on top but fluffy at the sides like a dandelion puff, round wire-rimmed glasses perched low on a broad nose, deep smile lines and crow's feet around kind narrow eyes, bushy silver eyebrows, slightly hunched posture from years of peering into microscopes, wearing a well-loved camel-brown corduroy cardigan with elbow patches over a faded plaid flannel shirt, comfortable dark brown trousers, brown leather house slippers, a chunky retro walkie-talkie clipped to cardigan pocket, a micro-lens device (resembling vintage brass goggles with crystalline lenses) hanging around his neck or pushed up on his forehead"
+# 모든 프롬프트에 삽입하는 캐릭터 기본 태그
+grandpa_tags = "1boy, solo, elderly, 68yo, korean, old man, grandfather, scientist, silver hair, white hair, thinning hair, fluffy side hair, round glasses, wire-rimmed glasses, glasses on nose, smile lines, crow's feet, wrinkles, bushy eyebrows, silver eyebrows, slightly hunched posture"
+
+grandpa_outfit = "brown cardigan, corduroy, elbow patches, leather patches, plaid shirt, flannel shirt, red plaid, dark brown pants, brown slippers"
+
+grandpa_props = "walkie-talkie, clipped to pocket, short antenna, brass goggles, goggles on forehead, crystalline lenses"
 ```
 
 <!-- 캐릭터 정체성 메모:
@@ -26,14 +30,14 @@ grandpa_base = "68-year-old Korean man, retired scientist, warm and wise grandfa
 
 | 항목 | 권장 값 |
 |------|--------|
-| **Checkpoint** | DreamShaperXL_Turbo_v2_1.safetensors 또는 juggernautXL_v9.safetensors |
-| **Sampler** | DPM++ 2M Karras (수채화풍) / DPM++ SDE Karras (초현실) |
-| **Steps** | 30~40 |
-| **CFG Scale** | 6.5~7.5 |
+| **Checkpoint** | animagineXL31_v31.safetensors |
+| **Sampler** | euler normal |
+| **Steps** | 25~30 |
+| **CFG Scale** | 5.0~7.0 |
 | **Resolution** | 1024x1024 (정사각) 또는 896x1152 (세로 캐릭터 시트) |
 | **Seed** | 캐릭터 일관성용 고정 시드 사용 권장 (IP-Adapter 병행 시 자유) |
 | **VAE** | sdxl_vae.safetensors |
-| **LoRA** | ral-wtrclr-sdxl (현실 세계, trigger: `ral-wtrclr`) |
+| **LoRA** | 없음 (animagineXL 자체 스타일 지원) |
 
 ---
 
@@ -43,21 +47,21 @@ grandpa_base = "68-year-old Korean man, retired scientist, warm and wise grandfa
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, character reference sheet, front view, full body,
-68-year-old Korean man, retired scientist grandfather, tall with slightly hunched scholarly posture, silver-white hair thinning on top but fluffy at the sides like dandelion puffs, round wire-rimmed glasses perched low on a broad friendly nose, deep warm smile lines and crow's feet around kind narrow eyes, bushy silver eyebrows slightly wild and unkempt, weathered gentle hands with visible veins,
-wearing a well-loved camel-brown corduroy cardigan with brown leather elbow patches over a faded red-and-cream plaid flannel shirt, comfortable dark brown wool trousers with slight creases, brown leather house slippers,
-a chunky retro walkie-talkie with a short antenna clipped to the left cardigan pocket, a micro-lens device resembling vintage brass goggles with crystalline prismatic lenses pushed up on his forehead resting against his fluffy silver hair,
-standing in a warm cluttered attic laboratory with books and specimen jars in soft focus behind him,
-warm watercolor illustration style, soft afternoon window light, traditional watercolor texture with visible paper grain, gentle color bleeding at edges, Studio Ghibli-inspired warmth, kind grandfatherly presence,
-clean background with subtle attic elements, character design emphasis
+masterpiece, best quality, absurdres, highres,
+1boy, solo, elderly, 68yo, korean, old man, grandfather, scientist,
+silver hair, white hair, thinning hair, fluffy side hair, round glasses, wire-rimmed glasses, glasses on nose, smile lines, crow's feet, wrinkles, bushy eyebrows, silver eyebrows, weathered hands, visible veins,
+brown cardigan, corduroy, elbow patches, leather patches, plaid shirt, flannel shirt, red plaid, dark brown pants, brown slippers,
+walkie-talkie, clipped to pocket, short antenna, brass goggles, goggles on forehead, crystalline lenses,
+character reference sheet, front view, full body, standing, slightly hunched posture,
+watercolor (medium), illustration, warm colors, soft afternoon lighting, attic laboratory, cozy interior, warm atmosphere, character design
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, 3d render, anime screencap, chibi, young man, muscular, intimidating, stern expression, military uniform, suit and tie, modern tech gadgets, smartphone, dark atmosphere, horror, extra fingers, extra limbs, deformed hands, bad anatomy, blurry, low quality, watermark, signature, text, logo, oversaturated neon colors, generic old man, Santa Claus, wizard robe
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, 3d, photorealistic, chibi, young man, muscular, intimidating, stern, military uniform, suit, smartphone, dark atmosphere, horror, neon colors, santa claus, wizard
 ```
 
-**Parameters:** Steps 35, CFG 7.0, Sampler DPM++ 2M Karras, 896x1152
+**Parameters:** Steps 28, CFG 6.0, Sampler euler normal, 896x1152
 
 ---
 
@@ -67,21 +71,21 @@ photorealistic, 3d render, anime screencap, chibi, young man, muscular, intimida
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, character reference sheet, side view, full body, profile view from right side,
-68-year-old Korean man, retired scientist grandfather, tall with characteristically hunched upper back from decades of laboratory work, silver-white fluffy side hair visible in profile, round wire-rimmed glasses on broad nose seen from side, kind narrow eye visible, bushy silver eyebrow,
-camel-brown corduroy cardigan with elbow patch clearly visible in profile, faded plaid flannel shirt collar peeking out, dark brown trousers, brown leather slippers,
-walkie-talkie clipped to front cardigan pocket visible in profile with short antenna protruding, brass micro-lens goggles pushed up on forehead visible from side showing the crystalline lens thickness and adjustable brass strap,
-slight forward lean in posture, hands clasped behind back in contemplative stance,
-warm watercolor illustration style, soft natural lighting from the side, traditional watercolor texture, Studio Ghibli-inspired warmth,
-clean light background, character design emphasis, side profile reference
+masterpiece, best quality, absurdres, highres,
+1boy, solo, elderly, 68yo, korean, old man, grandfather, scientist,
+silver hair, white hair, fluffy side hair, round glasses, wire-rimmed glasses, bushy silver eyebrows,
+brown cardigan, corduroy, elbow patches, leather patches, plaid shirt, flannel shirt, dark brown pants, brown slippers,
+walkie-talkie, clipped to pocket, antenna, brass goggles, goggles on forehead,
+character reference sheet, side view, full body, profile, hands behind back, contemplative pose, forward lean,
+watercolor (medium), illustration, warm colors, soft side lighting, clean background, character design, side profile reference
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, 3d render, anime screencap, chibi, young man, muscular, straight-backed military posture, dark atmosphere, horror, extra fingers, extra limbs, deformed hands, bad anatomy, blurry, low quality, watermark, signature, text, logo, oversaturated neon colors, facing camera, front view, generic old man
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, 3d, photorealistic, chibi, young man, muscular, straight posture, dark atmosphere, horror, neon colors, facing camera, front view
 ```
 
-**Parameters:** Steps 35, CFG 7.0, Sampler DPM++ 2M Karras, 896x1152
+**Parameters:** Steps 28, CFG 6.0, Sampler euler normal, 896x1152
 
 ---
 
@@ -92,21 +96,22 @@ photorealistic, 3d render, anime screencap, chibi, young man, muscular, straight
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, character expression sheet, close-up face portrait, head and shoulders,
-68-year-old Korean man, retired scientist grandfather, silver-white fluffy side hair, round wire-rimmed glasses perched low on broad nose, deep warm smile with eyes almost closed in crescent shapes, pronounced crow's feet crinkling warmly, smile lines deeply creased, bushy silver eyebrows relaxed and slightly raised in gentle amusement, a few age spots on temples,
-wearing camel-brown corduroy cardigan collar visible, faded plaid flannel shirt collar,
-brass micro-lens goggles pushed up on forehead catching warm light,
-expression: deeply warm knowing smile, grandfatherly pride, quiet wisdom, gentle encouragement, the kind of smile that makes a child feel safe and loved,
-warm watercolor illustration style, soft golden interior lighting as if from an attic window, traditional watercolor texture with warm tones,
-clean warm background, emotion reference sheet, portrait emphasis
+masterpiece, best quality, absurdres, highres,
+1boy, solo, elderly, 68yo, korean, old man, grandfather, scientist,
+silver hair, white hair, fluffy side hair, round glasses, wire-rimmed glasses, closed eyes, crescent eyes, warm smile, gentle smile, deep smile lines, crow's feet, bushy silver eyebrows, age spots,
+brown cardigan, corduroy, plaid shirt collar,
+brass goggles, goggles on forehead, warm light reflection,
+close-up, portrait, head and shoulders, upper body,
+expression: warm smile, grandfatherly pride, gentle, kind,
+watercolor (medium), illustration, warm colors, golden interior lighting, warm tones, clean background, expression reference sheet
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, 3d render, anime screencap, chibi, young face, stern expression, angry, cold distant look, dark atmosphere, horror, extra fingers, deformed, bad anatomy, blurry, low quality, watermark, signature, text, logo, neutral expression, smirking, sarcastic smile, oversaturated, forced grin
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, 3d, photorealistic, chibi, young face, stern, angry, cold, dark atmosphere, horror, neutral expression, smirking, sarcastic, neon colors
 ```
 
-**Parameters:** Steps 35, CFG 7.0, Sampler DPM++ 2M Karras, 1024x1024
+**Parameters:** Steps 28, CFG 6.0, Sampler euler normal, 1024x1024
 
 ---
 
@@ -117,20 +122,21 @@ photorealistic, 3d render, anime screencap, chibi, young face, stern expression,
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, character expression sheet, close-up face portrait, head and shoulders,
-68-year-old Korean man, retired scientist grandfather, silver-white fluffy side hair slightly disheveled, round wire-rimmed glasses askew and slipping down nose, eyes wide open behind glasses in genuine surprise, bushy silver eyebrows shooting up high, mouth open in a startled "oh!", deep wrinkles animated with shock,
-one hand adjusting slipping glasses, other hand holding the chunky retro walkie-talkie up near his ear with antenna extended,
-expression: genuine scientific surprise, fascinated shock, not fearful but intellectually astonished, the excitement of unexpected discovery,
-warm watercolor illustration style, slightly dramatic lighting suggesting something extraordinary just happened, traditional watercolor texture,
-clean background with subtle light burst effect, emotion reference sheet, portrait emphasis
+masterpiece, best quality, absurdres, highres,
+1boy, solo, elderly, 68yo, korean, old man, grandfather, scientist,
+silver hair, white hair, fluffy side hair, disheveled, round glasses, wire-rimmed glasses, glasses askew, slipping glasses, wide eyes, surprised, open mouth, raised eyebrows, bushy silver eyebrows, wrinkles animated,
+one hand adjusting glasses, other hand holding walkie-talkie, antenna extended,
+close-up, portrait, head and shoulders, upper body,
+expression: genuine surprise, scientific fascination, astonished, not fearful,
+watercolor (medium), illustration, warm colors, dramatic lighting, light burst, clean background, expression reference sheet
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, 3d render, anime screencap, chibi, young face, terrified horror expression, screaming in fear, heart attack, dark atmosphere, horror, gore, extra fingers, deformed, bad anatomy, blurry, low quality, watermark, signature, text, logo, calm expression, neutral face, oversaturated, modern smartphone instead of walkie-talkie
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, 3d, photorealistic, chibi, young face, terrified, screaming, horror, dark atmosphere, calm expression, neon colors, smartphone
 ```
 
-**Parameters:** Steps 35, CFG 7.0, Sampler DPM++ 2M Karras, 1024x1024
+**Parameters:** Steps 28, CFG 6.0, Sampler euler normal, 1024x1024
 
 ---
 
@@ -141,24 +147,20 @@ photorealistic, 3d render, anime screencap, chibi, young face, terrified horror 
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, object reference sheet, product design illustration, multiple views,
-two scientific instruments on a clean background:
-
-ITEM 1 - Retro Walkie-Talkie Communication Device:
-chunky vintage walkie-talkie with rounded edges, olive-green and brass body, a short telescoping antenna on top, a circular speaker grille with concentric rings, three small toggle switches on the side, a worn leather belt clip on the back, a small glowing amber indicator light, hand-built handcrafted quality with visible tiny screws and solder marks, size reference: fits in an adult hand comfortably,
-
-ITEM 2 - Micro-Lens Device:
-vintage brass goggles with two large crystalline prismatic lenses that shimmer with rainbow iridescence, adjustable brass frame with small gear mechanisms on the temples for focusing, a worn brown leather headband strap with brass buckle adjustment, the lenses appear to contain captured light refractions within the crystal, small engraved measurement markings on the brass frame, overall aesthetic: steampunk-meets-laboratory-instrument,
-
-warm watercolor illustration style with precise technical linework, multiple angles for each item (front, side, detail), clean white background, object design reference, high detail
+masterpiece, best quality, absurdres, highres,
+no humans, still life, object focus,
+walkie-talkie, vintage, retro, olive green, brass, rounded edges, telescoping antenna, circular speaker grille, toggle switches, leather belt clip, amber indicator light, handcrafted,
+brass goggles, steampunk, crystalline lenses, prismatic, iridescent, adjustable brass frame, gear mechanisms, brown leather headband, brass buckle, engraved markings,
+multiple views, front view, side view, detail view,
+watercolor (medium), illustration, warm lighting, white background, object reference sheet, product design
 ```
 
 **Negative Prompt:**
 ```
-photorealistic photograph, modern technology, smartphone, digital screen, plastic toy, cheap materials, dark atmosphere, blurry, low quality, watermark, signature, text, logo, character holding items, hands visible, oversaturated neon, mass-produced factory look, sleek minimalist design
+lowres, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, photorealistic, modern technology, smartphone, digital screen, plastic toy, dark atmosphere, hands, character, neon colors
 ```
 
-**Parameters:** Steps 35, CFG 7.5, Sampler DPM++ 2M Karras, 1152x896 (가로 - 두 소품 나란히)
+**Parameters:** Steps 28, CFG 7.0, Sampler euler normal, 1152x896 (가로 - 두 소품 나란히)
 
 ---
 
@@ -169,21 +171,19 @@ photorealistic photograph, modern technology, smartphone, digital screen, plasti
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, interior background illustration, wide shot,
-68-year-old Korean scientist grandfather in his cozy attic laboratory, silver-white fluffy hair, camel corduroy cardigan, standing at a cluttered wooden workbench reaching for the brass micro-lens goggles on a shelf,
-
-attic laboratory environment: sloped wooden ceiling with exposed beams, a round window letting in warm afternoon sunlight with dust motes floating, overflowing bookshelves with scientific journals and old leather-bound books, glass specimen jars containing preserved plants and insects on shelves, a vintage brass microscope on the workbench, scattered hand-drawn diagrams and notes pinned to a corkboard, a worn Persian rug on the wooden floor, a desk lamp with a green glass shade, potted plants on the windowsill receiving sunlight, a small chalkboard with molecular diagrams,
-
-warm watercolor illustration style, golden afternoon light streaming through the round window, cozy cluttered academic atmosphere, traditional watercolor texture with warm earth tones, Studio Ghibli-inspired detailed interior,
-lived-in scholarly warmth, the kind of room that invites curiosity
+masterpiece, best quality, absurdres, highres,
+1boy, solo, elderly, silver hair, brown cardigan, corduroy, standing at workbench,
+interior, attic, laboratory, cozy, cluttered,
+sloped wooden ceiling, exposed beams, round window, afternoon sunlight, dust motes, bookshelves, scientific journals, leather-bound books, glass specimen jars, preserved plants, brass microscope, scattered diagrams, corkboard, persian rug, wooden floor, desk lamp, green glass shade, potted plants, windowsill, small chalkboard, molecular diagrams,
+watercolor (medium), illustration, warm colors, golden afternoon light, cozy atmosphere, wide shot, detailed interior
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, 3d render, modern laboratory, sterile white walls, fluorescent lighting, high-tech equipment, computer screens, dark dungeon, horror, abandoned building, dirty messy chaos, extra fingers, deformed, bad anatomy, blurry, low quality, watermark, signature, text, logo, oversaturated neon, cold blue lighting, empty room
+lowres, bad anatomy, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, 3d, photorealistic, modern laboratory, sterile, fluorescent lighting, high-tech, computer screens, dark dungeon, horror, abandoned, neon colors, cold blue lighting, empty room
 ```
 
-**Parameters:** Steps 40, CFG 7.0, Sampler DPM++ 2M Karras, 1152x896 (가로 - 배경 공간)
+**Parameters:** Steps 30, CFG 6.0, Sampler euler normal, 1152x896 (가로 - 배경 공간)
 
 ---
 
@@ -194,23 +194,21 @@ photorealistic, 3d render, modern laboratory, sterile white walls, fluorescent l
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, surreal scene illustration,
-a grandfather's warm face reflected and distorted on the curved inner surface of a water droplet, 68-year-old Korean man with silver-white fluffy hair and round wire-rimmed glasses, his face warped by the spherical water surface like a funhouse mirror but still recognizable and warm, his mouth open mid-speech giving urgent but caring instructions,
-
-sound waves from his walkie-talkie communication visualized as concentric rings of golden light rippling across the water droplet surface, the light ripples carrying his voice manifest as warm amber and gold wave patterns expanding outward,
-
-interior of water droplet visible: prismatic rainbow refractions, transparent curved water walls, the distorted outside world (garden) visible through the water membrane,
-
-surreal microscopic world, volumetric prismatic lighting, iridescent color palette, the warmth of his presence contrasting with the crisis tension of the shaking world,
-ethereal communication between macro and micro worlds
+masterpiece, best quality, absurdres, highres,
+1boy, elderly, silver hair, round glasses, wire-rimmed glasses, open mouth, speaking, caring expression,
+reflection, distorted face, curved surface, water droplet, spherical distortion, warped, funhouse mirror,
+sound waves, concentric rings, golden light ripples, amber wave patterns, expanding outward,
+inside water droplet, prismatic rainbow refraction, transparent curved walls, distorted outside world,
+fantasy, surreal, prismatic, iridescent, volumetric lighting, warm presence, crisis tension,
+communication between worlds, macro and micro worlds
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, flat illustration, chibi, clear undistorted face, character physically present inside water droplet, dark horror atmosphere, scary distortion, ugly face, extra fingers, deformed, bad anatomy, blurry, low quality, watermark, signature, text, logo, monochrome, desaturated, watercolor paper texture, mundane phone call, modern technology
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, photorealistic, chibi, clear undistorted face, character inside water droplet, dark horror, scary, ugly, monochrome, watercolor (medium), paper texture, smartphone
 ```
 
-**Parameters:** Steps 40, CFG 6.5, Sampler DPM++ SDE Karras, 1024x1024
+**Parameters:** Steps 30, CFG 6.5, Sampler dpmpp_2m karras, 1024x1024
 
 ---
 

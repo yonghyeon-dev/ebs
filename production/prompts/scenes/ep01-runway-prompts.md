@@ -1,12 +1,14 @@
 # EP01 "물방울 속 우주" — Runway/Kling 전용 img2video 프롬프트
 
 <!--
-  각 씬의 정적 이미지(ComfyUI 생성)를 Runway Gen-3 Alpha 또는 Kling AI에 입력하여
+  각 씬의 정적 이미지(ComfyUI 생성)를 Kling/Runway ComfyUI API 노드로
   동적 영상(img2video)으로 변환할 때 사용하는 모션 지시 프롬프트 모음.
+  Kling/Runway는 외부 웹서비스가 아니라 ComfyUI 크레딧으로 작동하는 API 노드입니다.
   카메라 무브먼트, 피사체 모션, 분위기 전환 등 영상 고유의 동적 요소를 지시합니다.
 -->
 
-> **용도**: ComfyUI 생성 이미지 → Runway Gen-3 Alpha / Kling AI img2video 변환
+> **용도**: ComfyUI 생성 이미지 → Kling/Runway ComfyUI API 노드 img2video 변환
+> **실행 환경**: ComfyUI 워크플로우 내부에서 Kling/Runway API 노드로 직접 실행 (크레딧 기반)
 > **형식**: 각 프롬프트에 (1) 입력 이미지 설명, (2) 모션 지시, (3) 분위기/타이밍 포함
 > **주의**: 이 프롬프트는 정적 이미지 생성용이 아님. 반드시 ComfyUI 결과물과 함께 사용
 
@@ -14,7 +16,10 @@
 
 ## 공통 설정
 
-### Runway Gen-3 Alpha 권장 설정
+### Runway ComfyUI API 노드 권장 설정
+
+> Runway/Kling은 ComfyUI 워크플로우 내에서 API 노드로 직접 실행됩니다.
+> 외부 웹사이트가 아닌 ComfyUI 크레딧으로 작동하는 통합 노드입니다.
 
 | 항목 | 권장값 |
 |------|--------|
@@ -24,7 +29,7 @@
 | Style Preset | None (ComfyUI 소스 이미지 스타일 유지) |
 | Seed | 각 씬별 고정 시드 사용 (재현성 확보) |
 
-### Kling AI 권장 설정
+### Kling ComfyUI API 노드 권장 설정
 
 | 항목 | 권장값 |
 |------|--------|
