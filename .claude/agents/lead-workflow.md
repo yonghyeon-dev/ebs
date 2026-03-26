@@ -73,7 +73,7 @@ Agent(
   name: "{팀명}",
   prompt: "당신은 {팀명} 팀원입니다.
   .flowset/guides/team-worker-guide.md를 읽고 초기화하세요.
-  팀 등록: mkdir -p .flowset/teams && echo '{팀명}' > .flowset/teams/$(echo $$).team
+  팀 등록: mkdir -p .flowset/teams && echo '{팀명}' > .flowset/teams/{팀명}.team
   할당 태스크: {WI 목록}"
 )
 ```
@@ -119,9 +119,15 @@ evaluator 서브에이전트를 백그라운드로 실행해줘.
 
 #### 채점 결과 처리
 1. evaluator가 채점표(EVAL_RESULT) 반환
-2. **PASS (7.0+)**: 리드가 마커 생성 → `mkdir -p .flowset/eval-results && touch .flowset/eval-results/WI-{NNN}.pass`
-3. **FAIL (<7.0)**: 리드가 ISSUES를 해당 팀원에게 메시지로 전달 → 팀원 수정 → 리드가 다시 evaluator spawn
-4. **3회 FAIL**: 리드가 직접 판단 또는 사용자에게 에스컬레이션
+2. **PASS (9.0+)**: 리드가 마커 생성 → `mkdir -p .flowset/eval-results && touch .flowset/eval-results/WI-{NNN}.pass`
+3. **FAIL (<9.0)**: 리드가 ISSUES를 해당 팀원에게 메시지로 전달 → 팀원 수정 → 리드가 다시 evaluator spawn
+4. **3회 FAIL 시 강제 절차**:
+   a. guardrails.md에 실패 기록 (WI, 점수 이력 3회분, 반복 원인)
+   b. **사용자 에스컬레이션 필수** (AskUserQuestion) — 리드 임의 판단으로 넘어가기 금지
+   c. 사용자가 선택:
+      - 방향 변경 후 재시도 (FAIL 카운트 리셋)
+      - 수용 기준 조정 후 재평가
+      - WI 스킵 (guardrails.md에 스킵 사유 기록)
 
 #### 결과 통합
 - `.flowset/eval-results/` 확인 → 모든 WI에 .pass 파일 있는지
