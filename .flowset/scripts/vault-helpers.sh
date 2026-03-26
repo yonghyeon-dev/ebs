@@ -228,6 +228,47 @@ vault_save_session_log() {
 ${summary}"
 }
 
+# 일별 통합 세션 로그 (per-turn 대신 per-day)
+# 같은 날의 로그는 하나의 파일에 append
+vault_save_daily_session_log() {
+  [[ "${VAULT_ENABLED}" != "true" ]] && return 0
+  [[ -z "${VAULT_PROJECT_NAME}" ]] && return 0
+
+  local summary="${1:-}"
+  local changed="${2:-none}"
+  local issue_count="${3:-0}"
+  local branch
+  branch=$(git branch --show-current 2>/dev/null || echo unknown)
+  local today
+  today=$(date '+%Y%m%d')
+  local time_now
+  time_now=$(date '+%H:%M:%S')
+  local daily_file="${VAULT_PROJECT_NAME}/sessions/${today}-daily.md"
+
+  local team_line=""
+  [[ -n "${TEAM_NAME:-}" ]] && team_line=" | Team: ${TEAM_NAME}"
+
+  # 기존 일별 로그 읽기
+  local existing
+  existing=$(vault_read "$daily_file" 2>/dev/null)
+
+  local new_entry="
+### ${time_now} (Branch: ${branch}${team_line})
+- Changed: ${changed}
+- Issues: ${issue_count}
+- Summary: ${summary}"
+
+  if [[ -n "$existing" && "$existing" != *'"errorCode"'* ]]; then
+    # 기존 파일에 append
+    vault_write "$daily_file" "${existing}
+${new_entry}"
+  else
+    # 새 일별 파일 생성
+    vault_write "$daily_file" "# Session Log — ${today}
+${new_entry}"
+  fi
+}
+
 # 최근 세션 로그 1건 읽기
 vault_read_latest_session() {
   [[ "${VAULT_ENABLED}" != "true" ]] && return 0
