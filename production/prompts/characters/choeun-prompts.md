@@ -1,14 +1,18 @@
 # 초은이 (박초은, 7세) — 캐릭터 프롬프트 세트
 
-> ComfyUI SDXL 즉시 사용 가능 프롬프트. 현실 세계(수채화풍)와 미시 세계(초현실) 두 스타일 버전 포함.
+> ComfyUI animagineXL v3.1 Danbooru 태그 기반 프롬프트. 현실 세계(수채화풍)와 미시 세계(초현실) 두 스타일 버전 포함.
 
 ---
 
-## 공통 캐릭터 기술 (Character Description Token)
+## 공통 캐릭터 태그 (Character Tag Block)
 
 ```
-# 모든 프롬프트 앞에 붙여 사용하는 캐릭터 기본 토큰
-choeun_base = "7-year-old Korean girl, short bobbed black hair with a single tiny braid on the right side tied with a sky-blue bead, round face with large expressive dark brown eyes, slightly chubby cheeks with a faint natural blush, small upturned nose, wearing a pastel mint field-explorer vest over a cream-colored long-sleeve shirt, khaki cargo shorts with oversized pockets, mismatched socks (one striped blue, one dotted green), worn brown lace-up boots, a brass magnifying glass hanging from a leather cord around her neck"
+# 모든 프롬프트에 삽입하는 캐릭터 기본 태그
+choeun_tags = "1girl, solo, 7yo, child, korean, black hair, bob cut, single side braid, blue bead hair tie, dark brown eyes, round face, chubby cheeks, blush, small nose"
+
+choeun_outfit = "green vest, cream shirt, long sleeves, khaki shorts, cargo shorts, oversized pockets, mismatched socks, striped socks, blue socks, green socks, polka dot socks, brown boots, lace-up boots"
+
+choeun_props = "magnifying glass, brass, leather cord, neck strap"
 ```
 
 <!-- 캐릭터 정체성 메모:
@@ -25,14 +29,28 @@ choeun_base = "7-year-old Korean girl, short bobbed black hair with a single tin
 
 | 항목 | 권장 값 |
 |------|--------|
-| **Checkpoint** | DreamShaperXL_Turbo_v2_1.safetensors 또는 juggernautXL_v9.safetensors |
-| **Sampler** | DPM++ 2M Karras (수채화풍) / DPM++ SDE Karras (초현실) |
-| **Steps** | 30~40 |
-| **CFG Scale** | 6.5~7.5 |
+| **Checkpoint** | animagineXL31_v31.safetensors |
+| **Sampler** | euler normal (현실) / dpmpp_2m karras (미시) |
+| **Steps** | 25~30 |
+| **CFG Scale** | 5.0~7.0 |
 | **Resolution** | 1024x1024 (정사각) 또는 896x1152 (세로 캐릭터 시트) |
 | **Seed** | 캐릭터 일관성용 고정 시드 사용 권장 (IP-Adapter 병행 시 자유) |
 | **VAE** | sdxl_vae.safetensors |
-| **LoRA** | ral-wtrclr-sdxl (현실 세계, trigger: `ral-wtrclr`) / ral-crztlgls-sdxl (미시 세계, trigger: `ral-crztlgls`) |
+| **LoRA** | 없음 (animagineXL은 자체 스타일 지원) |
+
+---
+
+## Quality / Negative 공통 블록
+
+**Quality Prefix (모든 Positive 앞에):**
+```
+masterpiece, best quality, absurdres, highres,
+```
+
+**Standard Negative (모든 씬 공통):**
+```
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry
+```
 
 ---
 
@@ -42,20 +60,20 @@ choeun_base = "7-year-old Korean girl, short bobbed black hair with a single tin
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, character reference sheet, front view, full body,
-7-year-old Korean girl, short bobbed black hair with a single tiny braid on the right side tied with a sky-blue bead, round face with large expressive dark brown eyes, slightly chubby cheeks with a faint natural blush, small upturned nose, curious bright smile showing slight gap in front teeth,
-wearing a pastel mint field-explorer vest over a cream-colored long-sleeve shirt, khaki cargo shorts with oversized pockets stuffed with small leaves and pebbles, mismatched socks (one striped blue, one dotted green), worn brown lace-up boots with mud on the soles,
-a brass magnifying glass hanging from a leather cord around her neck,
-standing in a sunlit garden after rain, warm watercolor illustration style, soft diffused lighting, traditional watercolor texture with visible paper grain, gentle color bleeding at edges, Studio Ghibli-inspired warmth, children's book illustration quality,
-white background with minimal garden elements, character design emphasis
+masterpiece, best quality, absurdres, highres,
+1girl, solo, 7yo, child, korean, black hair, bob cut, single side braid, blue bead hair tie, dark brown eyes, round face, chubby cheeks, blush, small nose, curious smile, gap teeth,
+green vest, cream shirt, long sleeves, khaki shorts, cargo shorts, oversized pockets, mismatched socks, striped socks, blue socks, green socks, polka dot socks, brown boots, lace-up boots, mud on shoes,
+magnifying glass, brass, leather cord, neck strap,
+character reference sheet, front view, full body, standing,
+watercolor (medium), illustration, warm colors, soft lighting, sunlit, garden, after rain, white background, children's book illustration, character design
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, 3d render, anime screencap, chibi, super deformed, adult proportions, mature face, makeup, high heels, sexy, revealing clothing, dark atmosphere, horror, gore, extra fingers, extra limbs, deformed hands, bad anatomy, blurry, low quality, watermark, signature, text, logo, oversaturated neon colors, generic anime girl, school uniform, magical girl costume
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, 3d, photorealistic, chibi, super deformed, adult, mature, makeup, high heels, revealing clothing, dark atmosphere, horror, gore, neon colors, school uniform, magical girl
 ```
 
-**Parameters:** Steps 35, CFG 7.0, Sampler DPM++ 2M Karras, 896x1152
+**Parameters:** Steps 28, CFG 6.0, Sampler euler normal, 896x1152
 
 ---
 
@@ -65,21 +83,20 @@ photorealistic, 3d render, anime screencap, chibi, super deformed, adult proport
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, character reference sheet, side view, full body, profile view from left side,
-7-year-old Korean girl, short bobbed black hair with a single tiny braid on the right side tied with a sky-blue bead visible behind the head, round face profile with small upturned nose, large dark brown eye visible in profile, slightly chubby cheek with natural blush,
-wearing a pastel mint field-explorer vest with side pockets, cream-colored long-sleeve shirt visible underneath, khaki cargo shorts with oversized pockets, mismatched socks, worn brown lace-up boots,
-brass magnifying glass hanging from leather cord at chest level,
-walking pose with one foot slightly forward, natural stride,
-warm watercolor illustration style, soft diffused lighting, traditional watercolor texture with visible paper grain, gentle color bleeding, Studio Ghibli-inspired warmth,
-clean light background, character design emphasis, side profile reference
+masterpiece, best quality, absurdres, highres,
+1girl, solo, 7yo, child, korean, black hair, bob cut, single side braid, blue bead hair tie, dark brown eyes, round face, chubby cheeks, blush,
+green vest, cream shirt, long sleeves, khaki shorts, cargo shorts, mismatched socks, brown boots, lace-up boots,
+magnifying glass, brass, leather cord, neck strap,
+character reference sheet, side view, full body, profile, walking, one foot forward,
+watercolor (medium), illustration, warm colors, soft lighting, clean background, character design, side profile reference
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, 3d render, anime screencap, chibi, super deformed, adult proportions, mature face, makeup, dark atmosphere, horror, extra fingers, extra limbs, deformed hands, bad anatomy, blurry, low quality, watermark, signature, text, logo, oversaturated neon colors, generic anime girl, facing camera, front view
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, 3d, photorealistic, chibi, super deformed, adult, mature, makeup, dark atmosphere, horror, neon colors, facing camera, front view
 ```
 
-**Parameters:** Steps 35, CFG 7.0, Sampler DPM++ 2M Karras, 896x1152
+**Parameters:** Steps 28, CFG 6.0, Sampler euler normal, 896x1152
 
 ---
 
@@ -89,21 +106,20 @@ photorealistic, 3d render, anime screencap, chibi, super deformed, adult proport
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, character reference sheet, back view, full body, rear view,
-7-year-old Korean girl seen from behind, short bobbed black hair with a single tiny braid on the right side tied with a sky-blue bead clearly visible, back of round head,
-pastel mint field-explorer vest from behind showing back panel with a small embroidered leaf patch, cream-colored long-sleeve shirt visible at sleeves and collar, khaki cargo shorts with a back pocket holding a small notebook, mismatched socks, worn brown lace-up boots,
-leather cord of magnifying glass visible around neck from behind,
-standing and looking ahead toward a garden path, slight head tilt to the right,
-warm watercolor illustration style, soft afternoon sunlight casting gentle shadow, traditional watercolor texture, Studio Ghibli-inspired warmth,
-clean light background, character design emphasis, back reference
+masterpiece, best quality, absurdres, highres,
+1girl, solo, 7yo, child, korean, black hair, bob cut, single side braid, blue bead hair tie, from behind, back,
+green vest, cream shirt, long sleeves, khaki shorts, cargo shorts, back pocket, notebook in pocket, mismatched socks, brown boots, lace-up boots,
+leather cord around neck, magnifying glass,
+character reference sheet, back view, full body, standing, looking ahead,
+watercolor (medium), illustration, warm colors, soft afternoon sunlight, clean background, character design, back reference
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, 3d render, anime screencap, chibi, super deformed, adult proportions, face visible, front view, side view, dark atmosphere, horror, extra fingers, extra limbs, deformed hands, bad anatomy, blurry, low quality, watermark, signature, text, logo, oversaturated neon colors
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, 3d, photorealistic, chibi, super deformed, adult, face visible, front view, side view, dark atmosphere, horror, neon colors
 ```
 
-**Parameters:** Steps 35, CFG 7.0, Sampler DPM++ 2M Karras, 896x1152
+**Parameters:** Steps 28, CFG 6.0, Sampler euler normal, 896x1152
 
 ---
 
@@ -113,20 +129,20 @@ photorealistic, 3d render, anime screencap, chibi, super deformed, adult proport
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, character expression sheet, close-up face portrait, head and shoulders,
-7-year-old Korean girl, short bobbed black hair with sky-blue bead braid, round face with large expressive dark brown eyes sparkling with wonder and curiosity, eyebrows slightly raised, pupils dilated with excitement, mouth slightly open in an "ooh" shape, chubby cheeks with natural blush deepening from excitement,
-holding a brass magnifying glass up near her face with both hands, peering through it with one eye comically enlarged,
-warm watercolor illustration style, soft golden hour lighting on face, traditional watercolor texture, gentle warm tones,
-expression: intense curiosity, wonder, fascination, discovery moment,
-clean warm-toned background, portrait emphasis, emotion reference sheet
+masterpiece, best quality, absurdres, highres,
+1girl, solo, 7yo, child, korean, black hair, bob cut, single side braid, blue bead hair tie, dark brown eyes, round face, chubby cheeks, blush,
+close-up, portrait, head and shoulders, upper body,
+wide eyes, sparkling eyes, open mouth, surprised, curious, wonder, fascinated,
+holding magnifying glass, brass magnifying glass, looking through lens, one eye enlarged,
+watercolor (medium), illustration, warm colors, golden hour, soft lighting, warm tones, clean background, expression reference sheet
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, 3d render, anime screencap, chibi, adult face, mature expression, makeup, dark atmosphere, horror, extra fingers, deformed hands, bad anatomy, blurry, low quality, watermark, signature, text, logo, neutral expression, bored expression, generic cute face, oversaturated
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, 3d, photorealistic, chibi, adult, mature, makeup, dark atmosphere, horror, neutral expression, bored, neon colors
 ```
 
-**Parameters:** Steps 35, CFG 7.0, Sampler DPM++ 2M Karras, 1024x1024
+**Parameters:** Steps 28, CFG 6.0, Sampler euler normal, 1024x1024
 
 ---
 
@@ -136,20 +152,20 @@ photorealistic, 3d render, anime screencap, chibi, adult face, mature expression
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, character expression sheet, close-up face portrait, head and shoulders,
-7-year-old Korean girl, short bobbed black hair with sky-blue bead braid, round face with large dark brown eyes wide open in surprise, eyebrows raised high, jaw dropped open showing small teeth, chubby cheeks stretched in shock, hair slightly windswept as if caught in a gust,
-both hands raised near face with fingers spread in startled gesture, brass magnifying glass swinging on leather cord at chest,
-warm watercolor illustration style, dramatic but warm lighting with a slight backlight glow, traditional watercolor texture,
-expression: genuine surprise, astonishment, amazement mixed with slight alarm,
-clean background with subtle motion lines suggesting sudden event, emotion reference sheet
+masterpiece, best quality, absurdres, highres,
+1girl, solo, 7yo, child, korean, black hair, bob cut, single side braid, blue bead hair tie, dark brown eyes, round face, chubby cheeks,
+close-up, portrait, head and shoulders, upper body,
+wide eyes, shocked, surprised, open mouth, jaw drop, raised eyebrows, windswept hair,
+hands up, spread fingers, startled gesture, magnifying glass, leather cord, swinging,
+watercolor (medium), illustration, warm colors, dramatic lighting, backlight, motion lines, clean background, expression reference sheet
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, 3d render, anime screencap, chibi, adult face, mature expression, makeup, dark atmosphere, horror, terror, screaming in pain, extra fingers, deformed hands, bad anatomy, blurry, low quality, watermark, signature, text, logo, calm expression, neutral face, oversaturated
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, 3d, photorealistic, chibi, adult, mature, dark atmosphere, horror, terror, screaming, calm expression, neon colors
 ```
 
-**Parameters:** Steps 35, CFG 7.0, Sampler DPM++ 2M Karras, 1024x1024
+**Parameters:** Steps 28, CFG 6.0, Sampler euler normal, 1024x1024
 
 ---
 
@@ -159,20 +175,20 @@ photorealistic, 3d render, anime screencap, chibi, adult face, mature expression
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, character expression sheet, close-up face portrait, head and shoulders,
-7-year-old Korean girl, short bobbed black hair with sky-blue bead braid slightly messy from adventure, round face with large dark brown eyes crinkled in pure joy, big genuine smile with gap-toothed grin, cheeks pushed up high from smiling, natural blush intensified from happiness, a tiny smudge of dirt on forehead from adventure,
-one hand raised in an excited wave, other hand clutching brass magnifying glass tightly against chest,
-warm watercolor illustration style, bright warm sunlight illuminating face from the side, golden hour glow, traditional watercolor texture with warm color bleeding,
-expression: pure unbridled joy, excitement, triumph, eagerness to share discovery,
-clean warm background with soft lens flare, emotion reference sheet
+masterpiece, best quality, absurdres, highres,
+1girl, solo, 7yo, child, korean, black hair, bob cut, single side braid, blue bead hair tie, dark brown eyes, round face, chubby cheeks, blush,
+close-up, portrait, head and shoulders, upper body,
+closed eyes, crinkled eyes, big smile, grin, gap teeth, intense blush, messy hair, dirt on forehead,
+one hand waving, other hand holding magnifying glass, clutching to chest, excited,
+watercolor (medium), illustration, warm colors, bright sunlight, golden hour, lens flare, clean background, expression reference sheet
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, 3d render, anime screencap, chibi, adult face, mature expression, makeup, dark atmosphere, horror, extra fingers, deformed hands, bad anatomy, blurry, low quality, watermark, signature, text, logo, subtle smile, polite expression, forced smile, oversaturated, clean perfect face
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, 3d, photorealistic, chibi, adult, mature, dark atmosphere, horror, subtle smile, polite, forced smile, neon colors
 ```
 
-**Parameters:** Steps 35, CFG 7.0, Sampler DPM++ 2M Karras, 1024x1024
+**Parameters:** Steps 28, CFG 6.0, Sampler euler normal, 1024x1024
 
 ---
 
@@ -183,20 +199,21 @@ photorealistic, 3d render, anime screencap, chibi, adult face, mature expression
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, front view, full body,
-7-year-old Korean girl miniaturized to microscopic scale, short bobbed black hair with sky-blue bead braid now subtly reflecting prismatic light, round face with large dark brown eyes reflecting rainbow spectrum, wearing a pastel mint field-explorer vest that shimmers with iridescent light particles, cream shirt with faint light refractions visible on fabric, khaki cargo shorts, mismatched socks, worn brown boots,
-brass magnifying glass around neck now glowing faintly with captured light,
-standing inside a water droplet, surrounded by prismatic rainbow light refractions, transparent curved water walls visible in background, floating light particles and water molecules around her, microscopic scale environment,
-surreal dreamlike atmosphere, iridescent color palette of rainbow and transparent blue, volumetric prismatic lighting, light spectrum effects, ethereal glow, hyper-detailed microscopic world,
-the character retains her warm realistic proportions while the world around her is fantastically surreal
+masterpiece, best quality, absurdres, highres,
+1girl, solo, 7yo, child, korean, black hair, bob cut, single side braid, blue bead hair tie, dark brown eyes, round face, chubby cheeks,
+green vest, cream shirt, long sleeves, khaki shorts, cargo shorts, mismatched socks, brown boots,
+magnifying glass, brass, leather cord, neck strap, glowing,
+front view, full body, standing, miniaturized,
+fantasy, surreal, prismatic, iridescent, transparent, crystal, rainbow light, inside water droplet, floating particles, water molecules, microscopic world,
+volumetric lighting, light spectrum, ethereal glow, dreamlike atmosphere, prismatic refraction
 ```
 
 **Negative Prompt:**
 ```
-photorealistic photograph, flat illustration, chibi, super deformed, adult proportions, mature face, makeup, dark gothic atmosphere, horror, gore, extra fingers, extra limbs, deformed hands, bad anatomy, blurry, low quality, watermark, signature, text, logo, monochrome, desaturated, generic fantasy, typical fairy tale, mundane lighting, watercolor style, paper texture
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, photorealistic, chibi, super deformed, adult, mature, dark atmosphere, horror, gore, monochrome, desaturated, watercolor (medium), paper texture
 ```
 
-**Parameters:** Steps 40, CFG 6.5, Sampler DPM++ SDE Karras, 896x1152
+**Parameters:** Steps 30, CFG 6.5, Sampler dpmpp_2m karras, 896x1152
 
 ---
 
@@ -207,20 +224,22 @@ photorealistic photograph, flat illustration, chibi, super deformed, adult propo
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, dynamic action pose, full body,
-7-year-old Korean girl surfing on the elastic surface of water tension inside a water droplet, short bobbed black hair with sky-blue bead braid flying in the wind, round face with thrilled excited expression and wide sparkling eyes, arms outstretched for balance, knees bent in surfing stance, pastel mint vest fluttering,
-standing on a translucent flexible water surface that bends like a trampoline under her feet, visible water molecule chains (depicted as small connected spheres holding hands) forming the surface beneath her,
-prismatic rainbow light refracting through the curved water droplet walls, floating light particles, iridescent spectral colors, dynamic motion blur on edges,
-microscopic world interior, surreal scientific fantasy, volumetric prismatic lighting, dynamic camera angle from slightly below,
-joyful adventure moment, sense of speed and freedom
+masterpiece, best quality, absurdres, highres,
+1girl, solo, 7yo, child, korean, black hair, bob cut, single side braid, blue bead hair tie, dark brown eyes, round face, wide sparkling eyes, thrilled expression,
+green vest, fluttering, cream shirt, khaki shorts, mismatched socks, brown boots,
+magnifying glass, leather cord,
+dynamic pose, surfing, arms outstretched, balance, bent knees, action,
+standing on water surface, elastic surface, transparent water, water molecules, connected spheres,
+fantasy, surreal, prismatic, rainbow light, inside water droplet, floating particles, microscopic world,
+volumetric lighting, dynamic angle, from below, motion blur, speed lines, sense of speed
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, flat illustration, chibi, static pose, standing still, adult proportions, mature face, dark atmosphere, horror, gore, extra fingers, extra limbs, deformed hands, bad anatomy, blurry, low quality, watermark, signature, text, logo, ocean surfing, beach, real water waves, monochrome, watercolor style, paper texture, generic magical girl
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, photorealistic, chibi, static pose, standing still, adult, mature, dark atmosphere, horror, ocean surfing, beach, real waves, monochrome, watercolor (medium), paper texture
 ```
 
-**Parameters:** Steps 40, CFG 7.0, Sampler DPM++ SDE Karras, 1152x896 (가로 구도 - 서핑 역동성)
+**Parameters:** Steps 30, CFG 7.0, Sampler dpmpp_2m karras, 1152x896 (가로 구도 - 서핑 역동성)
 
 ---
 
@@ -231,20 +250,20 @@ photorealistic, flat illustration, chibi, static pose, standing still, adult pro
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, object reference sheet, product photography style,
-antique brass magnifying glass, slightly tarnished golden brass frame with patina of age and use, round lens approximately 8cm diameter with crystal-clear glass, ornate handle with subtle leaf-vine engravings, a worn leather cord loop threaded through a small ring at the handle's base for wearing around the neck,
-the lens catches and refracts surrounding light creating small rainbow prisms on the surface,
-multiple angles: front view showing full lens and handle, side view showing thickness and cord attachment, detail view of handle engravings,
-warm natural lighting, clean white background, object design reference, high detail,
-style: warm watercolor illustration with precise linework for the object details
+masterpiece, best quality, absurdres, highres,
+no humans, still life, object focus,
+magnifying glass, antique, brass, tarnished, patina, round lens, ornate handle, leaf vine engravings, leather cord, neck strap,
+light refraction, rainbow prism, glass reflection,
+multiple views, front view, side view, detail view,
+watercolor (medium), illustration, warm lighting, white background, object reference sheet, product design
 ```
 
 **Negative Prompt:**
 ```
-photorealistic photograph, plastic toy, modern design, sleek minimalist, chrome metal, broken glass, cracked lens, dark atmosphere, blurry, low quality, watermark, signature, text, logo, character holding it, hands visible, oversaturated neon
+lowres, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, photorealistic, plastic toy, modern design, chrome, broken, cracked, dark atmosphere, hands, character, neon colors
 ```
 
-**Parameters:** Steps 35, CFG 7.5, Sampler DPM++ 2M Karras, 1024x1024
+**Parameters:** Steps 28, CFG 7.0, Sampler euler normal, 1024x1024
 
 ---
 
@@ -255,20 +274,22 @@ photorealistic photograph, plastic toy, modern design, sleek minimalist, chrome 
 
 **Positive Prompt:**
 ```
-masterpiece, best quality, two characters walking together, medium shot,
-7-year-old Korean girl miniaturized to microscopic scale walking alongside a cute tardigrade creature, the girl has short bobbed black hair with sky-blue bead braid, round face with gentle happy smile, pastel mint field-explorer vest, khaki shorts, mismatched socks, brown boots, brass magnifying glass on leather cord,
-the tardigrade companion (named Mungyi) is about knee-height to the girl, round translucent body with 8 stubby legs, big friendly dark eyes, waddling beside her,
-walking together through a rainbow prismatic light tunnel inside a water droplet, light spectrum forming a glowing path beneath their feet, floating water molecules and light particles drifting around them,
-warm companionship, adventure friendship, size comparison reference between characters,
-surreal microscopic world, iridescent volumetric lighting, prismatic color palette, ethereal dreamlike atmosphere
+masterpiece, best quality, absurdres, highres,
+1girl, child, 7yo, korean, black hair, bob cut, single side braid, blue bead hair tie, green vest, khaki shorts, mismatched socks, brown boots, magnifying glass, leather cord,
+walking, happy, gentle smile,
+creature, tardigrade, water bear, cute, round translucent body, 8 stubby legs, big friendly eyes, waddling,
+2characters, walking together, medium shot, side by side, size comparison, creature at knee height,
+fantasy, surreal, prismatic, rainbow light tunnel, inside water droplet, light spectrum path, floating water molecules,
+warm companionship, adventure, friendship,
+iridescent volumetric lighting, prismatic color palette, dreamlike atmosphere
 ```
 
 **Negative Prompt:**
 ```
-photorealistic, flat illustration, chibi, adult proportions, dark atmosphere, horror, gore, extra fingers, extra limbs, deformed hands, bad anatomy, blurry, low quality, watermark, signature, text, logo, monochrome, realistic tardigrade, scary creature, single character only, watercolor paper texture, mundane environment
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, photorealistic, chibi, adult, dark atmosphere, horror, gore, monochrome, realistic tardigrade, scary creature, single character only, watercolor (medium), paper texture
 ```
 
-**Parameters:** Steps 40, CFG 6.5, Sampler DPM++ SDE Karras, 1152x896 (가로 - 두 캐릭터 나란히)
+**Parameters:** Steps 30, CFG 6.5, Sampler dpmpp_2m karras, 1152x896 (가로 - 두 캐릭터 나란히)
 
 ---
 

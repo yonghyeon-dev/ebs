@@ -35,7 +35,7 @@
 ## 스타일가이드 현황
 - 파일: `production/characters/style-guide.md`
 - 비주얼 철학, 현실/미시 스타일 정의, 캐릭터별 규칙, 전환 규칙, 금지 스타일, LoRA 가이드, ComfyUI 템플릿
-- PR #5에서 WI-001 기준으로 의상/소품 통일 수정 완료 (머지 대기)
+- PR #5 머지 완료 — WI-001 기준으로 의상/소품 통일
 - 통일 내용: 노란 머리띠+멜빵바지 → 하늘색 구슬 땋은머리+민트 조끼+카키 반바지 (DEC-001)
 
 ## 색상 팔레트 현황
@@ -43,14 +43,15 @@
 - 캐릭터별 HEX 팔레트 (현실/미시 구분)
 - 에피소드 1~10화 색감 톤 가이드
 - 색상 전환 규칙 + After Effects/DaVinci 색보정 가이드
-- PR #5에서 WI-001 기준 수정 완료 (머지 대기)
+- PR #5 머지 완료 — WI-001 기준 색상 재정의
 - 초은이 팔레트: 골든 옐로우 머리띠→하늘색 구슬, 코발트 멜빵바지→카키 반바지+민트 조끼 등 항목 재정의
 
 ## 공통 파라미터
 | 항목 | 현실 세계 | 미시 세계 |
 |------|----------|----------|
-| Checkpoint | dreamshaperXL / juggernautXL | 동일 |
-| Sampler | DPM++ 2M Karras | DPM++ SDE Karras |
-| Steps | 30~40 | 35~40 |
-| CFG | 6.5~7.5 | 6.5~7.0 |
-| LoRA | watercolor_style_sdxl | prismatic_surreal_sdxl |
+| Checkpoint | animagineXL31_v31 | 동일 |
+| Sampler | euler / normal | dpmpp_2m / karras |
+| Steps | 25~30 | 28~35 |
+| CFG | 5.0~6.0 | 5.0~7.0 |
+| LoRA | 없음 (Danbooru 태그로 스타일 제어) | 없음 |
+| 프롬프트 | Danbooru 태그 기반 (1girl, solo, watercolor 등) | Danbooru 태그 기반 (fantasy, surreal, prismatic 등) |

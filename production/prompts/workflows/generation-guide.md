@@ -10,20 +10,20 @@
 
 | 파일명 | 위치 | 용도 |
 |--------|------|------|
-| `DreamShaperXL_Turbo_v2_1.safetensors` | `models/checkpoints/` | 기본 SDXL 체크포인트 |
+| `animagineXL31_v31.safetensors` | `models/checkpoints/` | 기본 SDXL 체크포인트 (anime/illustration 특화, Danbooru 태그 기반) |
 | `sdxl_vae.safetensors` | `models/vae/` | SDXL VAE |
-| `ral-wtrclr-sdxl.safetensors` | `models/loras/` | 현실세계 수채화풍 LoRA (trigger: `ral-wtrclr`) |
-| `ral-crztlgls-sdxl.safetensors` | `models/loras/` | 미시세계 크리스탈/프리즘 LoRA (trigger: `ral-crztlgls`) |
 | `ip-adapter-plus_sdxl_vit-h.safetensors` | `models/ipadapter/` | IP-Adapter (캐릭터 일관성) |
 | `CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors` | `models/clip_vision/` | CLIP Vision (IP-Adapter용) |
 
-### 대체 체크포인트
-- `juggernautXL_v9.safetensors` — DreamShaperXL이 없을 경우 사용 가능
-
-### LoRA 사용 안내
-- `ral-wtrclr-sdxl` 사용 시 positive 프롬프트 첫 토큰에 `ral-wtrclr` 추가 필수
-- `ral-crztlgls-sdxl` 사용 시 positive 프롬프트 첫 토큰에 `ral-crztlgls` 추가 필수
-- 워크플로우 JSON에는 이미 trigger word가 포함되어 있음
+### 프롬프트 형식
+- animagineXL v3.1은 Danbooru 태그 기반 모델 — 자연어 서술 대신 태그 나열 방식 사용
+- Quality prefix: `masterpiece, best quality, absurdres, highres`
+- 현실 세계 스타일: `watercolor (medium), illustration, warm colors` 태그 사용
+- 미시 세계 스타일: `fantasy, surreal, prismatic, iridescent` 태그 사용
+- LoRA 불필요 — animagineXL 자체 스타일로 수채화/초현실 모두 표현 가능
+- CFG: 5.0~7.0 (animagine은 낮은 CFG 선호)
+- Sampler: euler normal (현실) / dpmpp_2m karras (미시)
+- Steps: 25~35 (이전 체크포인트 대비 적은 스텝으로 충분)
 
 ---
 
@@ -54,7 +54,7 @@
 | Ref04 표정(호기심) | `choeun-prompts.md` Prompt 04 | 0.6 | 1024x1024 |
 | Ref05 미시세계 정면 | `choeun-prompts.md` Prompt 07 | 0.5 | 896x1152 |
 
-> Ref05(미시세계)는 LoRA를 `ral-crztlgls-sdxl`로 교체, IP-Adapter weight를 0.5로 낮추어 스타일 전환 허용
+> Ref05(미시세계)는 프롬프트를 미시세계 태그로 전환, IP-Adapter weight를 0.5로 낮추어 스타일 전환 허용
 
 ### Step 3: 할아버지 3종
 
@@ -151,12 +151,12 @@ production/episodes/ep01/concept-art/
 ## 트러블슈팅
 
 ### 투명체(뭉이) 생성 문제
-- CFG를 6.0~6.5로 낮추면 투명도 향상
-- Steps를 40~45로 올리면 내부 디테일 개선
+- CFG를 5.0~6.0으로 낮추면 투명도 향상
+- Steps를 30~35로 설정 (animagineXL은 적은 스텝으로도 충분)
 - 불투명하게 나오면 네거티브에 `opaque solid body` 강조
 
 ### 다리 개수 오류 (뭉이)
-- "8 legs" 대신 "4 pairs of stubby legs arranged symmetrically" 사용
+- "8 legs" + "four pairs of legs" 태그 조합 사용
 - ControlNet Scribble로 다리 위치 수동 가이드 가능
 - 6개나 10개로 나오면 seed 변경 후 재생성
 
