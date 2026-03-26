@@ -1,32 +1,22 @@
 {
   "_meta": {
     "title": "IP-Adapter 캐릭터 일관성 워크플로우",
-    "description": "레퍼런스 이미지 생성 후 IP-Adapter를 적용하여 캐릭터 일관성을 유지하며 추가 이미지를 생성하는 템플릿 워크플로우. 모든 캐릭터에 범용 사용.",
-    "version": "1.0.0",
-    "usage": "1) 기본 워크플로우(choeun/grandpa/mungyi)로 ref01(정면) 생성 → 2) 만족스러운 결과를 reference_image로 로드 → 3) 이 워크플로우에서 추가 앵글/표정 생성"
+    "description": "레퍼런스 이미지 생성 후 IP-Adapter를 적용하여 캐릭터 일관성을 유지하며 추가 이미지를 생성하는 템플릿 워크플로우. animagineXL v3.1 체크포인트 기반. 모든 캐릭터에 범용 사용.",
+    "version": "2.0.0",
+    "checkpoint": "animagineXL31_v31.safetensors",
+    "usage": "1) 기본 워크플로우(choeun/grandpa/mungyi)로 ref01(정면) 생성 -> 2) 만족스러운 결과를 reference_image로 로드 -> 3) 이 워크플로우에서 추가 앵글/표정 생성"
   },
 
   "1": {
     "class_type": "CheckpointLoaderSimple",
     "inputs": {
-      "ckpt_name": "DreamShaperXL_Turbo_v2_1.safetensors"
+      "ckpt_name": "animagineXL31_v31.safetensors"
     }
   },
   "2": {
     "class_type": "VAELoader",
     "inputs": {
       "vae_name": "sdxl_vae.safetensors"
-    }
-  },
-  "3": {
-    "class_type": "LoraLoader",
-    "_meta": { "title": "LoRA — 스타일에 따라 교체 (watercolor 또는 prismatic)" },
-    "inputs": {
-      "model": ["1", 0],
-      "clip": ["1", 1],
-      "lora_name": "ral-wtrclr-sdxl.safetensors",
-      "strength_model": 0.75,
-      "strength_clip": 0.75
     }
   },
 
@@ -52,26 +42,27 @@
     }
   },
   "8": {
-    "class_type": "IPAdapterApply",
-    "_meta": { "title": "IP-Adapter 적용 — weight 조절 가이드 참조" },
+    "class_type": "IPAdapterAdvanced",
+    "_meta": { "title": "IP-Adapter 적용 -- weight 조절 가이드 참조" },
     "inputs": {
       "ipadapter": ["6", 0],
       "clip_vision": ["7", 0],
       "image": ["5", 0],
-      "model": ["3", 0],
+      "model": ["1", 0],
       "weight": 0.7,
-      "noise": 0.0,
       "weight_type": "linear",
+      "combine_embeds": "concat",
       "start_at": 0.0,
-      "end_at": 1.0
+      "end_at": 1.0,
+      "embeds_scaling": "V only"
     }
   },
 
   "10": {
     "class_type": "CLIPTextEncode",
-    "_meta": { "title": "Positive — 여기에 생성할 이미지의 프롬프트를 입력" },
+    "_meta": { "title": "Positive -- 여기에 생성할 이미지의 프롬프트를 입력" },
     "inputs": {
-      "clip": ["3", 1],
+      "clip": ["1", 1],
       "text": "YOUR_POSITIVE_PROMPT_HERE"
     }
   },
@@ -79,28 +70,28 @@
     "class_type": "CLIPTextEncode",
     "_meta": { "title": "Negative" },
     "inputs": {
-      "clip": ["3", 1],
+      "clip": ["1", 1],
       "text": "YOUR_NEGATIVE_PROMPT_HERE"
     }
   },
   "12": {
     "class_type": "EmptyLatentImage",
-    "_meta": { "title": "해상도 — 생성 이미지에 맞게 조절" },
+    "_meta": { "title": "해상도 -- 생성 이미지에 맞게 조절" },
     "inputs": { "width": 896, "height": 1152, "batch_size": 1 }
   },
   "13": {
     "class_type": "KSampler",
-    "_meta": { "title": "KSampler — IP-Adapter 모델 연결" },
+    "_meta": { "title": "KSampler -- IP-Adapter 모델 연결" },
     "inputs": {
       "model": ["8", 0],
       "positive": ["10", 0],
       "negative": ["11", 0],
       "latent_image": ["12", 0],
       "seed": 0,
-      "steps": 35,
-      "cfg": 7.0,
-      "sampler_name": "dpmpp_2m",
-      "scheduler": "karras",
+      "steps": 28,
+      "cfg": 6.0,
+      "sampler_name": "euler",
+      "scheduler": "normal",
       "denoise": 1.0
     }
   },

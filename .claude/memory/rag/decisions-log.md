@@ -23,3 +23,32 @@
   - character: WI-001~002 (캐릭터 프롬프트 + 스타일가이드)
   - visual: WI-003 (씬 배경 프롬프트)
   - evaluator: 스프린트 계약 기준 채점 (작업 완료 후 spawn)
+
+## 2026-03-26
+
+### DEC-003: ComfyUI 환경 기반 파이프라인 재설계
+- **상황**: 기존 설계가 Runway/Kling을 외부 웹서비스로 가정했으나, 실제로는 ComfyUI 노드로 통합되어 있음 확인
+- **결정**: 영상 생성 파이프라인을 ComfyUI 올인원으로 재설계
+- **근거**:
+  1. Kling 20+ 노드, Wan Video 100+ 노드가 ComfyUI에 설치됨 (API 호출 방식)
+  2. 크레딧 기반이지만 워크플로우 자동화 가능
+  3. AnimateDiff 대신 Wan Video가 더 넓은 기능 제공
+- **영향**: ep01-video-pipeline-guide.md v2 작성 (PR #13), 03-pipeline.md RAG 업데이트
+- **비용 추정**: EP01 전체 약 $20~30 (재생성 포함)
+
+### DEC-004: Vault 세션 로그 정책 개선 필요
+- **상황**: Stop hook이 매 턴마다 세션 로그 생성 → 하루 234건 마이크로 로그 폭증
+- **결정**: 의미 있는 변경이 있을 때만 기록하도록 Stop hook 개선
+- **근거**: 대부분의 세션 로그가 1~2문장의 중간 응답이라 실질적 맥락 가치 없음
+
+### DEC-005: 체크포인트 animagineXL31_v31 전환 (2026-03-26)
+- **상황**: DreamShaperXL로 생성한 캐릭터가 의상/소품 디테일 부족, evaluator FAIL (5.4/10). 이전 세션에서 animagine 테스트 → 우수한 결과 → 사용자 승인했으나 커밋 안 되고 유실
+- **결정**: 전체 파이프라인을 animagineXL31_v31 기반으로 전환
+- **변경 범위**:
+  1. 체크포인트: DreamShaperXL → animagineXL31_v31
+  2. LoRA: ral-wtrclr/ral-crztlgls 완전 제거 (Danbooru 태그로 대체)
+  3. 프롬프트: 자연어 서술 → Danbooru 태그 기반
+  4. CFG: 5.0~7.0, Steps: 25~35, Sampler: euler/dpmpp_2m
+  5. 색상 팔레트: Danbooru 호환 태그 컬럼 추가
+- **영향**: 워크플로우 JSON 11종 + 프롬프트 MD 10종 + 가이드 5종 = 26개 파일 수정
+- **Kling/Runway**: ComfyUI 크레딧 기반 API 노드로 통합 (외부 서비스 아님) 재확인

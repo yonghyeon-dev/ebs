@@ -13,30 +13,44 @@
 - **팀 등록 (hook 연동 필수)**:
   ```bash
   mkdir -p .flowset/teams
-  echo "{TEAM_NAME}" > .flowset/teams/$(cat /proc/self/sessionid 2>/dev/null || echo $$).team
+  echo "{TEAM_NAME}" > .flowset/teams/{TEAM_NAME}.team
   ```
-  이 파일이 있어야 PreToolUse hook(소유권/팀간 리뷰)이 팀을 식별합니다.
+  이 파일이 있어야 PreToolUse hook(소유권/팀간 리뷰)과 resolve-team.sh가 팀을 식별합니다.
 
-### 2. 스프린트 계약 읽기 (필수)
+### 2. Vault 컨텍스트 로드
+- SessionStart hook은 팀원(사이드체인)에게 발동하지 않으므로, 수동으로 vault 컨텍스트를 로드합니다.
+- `.flowsetrc`가 존재하고 `VAULT_ENABLED=true`이면:
+  ```bash
+  source .flowsetrc 2>/dev/null || true
+  if [[ "${VAULT_ENABLED:-false}" == "true" && -n "${VAULT_API_KEY:-}" ]]; then
+    team_state=$(curl -s -k --max-time 5 \
+      -H "Authorization: Bearer ${VAULT_API_KEY}" \
+      "${VAULT_URL}/vault/${VAULT_PROJECT_NAME}/teams/{TEAM_NAME}.md" 2>/dev/null)
+    # team_state 내용을 작업 컨텍스트로 활용
+  fi
+  ```
+- curl 실패 시 무시하고 진행 (graceful degradation)
+
+### 3. 스프린트 계약 읽기 (필수)
 - `.flowset/contracts/sprint-{할당된 WI 번호}.md` 읽기
 - 수용 기준 확인 — 이것이 "완료"의 정의
 - 산출물 확인 — 이 파일들이 존재해야 완료
 - 계약 합의 상태 확인 — 합의 전이면 작업 시작 금지
 
-### 3. 맥락 로드
+### 4. 맥락 로드
 - `.flowset/requirements.md` 읽기 (요구사항 SSOT)
 - `.flowset/contracts/api-standard.md` 읽기 (API 계약)
 - `.flowset/contracts/data-flow.md` 읽기 (데이터 흐름)
 - `.flowset/guardrails.md` 읽기 (알려진 제약)
 - 내 소유 디렉토리 코드 읽기 (기존 구현 파악)
 
-### 4. 작업 수행
+### 5. 작업 수행
 - 스프린트 계약의 수용 기준을 하나씩 충족하며 작업
 - TDD: 테스트 먼저 → 구현 → 검증
 - 내 소유 디렉토리 파일만 수정 (PreToolUse hook이 자동 강제)
 - 계약 준수: API 응답 형식, 데이터 흐름 규칙
 
-### 5. 완료 보고
+### 6. 완료 보고
 - 수용 기준 체크리스트만 작성 (충족 여부 + 근거)
 - **"잘 됐다", "완성도 높다" 같은 자기 평가 금지** — 판정은 evaluator가 한다
 - **리드에게 "작업 완료" 메시지 전송** — evaluator 호출은 리드가 함. 팀원은 evaluator를 호출하지 않는다.

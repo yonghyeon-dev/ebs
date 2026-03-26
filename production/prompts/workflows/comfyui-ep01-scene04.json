@@ -1,11 +1,12 @@
 {
   "_meta": {
     "title": "WI-011 EP01 Scene 4: 위기와 해결 — 배경 이미지 7종 (키프레임 포함)",
-    "description": "Scene 4 (1:30~2:15)의 3개 서브씬. 4-1 물방울 흔들림(키프레임 3장), 4-2 할아버지 무전(키프레임 2장), 4-3 협력 해결(키프레임 3장). 키프레임 기반으로 Runway에서 보간.",
-    "version": "1.0.0",
+    "description": "Scene 4 (1:30~2:15)의 3개 서브씬. 4-1 물방울 흔들림(키프레임 3장), 4-2 할아버지 무전(키프레임 2장), 4-3 협력 해결(키프레임 3장). animagineXL v3.1 + Danbooru 태그 기반.",
+    "version": "2.0.0",
     "episode": "EP01",
     "scene": "Scene 4 — 위기와 해결",
     "style": "surreal prismatic (불안정→안정 복원)",
+    "checkpoint": "animagineXL31_v31.safetensors",
     "outputs": [
       "bg-s04-01a-crisis-start (첫 흔들림)",
       "bg-s04-01b-crisis-peak (최대 변형)",
@@ -21,70 +22,13 @@
   "1": {
     "class_type": "CheckpointLoaderSimple",
     "inputs": {
-      "ckpt_name": "DreamShaperXL_Turbo_v2_1.safetensors"
+      "ckpt_name": "animagineXL31_v31.safetensors"
     }
   },
   "2": {
     "class_type": "VAELoader",
     "inputs": {
       "vae_name": "sdxl_vae.safetensors"
-    }
-  },
-  "3": {
-    "class_type": "LoraLoader",
-    "_meta": {
-      "title": "LoRA - Prismatic Surreal 약화 (위기 불안정)"
-    },
-    "inputs": {
-      "model": [
-        "1",
-        0
-      ],
-      "clip": [
-        "1",
-        1
-      ],
-      "lora_name": "ral-crztlgls-sdxl.safetensors",
-      "strength_model": 0.6,
-      "strength_clip": 0.6
-    }
-  },
-  "4": {
-    "class_type": "LoraLoader",
-    "_meta": {
-      "title": "LoRA - Prismatic Surreal 표준 (무전/복원)"
-    },
-    "inputs": {
-      "model": [
-        "1",
-        0
-      ],
-      "clip": [
-        "1",
-        1
-      ],
-      "lora_name": "ral-crztlgls-sdxl.safetensors",
-      "strength_model": 0.7,
-      "strength_clip": 0.7
-    }
-  },
-  "5": {
-    "class_type": "LoraLoader",
-    "_meta": {
-      "title": "LoRA - Prismatic Surreal 강화 (복원 완료)"
-    },
-    "inputs": {
-      "model": [
-        "1",
-        0
-      ],
-      "clip": [
-        "1",
-        1
-      ],
-      "lora_name": "ral-crztlgls-sdxl.safetensors",
-      "strength_model": 0.8,
-      "strength_clip": 0.8
     }
   },
   "10": {
@@ -94,10 +38,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-crztlgls, surreal microscopic universe art, dramatic tension scene,\nprismatic world inside water drop beginning to shake and distort,\ntransparent water walls trembling slightly, first signs of instability,\nlight spectrum showing initial instability — rainbow bands beginning to flicker,\ntiny girl (Choeun) and tardigrade (Moongi) noticing something wrong, alert expressions,\nChoeun looking up with concern, Moongi's eyes widening,\nwater molecules on the surface showing strain — some bonds stretching,\ncolor grading: warm prismatic tones beginning to shift toward cooler blue,\nfirst cracks appearing in crystalline structures,\nsense of initial unease, calm before the storm,\n16:9 aspect ratio, cinematic tension keyframe"
+      "text": "masterpiece, best quality, absurdres, highres,\n1girl, child, creature, dramatic,\nfantasy, surreal, prismatic, iridescent, crystal, transparent, rainbow,\ninside water droplet, molecular structure, light refraction,\nprismatic world beginning to shake and distort,\ntransparent water walls trembling, first signs of instability,\nlight spectrum flickering, rainbow bands beginning to flicker,\ngirl and tardigrade noticing something wrong, alert expressions,\nlooking up with concern, eyes widening,\nwater molecules on surface showing strain, bonds stretching,\nwarm prismatic tones shifting toward cooler blue,\nfirst cracks appearing in crystalline structures,\nsense of initial unease, calm before storm,\n16:9 aspect ratio, cinematic tension keyframe"
     }
   },
   "11": {
@@ -107,10 +51,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "calm peaceful scene, serene atmosphere, relaxed characters,\nstable geometry, perfectly spherical water drop,\nwarm happy lighting, golden hour,\ntext, watermark, signature, logo, UI elements,\nlow quality, blurry, pixelated, jpeg artifacts, noise,\nwatercolor style,\nflat 2D, no depth, no volumetric distortion,\nexplosion, fire, lava,\nhorror gore, blood, graphic violence,\ncharacters smiling or relaxed,\nocean storm, hurricane,\nmonochrome, completely desaturated"
+      "text": "lowres, bad anatomy, bad hands, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, blurry, 3d, photorealistic, calm peaceful scene, serene atmosphere, relaxed characters, stable geometry, warm happy lighting, golden hour, watercolor style, flat 2D, no depth, explosion, fire, lava, horror gore, blood, characters smiling or relaxed, ocean storm, monochrome, completely desaturated"
     }
   },
   "12": {
@@ -131,7 +75,7 @@
     },
     "inputs": {
       "model": [
-        "3",
+        "1",
         0
       ],
       "positive": [
@@ -147,10 +91,10 @@
         0
       ],
       "seed": 1105401,
-      "steps": 35,
-      "cfg": 6.5,
-      "sampler_name": "dpmpp_2m",
-      "scheduler": "karras",
+      "steps": 30,
+      "cfg": 6.0,
+      "sampler_name": "euler",
+      "scheduler": "normal",
       "denoise": 1.0
     }
   },
@@ -187,10 +131,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-crztlgls, surreal microscopic universe art, dramatic tension scene,\nprismatic world inside water drop violently shaking and distorting,\ntransparent water walls trembling and bulging dangerously,\nlight spectrum becoming unstable — rainbow bands fragmenting and flickering,\nprismatic colors stretching and warping as the spherical drop deforms,\nthe water drop being pushed by external wind force — visible as massive pressure waves on the walls,\ntiny girl (Choeun) and tardigrade (Moongi) struggling to maintain balance,\nChoeun bracing herself with wide stance, alarmed expression, wind-blown hair,\nMoongi gripping the molecular surface with all 8 legs, worried round eyes,\nwater molecules on the surface breaking some bonds — gaps forming in the molecular chain,\nhandheld camera shake effect, rapid zoom-out revealing the drop's unstable shape,\ncolor grading shift: warm prismatic tones cooling to anxious blue-violet,\ncrystalline structures cracking and fracturing under stress,\nlight pillars tilting and flickering like a building in earthquake,\nsense of imminent danger — the entire microscopic universe could collapse"
+      "text": "masterpiece, best quality, absurdres, highres,\n1girl, child, creature, dramatic, action,\nfantasy, surreal, prismatic, iridescent, crystal, transparent, rainbow,\ninside water droplet, molecular structure, light refraction,\nprismatic world violently shaking and distorting,\ntransparent water walls trembling and bulging dangerously,\nlight spectrum fragmenting and flickering,\nprismatic colors stretching and warping, spherical drop deforming,\nexternal wind force, massive pressure waves on walls,\ngirl and tardigrade struggling to maintain balance,\nwide stance, alarmed expression, wind-blown hair,\ntardigrade gripping molecular surface with 8 legs, worried eyes,\nwater molecules breaking bonds, gaps forming in molecular chain,\nhandheld camera shake, rapid zoom-out, unstable shape,\ncolor shift warm prismatic to anxious blue-violet,\ncrystalline structures cracking and fracturing,\nlight pillars tilting and flickering,\nsense of imminent danger, microscopic universe collapse"
     }
   },
   "22": {
@@ -211,7 +155,7 @@
     },
     "inputs": {
       "model": [
-        "3",
+        "1",
         0
       ],
       "positive": [
@@ -227,10 +171,10 @@
         0
       ],
       "seed": 1105402,
-      "steps": 35,
-      "cfg": 6.5,
-      "sampler_name": "dpmpp_2m",
-      "scheduler": "karras",
+      "steps": 30,
+      "cfg": 6.0,
+      "sampler_name": "euler",
+      "scheduler": "normal",
       "denoise": 1.0
     }
   },
@@ -267,10 +211,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-crztlgls, surreal microscopic universe art, dramatic tension,\nprismatic world still shaking but holding together,\nwater walls deformed but not broken, tense equilibrium,\nlight spectrum unstable but still visible — flickering rainbow bands,\ntiny girl (Choeun) in wide bracing stance, determined expression amid fear,\ntardigrade (Moongi) gripping surface tightly, worried but resolute,\ncolor grading: dominant blue-violet anxiety tones with fading warm colors,\ncrystalline structures tilted but not collapsed,\ntense equilibrium — danger not over but momentarily stable,\n16:9 aspect ratio, tension keyframe"
+      "text": "masterpiece, best quality, absurdres, highres,\n1girl, child, creature, dramatic,\nfantasy, surreal, prismatic, iridescent, crystal, transparent, rainbow,\ninside water droplet, molecular structure, light refraction,\nprismatic world still shaking but holding together,\nwater walls deformed but not broken, tense equilibrium,\nlight spectrum unstable but still visible, flickering rainbow bands,\ngirl in wide bracing stance, determined expression amid fear,\ntardigrade gripping surface tightly, worried but resolute,\ndominant blue-violet anxiety tones, fading warm colors,\ncrystalline structures tilted but not collapsed,\ntense equilibrium, danger not over but momentarily stable,\n16:9 aspect ratio, tension keyframe"
     }
   },
   "27": {
@@ -291,7 +235,7 @@
     },
     "inputs": {
       "model": [
-        "3",
+        "1",
         0
       ],
       "positive": [
@@ -307,10 +251,10 @@
         0
       ],
       "seed": 1105403,
-      "steps": 35,
-      "cfg": 6.5,
-      "sampler_name": "dpmpp_2m",
-      "scheduler": "karras",
+      "steps": 30,
+      "cfg": 6.0,
+      "sampler_name": "euler",
+      "scheduler": "normal",
       "denoise": 1.0
     }
   },
@@ -347,10 +291,10 @@
     },
     "inputs": {
       "clip": [
-        "4",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-crztlgls, surreal microscopic universe art,\nradio communication visualized inside microscopic prismatic world,\nsound waves transforming into beautiful rippling light waves,\nconcentric rings of warm golden light expanding outward from a small radio device,\nwarm guiding light cutting through the anxious blue-violet atmosphere,\nthe golden sound-light waves bringing warmth back to the cooling prismatic world,\ntiny girl (Choeun) holding a small communication device, looking up with hope,\nMoongi beside her looking at the light waves with curious wide eyes,\nclose-up composition: radio device in foreground, light wave ripples expanding to mid-ground,\ncolor transition: anxious blue-violet beginning to warm with golden tones from the radio,\nscientific accuracy: sound travels as compression waves — visualized as alternating bright and dim rings of light"
+      "text": "masterpiece, best quality, absurdres, highres,\n1girl, child, creature,\nfantasy, surreal, prismatic, iridescent, crystal, transparent, rainbow,\ninside water droplet, molecular structure, light refraction,\nradio communication visualized in microscopic prismatic world,\nsound waves transforming into rippling light waves,\nconcentric rings of warm golden light expanding outward from small radio device,\nwarm guiding light cutting through anxious blue-violet atmosphere,\ngolden sound-light waves bringing warmth back,\ngirl holding small communication device, looking up with hope,\ntardigrade beside her, curious wide eyes at light waves,\nclose-up composition, radio in foreground, light wave ripples expanding,\ncolor transition, blue-violet beginning to warm with golden tones,\nscientific accuracy, sound compression waves, alternating bright and dim rings of light"
     }
   },
   "31": {
@@ -360,10 +304,10 @@
     },
     "inputs": {
       "clip": [
-        "4",
+        "1",
         1
       ],
-      "text": "realistic radio, modern smartphone, technology device,\ndark scary voice, villain communication,\ntext, watermark, signature, logo, UI elements,\nlow quality, blurry, pixelated, jpeg artifacts, noise,\nwatercolor style,\nflat 2D, no wave propagation effect,\nno light ripples, static image,\nmonochrome, completely desaturated,\nhorror atmosphere, dark spirits, ghostly face,\nsilent scene with no implied sound visualization"
+      "text": "lowres, bad anatomy, bad hands, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, blurry, 3d, photorealistic, realistic radio, modern smartphone, dark scary voice, villain communication, watercolor style, flat 2D, no wave propagation effect, no light ripples, static image, monochrome, desaturated, horror atmosphere, dark spirits, ghostly face, silent scene"
     }
   },
   "32": {
@@ -384,7 +328,7 @@
     },
     "inputs": {
       "model": [
-        "4",
+        "1",
         0
       ],
       "positive": [
@@ -400,8 +344,8 @@
         0
       ],
       "seed": 1105501,
-      "steps": 35,
-      "cfg": 7.5,
+      "steps": 30,
+      "cfg": 6.5,
       "sampler_name": "dpmpp_2m",
       "scheduler": "karras",
       "denoise": 1.0
@@ -440,10 +384,10 @@
     },
     "inputs": {
       "clip": [
-        "4",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-crztlgls, surreal microscopic universe art,\ngrandfather's kind elderly face reflected and refracted on the curved water drop surface,\nthe reflection warped by the spherical water surface — warm wise expression distorted into prismatic fragments,\nconcentric rings of warm golden light expanded throughout the scene,\nwarm guiding light dominating the previously anxious blue-violet atmosphere,\ntiny girl (Choeun) holding radio device, expression shifting from fear to determined hope,\nMoongi beside her watching the golden light waves with wide curious eyes,\nwider composition: light wave ripples reaching the water walls, grandfather face visible on surface,\ncolor transition: blue-violet warming significantly with grandfather's golden light,\natmosphere shifts from tense to hopeful as grandfather's presence is felt,\nscientific accuracy: radio waves are electromagnetic radiation — shown as oscillating light wave patterns"
+      "text": "masterpiece, best quality, absurdres, highres,\n1girl, child, creature, 1boy, elderly man,\nfantasy, surreal, prismatic, iridescent, crystal, transparent, rainbow,\ninside water droplet, molecular structure, light refraction,\ngrandfather's kind elderly face reflected and refracted on curved water drop surface,\nreflection warped by spherical water surface, warm wise expression, prismatic fragments,\nconcentric rings of warm golden light expanded throughout scene,\nwarm guiding light dominating previously anxious blue-violet atmosphere,\ngirl holding radio device, expression shifting from fear to determined hope,\ntardigrade watching golden light waves, wide curious eyes,\nlight wave ripples reaching water walls, grandfather face visible on surface,\nblue-violet warming with grandfather's golden light,\natmosphere shifting tense to hopeful,\nscientific accuracy, radio waves, electromagnetic radiation, oscillating light wave patterns"
     }
   },
   "42": {
@@ -464,7 +408,7 @@
     },
     "inputs": {
       "model": [
-        "4",
+        "1",
         0
       ],
       "positive": [
@@ -480,8 +424,8 @@
         0
       ],
       "seed": 1105502,
-      "steps": 35,
-      "cfg": 7.5,
+      "steps": 30,
+      "cfg": 6.5,
       "sampler_name": "dpmpp_2m",
       "scheduler": "karras",
       "denoise": 1.0
@@ -520,10 +464,10 @@
     },
     "inputs": {
       "clip": [
-        "5",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-crztlgls, surreal microscopic universe art, triumphant resolution scene,\ntiny girl (Choeun) and tardigrade (Moongi) rushing toward broken molecular chains on the water drop surface,\nChoeun running with determined expression, arms pumping,\nMoongi waddling fast beside her with all 8 legs in motion,\nbroken molecular chain visible ahead — gaps in the surface where water molecule figures have separated,\nwater molecules personified as small round blue figures, some drifting apart at the break points,\ncolor still transitioning — blue-violet anxiety with growing warm golden streaks,\ncrystalline structures partially damaged but not collapsed,\nsense of urgency and determination, rushing to save the microscopic world,\n16:9 aspect ratio, action keyframe"
+      "text": "masterpiece, best quality, absurdres, highres,\n1girl, child, creature, running, dynamic pose, action,\nfantasy, surreal, prismatic, iridescent, crystal, transparent, rainbow,\ninside water droplet, molecular structure, light refraction,\ntiny girl and tardigrade rushing toward broken molecular chains on water drop surface,\ngirl running with determined expression, arms pumping,\ntardigrade waddling fast, all 8 legs in motion,\nbroken molecular chain visible ahead, gaps where water molecule figures have separated,\nwater molecules personified as small round blue figures, drifting apart at break points,\nblue-violet anxiety with growing warm golden streaks,\ncrystalline structures partially damaged but not collapsed,\nurgency, determination, rushing to save microscopic world,\n16:9 aspect ratio, action keyframe"
     }
   },
   "51": {
@@ -533,10 +477,10 @@
     },
     "inputs": {
       "clip": [
-        "5",
+        "1",
         1
       ],
-      "text": "still in crisis, continued danger, unstable world,\ndark atmosphere, anxiety, fear, sad ending,\ncharacters giving up, defeated expressions,\ntext, watermark, signature, logo, UI elements,\nlow quality, blurry, pixelated, jpeg artifacts, noise,\nwatercolor style,\nflat 2D, no depth, no healing/restoration effect,\nmonochrome, desaturated,\nmagic wand solution, unrealistic instant fix,\nsolo character only,\nexplosion or destruction effect"
+      "text": "lowres, bad anatomy, bad hands, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, blurry, 3d, photorealistic, still in crisis, continued danger, dark atmosphere, anxiety, fear, sad ending, characters giving up, defeated expressions, watercolor style, flat 2D, no depth, monochrome, desaturated, magic wand solution, unrealistic instant fix, solo, explosion, destruction effect"
     }
   },
   "52": {
@@ -557,7 +501,7 @@
     },
     "inputs": {
       "model": [
-        "5",
+        "1",
         0
       ],
       "positive": [
@@ -573,8 +517,8 @@
         0
       ],
       "seed": 1105601,
-      "steps": 40,
-      "cfg": 7.5,
+      "steps": 35,
+      "cfg": 6.5,
       "sampler_name": "dpmpp_2m",
       "scheduler": "karras",
       "denoise": 1.0
@@ -613,10 +557,10 @@
     },
     "inputs": {
       "clip": [
-        "5",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-crztlgls, surreal microscopic universe art, triumphant resolution scene,\ntiny girl (Choeun) and tardigrade (Moongi) celebrating after restoring molecular bonds,\nChoeun and Moongi facing each other in triumphant high-five (hand to stubby leg),\nwater molecules personified as small round blue figures now gripping each other tightly in restored chains,\nmolecular chains tightened and multiplied along the water drop surface,\nhydrogen bonds visualized as brilliant glowing blue-white energy threads strengthening between molecules,\nthe water drop fully restored to a perfect stable sphere shape,\nprismatic world calmed — light spectrum stabilized back to harmonious rainbow,\ncrystalline structures reformed and healed, light pillars standing tall again,\ncolor grading: warm prismatic rainbow + transparent blue fully restored,\nwarm golden light flooding back into the world,\nwide camera angle showing the entire water drop interior stabilized,\nglowing restoration effect: ripple of healing light spreading outward,\nscientific accuracy: surface tension restored when molecular cohesive forces strengthen"
+      "text": "masterpiece, best quality, absurdres, highres,\n1girl, child, creature, celebrating, high five, triumphant,\nfantasy, surreal, prismatic, iridescent, crystal, transparent, rainbow,\ninside water droplet, molecular structure, light refraction,\ntiny girl and tardigrade celebrating after restoring molecular bonds,\nfacing each other, triumphant high-five, hand to stubby leg,\nwater molecules personified as small round blue figures gripping each other tightly in restored chains,\nmolecular chains tightened and multiplied on water drop surface,\nhydrogen bonds, brilliant glowing blue-white energy threads strengthening,\nwater drop fully restored to perfect stable sphere shape,\nprismatic world calmed, light spectrum stabilized, harmonious rainbow,\ncrystalline structures reformed and healed, light pillars standing tall,\nwarm prismatic rainbow restored, transparent blue,\nwarm golden light flooding back,\nwide camera angle, entire water drop interior stabilized,\nglowing restoration effect, ripple of healing light spreading outward,\nscientific accuracy, surface tension restored, molecular cohesive forces strengthened"
     }
   },
   "62": {
@@ -637,7 +581,7 @@
     },
     "inputs": {
       "model": [
-        "5",
+        "1",
         0
       ],
       "positive": [
@@ -653,8 +597,8 @@
         0
       ],
       "seed": 1105602,
-      "steps": 40,
-      "cfg": 7.5,
+      "steps": 35,
+      "cfg": 6.5,
       "sampler_name": "dpmpp_2m",
       "scheduler": "karras",
       "denoise": 1.0

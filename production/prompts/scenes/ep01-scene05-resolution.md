@@ -5,7 +5,7 @@
 > **비주얼 레이어**: 미시 세계(5-1) → 현실 세계(5-2)
 > **스타일 톤**: 초현실 프리즘 감동 절정(5-1) → 따뜻한 수채화 복귀(5-2)
 > **1화 색감**: 무지개 + 투명 블루 → 따뜻한 골든아워
-> **생성 도구**: Runway (cinematic lighting) + ComfyUI SDXL (watercolor style)
+> **생성 도구**: Kling/Runway ComfyUI 노드 (cinematic lighting) + ComfyUI (animagineXL v3.1)
 
 ---
 
@@ -16,60 +16,57 @@
 ### Positive Prompt
 
 ```
-masterpiece, best quality, surreal microscopic universe art, breathtaking cinematic moment,
-interior of water drop flooded with brilliant sunlight entering from above,
-entire prismatic world transformed into a jewel-like radiance,
-water drop glowing like a precious gemstone from inside — diamond-like brilliance,
-rainbow light refractions reaching maximum intensity, full visible spectrum in every direction,
-crystalline structures blazing with captured sunlight, prismatic fire dancing on every surface,
-light caustics creating intricate mandala-like patterns on the water walls,
-tiny girl (Choeun) waving goodbye to tardigrade (Moongi), bittersweet emotional moment,
-Choeun with a warm grateful smile, hand raised in farewell wave,
-Moongi looking up at Choeun with big glistening eyes, a single tiny prismatic tear,
-slow 360-degree camera rotation revealing the full majestic interior,
-then gradual zoom-out pulling away from the scene,
-warm emotional golden-rainbow lighting suffusing every element,
-water molecules in the background gently pulsing with harmonious bioluminescent glow,
-sense of profound beauty in the microscopic world, awe and gentle sadness of parting,
-scientific accuracy: sunlight contains all visible wavelengths — when entering the spherical water drop,
-each wavelength refracts at a different angle creating full spectrum dispersion (same physics as real rainbows)
+masterpiece, best quality, absurdres, highres,
+1girl, child, creature, waving, farewell, emotional,
+fantasy, surreal, prismatic, iridescent, crystal, transparent, rainbow,
+inside water droplet, molecular structure, light refraction,
+interior of water drop flooded with brilliant sunlight from above,
+prismatic world transformed into jewel-like radiance,
+water drop glowing like precious gemstone, diamond-like brilliance,
+rainbow light refractions at maximum intensity, full visible spectrum,
+crystalline structures blazing with captured sunlight, prismatic fire,
+light caustics, intricate mandala-like patterns on water walls,
+girl waving goodbye to tardigrade, bittersweet emotional moment,
+warm grateful smile, hand raised in farewell wave,
+tardigrade looking up with big glistening eyes, tiny prismatic tear,
+slow 360-degree camera rotation, gradual zoom-out,
+warm emotional golden-rainbow lighting,
+water molecules gently pulsing with harmonious bioluminescent glow,
+profound beauty in microscopic world, awe, gentle sadness of parting,
+scientific accuracy, sunlight all visible wavelengths, full spectrum dispersion
 ```
 
 ### Negative Prompt
 
 ```
+lowres, bad anatomy, bad hands, text, error, worst quality, low quality, normal quality,
+jpeg artifacts, signature, watermark, blurry, 3d, photorealistic,
 dark gloomy farewell, tragic separation, crying in despair,
-horror, scary, nightmarish atmosphere,
+horror, scary, nightmarish,
 dull flat lighting, no spectral brilliance,
-text, watermark, signature, logo, UI elements,
-low quality, blurry, pixelated, jpeg artifacts, noise,
-watercolor style (still surreal prismatic world in this sub-scene),
-flat 2D, no volumetric god rays, no light caustics,
-monochrome, desaturated, muted colors (this should be the most colorful scene),
-static camera (must imply 360-degree rotation),
-characters ignoring each other (must show emotional farewell),
-empty minimalist space (should be richly detailed prismatic environment),
-incorrect light physics — rainbow should show proper spectral order (ROYGBIV)
+watercolor style, flat 2D, no volumetric god rays,
+monochrome, desaturated, muted colors,
+characters ignoring each other,
+empty minimalist space, incorrect light physics
 ```
 
 ### Parameters
 
 | 항목 | 권장값 |
 |------|--------|
-| Model | SDXL 1.0 + Prismatic/Crystal Style LoRA (0.9, 최고 강도) + Cinematic Light LoRA (0.6) |
+| Model | animagineXL v3.1 |
 | Resolution | 1920 x 1080 (16:9) |
-| CFG Scale | 8.5 |
-| Sampler | DPM++ 2M Karras |
-| Steps | 45 |
+| CFG Scale | 7.0 |
+| Sampler | dpmpp_2m / karras |
+| Steps | 35 |
 | Seed | seed: 5701 기준 (미시 세계 시드 계열) |
 | ControlNet | Depth (공간감 극대화) |
 | IP-Adapter | weight 0.6 (캐릭터 감정 표현 중요) |
-| Clip Skip | 2 |
 
 ### 생성 가이드
 
 - 이 씬은 미시 세계 비주얼의 최고조 — 가장 아름다운 장면이어야 함
-- 슬로우 360도 회전 → 줌아웃: 파노라마 이미지 생성 후 Runway cinematic lighting으로 카메라 워크 구현
+- 슬로우 360도 회전 → 줌아웃: 파노라마 이미지 생성 후 Kling/Runway ComfyUI 노드로 cinematic lighting 카메라 워크 구현
 - 빛 연출:
   - 위에서 들어오는 햇빛이 물방울 내부에서 산란, 굴절되며 모든 방향으로 무지개빛 발산
   - 물방울이 보석(다이아몬드/오팔)처럼 내부에서 빛나는 느낌
@@ -78,10 +75,9 @@ incorrect light physics — rainbow should show proper spectral order (ROYGBIV)
   - 초은이: 따뜻한 미소로 손을 흔드는 모습. 그리움과 감사가 섞인 표정
   - 뭉이: 큰 눈에 프리즘 빛깔 눈물 한 방울. 아쉬워하면서도 다정한 표정
   - 두 캐릭터 사이의 거리가 점점 벌어지는 구도 (줌아웃과 함께)
-- 키프레임 3장:
-  - (A) 햇빛이 물방울로 쏟아지며 세계가 빛나기 시작
-  - (B) 초은이와 뭉이가 서로를 바라보며 인사 (감정 절정)
-  - (C) 줌아웃 — 찬란한 물방울 전경, 초은이 실루엣이 빛 속으로 사라져감
+- 키프레임 2장:
+  - (A) 초은이와 뭉이가 서로를 바라보며 인사 (감정 절정)
+  - (B) 줌아웃 — 찬란한 물방울 전경, 초은이 실루엣이 빛 속으로 사라져감
 - 과학 포인트: 햇빛(백색광)이 물방울에 들어갈 때 각 파장별 굴절률 차이로 전체 스펙트럼이 분산 — 실제 무지개의 원리와 동일
 
 ---
@@ -93,54 +89,50 @@ incorrect light physics — rainbow should show proper spectral order (ROYGBIV)
 ### Positive Prompt
 
 ```
-masterpiece, best quality, watercolor animation style, hand-painted texture, soft brush strokes,
-7-year-old Korean girl Choeun back in the garden, returning from microscopic adventure,
-excited joyful expression, eyes sparkling with wonder from what she just witnessed,
-short bobbed black hair with a single tiny braid on the right side tied with a sky-blue bead slightly disheveled from adventure,
-wearing a pastel mint field-explorer vest over a cream-colored long-sleeve shirt, khaki cargo shorts with oversized pockets,
-mismatched socks and worn brown lace-up boots, a brass magnifying glass on a leather cord around her neck,
-holding the brass magnifying glass in one hand, other hand gesturing excitedly,
-mouth open mid-speech telling grandfather about the adventure,
-warm late afternoon golden sunlight bathing the garden,
-cozy garden background with trees, flowers, and glistening wet leaves,
-medium shot framing Choeun from waist up, transitioning to close-up of her beaming face,
-watercolor skin tones with rosy cheeks flushed from excitement,
-soft bokeh garden background with warm color palette,
-a single water drop still visible on a nearby leaf, catching a tiny rainbow glint,
-children's animation character art, Studio Ghibli-inspired warm atmosphere,
-sense of accomplishment and wonder, return to safety and warmth of home
+masterpiece, best quality, absurdres, highres,
+1girl, child, 7 years old, korean,
+watercolor (medium), illustration, warm colors, hand-painted texture, soft brush strokes,
+short bob hair, black hair, single braid, blue bead hair tie, slightly disheveled,
+pastel mint vest, cream long sleeve shirt, khaki cargo shorts, oversized pockets,
+mismatched socks, brown lace-up boots, brass magnifying glass, leather cord necklace,
+holding magnifying glass in one hand, other hand gesturing excitedly,
+excited joyful expression, eyes sparkling with wonder, mouth open mid-speech,
+warm late afternoon golden sunlight, garden,
+cozy garden background, trees, flowers, glistening wet leaves,
+medium shot, waist up, transitioning to close-up,
+rosy cheeks flushed from excitement, watercolor skin tones,
+soft bokeh garden background, warm color palette,
+single water drop on nearby leaf, tiny rainbow glint,
+children's animation, warm atmosphere,
+accomplishment, wonder, return to safety
 ```
 
 ### Negative Prompt
 
 ```
-photorealistic, 3D render, CGI, plastic skin texture,
-surreal prismatic style (this scene is WATERCOLOR style — back to reality),
-dark mood, sad expression, crying, traumatized look,
+lowres, bad anatomy, bad hands, text, error, worst quality, low quality, normal quality,
+jpeg artifacts, signature, watermark, blurry, 3d, photorealistic,
+surreal prismatic style,
+dark mood, sad expression, crying, traumatized,
 adult proportions, mature face, makeup,
-text, watermark, signature, logo, UI elements,
-low quality, blurry, pixelated, jpeg artifacts, noise,
 oversaturated neon colors, harsh shadows, cold lighting,
-deformed face, extra fingers, mutated hands, bad anatomy,
-indoor scene, urban setting, night time,
-calm quiet expression (she should be excited and animated),
-dirty clothes, torn outfit, injury,
-microscopic world elements in background (fully returned to reality)
+deformed face, extra fingers, mutated hands,
+indoor scene, urban, night time,
+calm quiet expression, microscopic world elements
 ```
 
 ### Parameters
 
 | 항목 | 권장값 |
 |------|--------|
-| Model | SDXL 1.0 + Watercolor Style LoRA (0.7) + Choeun Character LoRA (0.8) |
+| Model | animagineXL v3.1 + IP-Adapter (Choeun 얼굴 일관성) |
 | Resolution | 1920 x 1080 (16:9) |
-| CFG Scale | 7.5 |
-| Sampler | DPM++ 2M Karras |
-| Steps | 35 |
+| CFG Scale | 6.5 |
+| Sampler | euler / normal |
+| Steps | 30 |
 | Seed | seed: 2001 기준 (Scene 1 현실 세계 시드 계열로 복귀) |
 | ControlNet | OpenPose (포즈 가이드) + IP-Adapter (얼굴 일관성) |
 | IP-Adapter | weight 0.6, Choeun reference image |
-| Clip Skip | 2 |
 
 ### 생성 가이드
 
@@ -151,6 +143,6 @@ microscopic world elements in background (fully returned to reality)
   - 입: 활짝 열고 이야기하는 중
   - 볼: 신나서 상기된 홍조
 - 물방울 힌트: 배경의 나뭇잎 위에 아직 물방울이 하나 남아있고, 햇빛에 작은 무지개가 비침 (미시 세계가 실재했음을 암시)
-- 미디엄 샷 → 클로즈업 전환은 두 장의 이미지를 생성 후 Runway img2video로 카메라 무브먼트 연결
+- 미디엄 샷 → 클로즈업 전환은 두 장의 이미지를 생성 후 Kling/Runway ComfyUI 노드로 카메라 무브먼트 연결
 - 색온도: Scene 1과 동일한 따뜻한 골든아워 톤 (색 일관성)
 - 할아버지는 이 씬에서 목소리만 등장 (프레임 밖). 별도 이미지 불필요

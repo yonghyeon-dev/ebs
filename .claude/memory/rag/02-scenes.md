@@ -43,7 +43,7 @@
 - 물 분자 구조 (H2O 수소결합 시각화)
 
 ## 수정 이력
-- PR #6: 씬 01, 05, 06 프롬프트 내 캐릭터 의상 참조를 WI-001 기준으로 수정 (머지 대기)
+- PR #6 머지 완료: 씬 01, 05, 06 프롬프트 내 캐릭터 의상 참조를 WI-001 기준으로 수정
   - yellow hairband → sky-blue bead braid
   - white t-shirt + blue overalls → pastel mint vest + khaki cargo shorts
   - magnifying glass (손에) → brass magnifying glass on leather cord (목에)

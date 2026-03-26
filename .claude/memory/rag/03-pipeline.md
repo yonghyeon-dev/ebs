@@ -27,23 +27,23 @@
 
 ### 설치된 모델
 
-| 유형 | 파일명 | 크기 |
-|------|--------|------|
-| 체크포인트 | `DreamShaperXL_Turbo_v2_1.safetensors` | 6.5GB |
-| 체크포인트 | `animagineXL31_v31.safetensors` | — |
-| 체크포인트 | `sd_xl_base_1.0.safetensors` | — |
-| VAE | `sdxl_vae.safetensors` (fp16-fix) | 320MB |
-| LoRA (수채화) | `ral-wtrclr-sdxl.safetensors` | 218MB |
-| LoRA (크리스탈) | `ral-crztlgls-sdxl.safetensors` | 218MB |
-| IP-Adapter | `ip-adapter-plus_sdxl_vit-h.safetensors` | — |
-| CLIP Vision | `CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors` | — |
+| 유형 | 파일명 | 크기 | 비고 |
+|------|--------|------|------|
+| **체크포인트 (주력)** | `animagineXL31_v31.safetensors` | 6.5GB | Danbooru 태그 기반, 애니메이션 특화 |
+| 체크포인트 | `DreamShaperXL_Turbo_v2_1.safetensors` | 6.5GB | 미사용 (이전 설계) |
+| 체크포인트 | `sd_xl_base_1.0.safetensors` | — | 미사용 |
+| VAE | `sdxl_vae.safetensors` (fp16-fix) | 320MB | |
+| ~~LoRA (수채화)~~ | ~~`ral-wtrclr-sdxl.safetensors`~~ | 218MB | 미사용 — animagine은 태그로 스타일 제어 |
+| ~~LoRA (크리스탈)~~ | ~~`ral-crztlgls-sdxl.safetensors`~~ | 218MB | 미사용 |
+| IP-Adapter | `ip-adapter-plus_sdxl_vit-h.safetensors` | — | |
+| CLIP Vision | `CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors` | — | |
 
-### LoRA trigger word
+### 스타일 제어 (LoRA 대신 Danbooru 태그)
 
-| LoRA | trigger word | 용도 |
-|------|-------------|------|
-| `ral-wtrclr-sdxl` | `ral-wtrclr` | 현실세계 수채화풍 |
-| `ral-crztlgls-sdxl` | `ral-crztlgls` | 미시세계 크리스탈/프리즘 |
+| 스타일 | Danbooru 태그 | 용도 |
+|--------|-------------|------|
+| 현실세계 수채화 | `watercolor (medium), illustration, warm colors, soft lighting` | 정원/현실 씬 |
+| 미시세계 프리즘 | `fantasy, surreal, prismatic, iridescent, transparent, crystal` | 프리즘/미시 씬 |
 
 ### 영상 생성 노드 (ComfyUI 내장 — 외부 서비스 아님)
 
@@ -71,13 +71,22 @@
 - **IP-Adapter weight**: 현실 0.6~0.8, 미시 0.5
 - **LoRA trigger**: choeun_girl, grandpa_scientist, mungyi_tardigrade
 
-### Kling / Runway (img2video) — ComfyUI 노드
+### Kling / Runway (img2video) — ComfyUI 노드 (v2 재설계 완료)
 - **용도**: 배경 영상 생성, 장면 전환
-- **상태**: 프롬프트 완료, ComfyUI 노드 기반 재설계 필요
+- **상태**: ComfyUI 노드 기반 재설계 완료 (2026-03-26)
+- **가이드 파일**: `production/prompts/workflows/ep01-video-pipeline-guide.md` (v2)
 - **프롬프트 파일**: `production/prompts/scenes/ep01-runway-prompts.md`
-- **Kling**: ComfyUI 크레딧 사용 (KlingImage2VideoNode)
-- **Runway**: ComfyUI 노드 (RunwayImageToVideoNodeGen3a/Gen4)
-- **Wan Video**: 로컬 실행 가능 (WanImageToVideo) — VRAM 12GB 제약 확인 필요
+- **노드 선택 전략**:
+  - 카메라 무브먼트 → `KlingCameraControlI2VNode` + `KlingCameraControls`
+  - 키프레임 보간 → `KlingStartEndFrameNode` (v2-5-turbo 가성비)
+  - 일반 모션 → `KlingImage2VideoNode` (v2-5-turbo)
+  - 스타일 충실 → `RunwayImageToVideoNodeGen4`
+  - 긴 클립 15s → `WanImageToVideoApi`
+- **Kling**: ComfyUI 크레딧 사용, API 노드 (VRAM 무관)
+- **Runway**: ComfyUI 크레딧 사용, Gen4 권장 (1280:720)
+- **Wan Video 로컬**: 480p만 RTX 4070에서 실행 가능, 테스트용
+- **Wan Video API**: 480P/720P/1080P, 5~15s, 크레딧 사용
+- **비용 추정**: EP01 전체 약 $20~30 (재생성 포함)
 
 ### AnimateDiff / Wan Video
 - **용도**: 캐릭터 모션 생성

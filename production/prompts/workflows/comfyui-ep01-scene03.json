@@ -1,11 +1,12 @@
 {
   "_meta": {
     "title": "WI-010 EP01 Scene 3: 뭉이와의 만남 — 배경 이미지 5종",
-    "description": "Scene 3 (0:45~1:30)의 3개 서브씬. 3-1 뭉이 등장(로우앵글+정면), 3-2 프리즘 세계 탐험(트래킹 2장), 3-3 표면장력 서핑(키프레임 2장).",
-    "version": "1.0.0",
+    "description": "Scene 3 (0:45~1:30)의 3개 서브씬. 3-1 뭉이 등장(로우앵글+정면), 3-2 프리즘 세계 탐험(트래킹 2장), 3-3 표면장력 서핑(키프레임 2장). animagineXL v3.1 + Danbooru 태그 기반.",
+    "version": "2.0.0",
     "episode": "EP01",
     "scene": "Scene 3 — 뭉이와의 만남",
     "style": "surreal prismatic (미시세계)",
+    "checkpoint": "animagineXL31_v31.safetensors",
     "outputs": [
       "bg-s03-01a-mungyi-lowangle (뭉이 로우앵글)",
       "bg-s03-01b-mungyi-frontal (뭉이 정면 클로즈업)",
@@ -19,32 +20,13 @@
   "1": {
     "class_type": "CheckpointLoaderSimple",
     "inputs": {
-      "ckpt_name": "DreamShaperXL_Turbo_v2_1.safetensors"
+      "ckpt_name": "animagineXL31_v31.safetensors"
     }
   },
   "2": {
     "class_type": "VAELoader",
     "inputs": {
       "vae_name": "sdxl_vae.safetensors"
-    }
-  },
-  "3": {
-    "class_type": "LoraLoader",
-    "_meta": {
-      "title": "LoRA - Prismatic Surreal (미시세계)"
-    },
-    "inputs": {
-      "model": [
-        "1",
-        0
-      ],
-      "clip": [
-        "1",
-        1
-      ],
-      "lora_name": "ral-crztlgls-sdxl.safetensors",
-      "strength_model": 0.8,
-      "strength_clip": 0.8
     }
   },
   "10": {
@@ -54,10 +36,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-crztlgls, surreal microscopic universe art,\ncute tardigrade character named Moongi, water bear micro-organism,\n8 stubby chubby legs waddling adorably, translucent round plump body,\nbig friendly innocent eyes with bioluminescent glow, gentle sleepy smile,\nsoft translucent skin revealing internal iridescent organs,\nprismatic rainbow light passing through the translucent body,\nmicroscopic scale creature standing on water molecule surface,\nrainbow prismatic background with floating light spectrum particles,\nlow angle camera looking up at Moongi approaching,\nH2O molecular structure visible on the ground — large blue spheres (oxygen) connected to small white spheres (hydrogen),\ntransparent blue atmospheric base tone with rainbow caustic overlay,\nbioluminescent ambient lighting, crystalline light pillars in background,\nwarm friendly character introduction moment, sense of wonder and cuteness,\nscientific accuracy: tardigrade body structure with 4 pairs of legs and round segmented body"
+      "text": "masterpiece, best quality, absurdres, highres,\nno humans, creature, fantasy, surreal,\nprismatic, iridescent, crystal, transparent, rainbow,\ncute tardigrade character, water bear, micro-organism,\n8 stubby chubby legs, translucent round plump body,\nbig friendly innocent eyes, bioluminescent glow, gentle sleepy smile,\nsoft translucent skin, internal iridescent organs visible,\nprismatic rainbow light passing through translucent body,\nmicroscopic scale, standing on water molecule surface,\nrainbow prismatic background, floating light spectrum particles,\nlow angle, looking up, approaching,\nH2O molecular structure on ground, large blue spheres oxygen, small white spheres hydrogen,\ntransparent blue atmosphere, rainbow caustic overlay,\nbioluminescent ambient lighting, crystalline light pillars in background,\nwarm friendly character introduction, wonder, cuteness,\nscientific accuracy, tardigrade body structure, 4 pairs of legs, round segmented body"
     }
   },
   "11": {
@@ -67,10 +49,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "realistic gross insect, scary bug, creepy crawly, horror creature,\ndark atmosphere, gloomy lighting, nightmare aesthetic,\nsharp spiky body, aggressive posture, menacing expression,\ntext, watermark, signature, logo, UI elements,\nlow quality, blurry, pixelated, jpeg artifacts, noise,\nwatercolor style,\nflat 2D, no depth, no volumetric lighting,\nincorrect anatomy — must have exactly 8 legs (4 pairs),\noversized character, realistic photograph of tardigrade,\nocean scene, underwater reef, marine environment"
+      "text": "lowres, bad anatomy, bad hands, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, blurry, 3d, photorealistic, realistic gross insect, scary bug, creepy crawly, horror creature, dark atmosphere, gloomy, sharp spiky body, aggressive posture, menacing expression, watercolor style, flat 2D, no depth, oversized character, ocean scene, underwater reef, marine environment"
     }
   },
   "12": {
@@ -91,7 +73,7 @@
     },
     "inputs": {
       "model": [
-        "3",
+        "1",
         0
       ],
       "positive": [
@@ -107,8 +89,8 @@
         0
       ],
       "seed": 1005101,
-      "steps": 40,
-      "cfg": 7.5,
+      "steps": 35,
+      "cfg": 6.5,
       "sampler_name": "dpmpp_2m",
       "scheduler": "karras",
       "denoise": 1.0
@@ -147,10 +129,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-crztlgls, surreal microscopic universe art,\ncute tardigrade character Moongi, frontal close-up portrait,\ntranslucent round plump body filling most of the frame,\nbig friendly innocent eyes with bioluminescent glow, gentle sleepy smile, head tilted curiously,\nsoft translucent skin revealing internal iridescent organs,\nprismatic rainbow light passing through the translucent body creating internal rainbow patterns,\nmicroscopic scale, eye-level frontal view,\nrainbow prismatic background softly blurred,\ntransparent blue atmospheric base tone with rainbow caustic overlay,\nbioluminescent ambient lighting,\nadorable character portrait, warm friendly mood,\nscientific accuracy: tardigrade body structure with round segmented body"
+      "text": "masterpiece, best quality, absurdres, highres,\nno humans, creature, fantasy, surreal, close-up, portrait,\nprismatic, iridescent, crystal, transparent, rainbow,\ncute tardigrade character, frontal close-up,\ntranslucent round plump body filling most of frame,\nbig friendly innocent eyes, bioluminescent glow, gentle sleepy smile, head tilted curiously,\nsoft translucent skin, internal iridescent organs visible,\nprismatic rainbow light creating internal rainbow patterns,\nmicroscopic scale, eye-level frontal view,\nrainbow prismatic background, soft blur,\ntransparent blue atmosphere, rainbow caustic overlay,\nbioluminescent ambient lighting,\nadorable character portrait, warm friendly mood,\nscientific accuracy, tardigrade body structure, round segmented body"
     }
   },
   "22": {
@@ -171,7 +153,7 @@
     },
     "inputs": {
       "model": [
-        "3",
+        "1",
         0
       ],
       "positive": [
@@ -187,8 +169,8 @@
         0
       ],
       "seed": 1005102,
-      "steps": 40,
-      "cfg": 7.5,
+      "steps": 35,
+      "cfg": 6.5,
       "sampler_name": "dpmpp_2m",
       "scheduler": "karras",
       "denoise": 1.0
@@ -227,10 +209,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-crztlgls, surreal microscopic universe art,\ntwo small figures walking side by side — a tiny girl (Choeun) and a cute translucent tardigrade (Moongi),\nwalking through magnificent rainbow light tunnel inside a water drop,\nlight spectrum bands forming a glowing pathway beneath their feet,\nprismatic spectrum path stretching into infinite distance,\nfloating light particles and photons drifting like fireflies around them,\nwater molecules (H2O) visible as connected translucent spheres forming crystalline lattice structures,\nhydrogen bonds visualized as shimmering blue energy threads connecting molecules,\ncathedral-like vast interior space within the microscopic water drop,\nrainbow caustic patterns dancing on translucent water walls,\nbioluminescent molecular structures pulsing with soft light,\ntracking shot following the two characters walking together, camera moves parallel,\ntransparent blue base atmosphere with full rainbow spectrum overlay,\nsense of wonder and friendship, joyful exploration of hidden world,\nscientific accuracy: water molecule clusters forming hexagonal ice-like patterns,\nlight refracting through molecular structures creating mini-rainbows at each junction"
+      "text": "masterpiece, best quality, absurdres, highres,\n1girl, child, creature, walking, side by side,\nfantasy, surreal, prismatic, iridescent, crystal, transparent, rainbow,\ninside water droplet, molecular structure, light refraction,\ntiny girl and cute translucent tardigrade walking through rainbow light tunnel,\nlight spectrum bands forming glowing pathway,\nprismatic spectrum path stretching into infinite distance,\nfloating light particles, photons, drifting like fireflies,\nwater molecules, H2O, connected translucent spheres, crystalline lattice,\nhydrogen bonds, shimmering blue energy threads,\ncathedral-like vast interior space,\nrainbow caustic patterns on translucent water walls,\nbioluminescent molecular structures, pulsing soft light,\ntracking shot, camera moves parallel,\ntransparent blue atmosphere, full rainbow spectrum overlay,\nwonder, friendship, joyful exploration,\nwater molecule clusters, hexagonal ice-like patterns,\nlight refracting through molecular structures, mini-rainbows"
     }
   },
   "31": {
@@ -240,10 +222,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "dark tunnel, cave, underground, scary passage,\nsingle character only,\nrealistic human proportions,\ntext, watermark, signature, logo, UI elements,\nlow quality, blurry, pixelated, jpeg artifacts, noise,\nwatercolor style,\nflat 2D, no depth, no perspective vanishing point,\nmonochrome, desaturated, no rainbow spectrum,\nocean underwater scene, fish, marine life,\nstatic posed image,\nempty background with no molecular structures,\nincorrect molecular structure"
+      "text": "lowres, bad anatomy, bad hands, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, blurry, 3d, photorealistic, dark tunnel, cave, underground, scary passage, solo, realistic human proportions, watercolor style, flat 2D, no depth, monochrome, desaturated, no rainbow spectrum, ocean underwater scene, fish, marine life, static posed image, empty background, incorrect molecular structure"
     }
   },
   "32": {
@@ -264,7 +246,7 @@
     },
     "inputs": {
       "model": [
-        "3",
+        "1",
         0
       ],
       "positive": [
@@ -280,8 +262,8 @@
         0
       ],
       "seed": 1005201,
-      "steps": 35,
-      "cfg": 7.5,
+      "steps": 30,
+      "cfg": 6.5,
       "sampler_name": "dpmpp_2m",
       "scheduler": "karras",
       "denoise": 1.0
@@ -320,10 +302,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-crztlgls, surreal microscopic universe art, dynamic action scene,\ntiny girl (Choeun) and cute tardigrade (Moongi) stepping onto water surface tension membrane,\nelastic transparent water surface acting like a bouncy trampoline membrane,\nsurface tension membrane glowing with prismatic iridescent sheen,\nwater molecules personified as small round blue figures holding hands in a chain along the surface,\nmolecular chain forming an unbreakable linked barrier at the water-air interface,\nChoeun stepping on with one foot, testing the bouncy surface, excited expression,\nMoongi cautiously placing 8 legs on the membrane, curious wide eyes,\nrainbow light refracting through the curved surface below their feet,\nmicroscopic world background: prismatic water drop interior visible above and below the surface layer,\ntransparent blue membrane with rainbow reflection highlights,\nmoment of first contact with surface tension, anticipation of adventure,\nscientific accuracy: surface tension is caused by cohesive forces between water molecules pulling inward"
+      "text": "masterpiece, best quality, absurdres, highres,\n1girl, child, creature, dynamic pose,\nfantasy, surreal, prismatic, iridescent, crystal, transparent, rainbow,\ninside water droplet, molecular structure, light refraction,\ntiny girl and cute tardigrade stepping onto water surface tension membrane,\nelastic transparent water surface, bouncy trampoline membrane,\nsurface tension membrane, prismatic iridescent sheen,\nwater molecules personified as small round blue figures holding hands in chain,\nmolecular chain forming linked barrier at water-air interface,\nstepping on with one foot, testing bouncy surface, excited expression,\ntardigrade placing 8 legs on membrane, curious wide eyes,\nrainbow light refracting through curved surface,\nmicroscopic world background, prismatic water drop interior,\ntransparent blue membrane, rainbow reflection highlights,\nfirst contact with surface tension, anticipation,\nscientific accuracy, surface tension, cohesive forces, water molecules pulling inward"
     }
   },
   "41": {
@@ -333,10 +315,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "ocean surfing, beach waves, realistic water sports,\nsurfboard,\ndark scary water, murky liquid, dirty surface,\ntext, watermark, signature, logo, UI elements,\nlow quality, blurry, pixelated, jpeg artifacts, noise,\nwatercolor style,\nflat 2D, no depth, no dynamic motion feel,\nmonochrome, desaturated, no rainbow effect,\nbroken or torn surface membrane,\nsolo character only"
+      "text": "lowres, bad anatomy, bad hands, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, blurry, 3d, photorealistic, ocean surfing, beach waves, realistic water sports, surfboard, dark scary water, murky liquid, dirty surface, watercolor style, flat 2D, no depth, monochrome, desaturated, no rainbow effect, broken or torn surface membrane, solo"
     }
   },
   "42": {
@@ -357,7 +339,7 @@
     },
     "inputs": {
       "model": [
-        "3",
+        "1",
         0
       ],
       "positive": [
@@ -373,10 +355,10 @@
         0
       ],
       "seed": 1005301,
-      "steps": 35,
-      "cfg": 7.0,
-      "sampler_name": "dpmpp_2m",
-      "scheduler": "karras",
+      "steps": 30,
+      "cfg": 6.0,
+      "sampler_name": "euler",
+      "scheduler": "normal",
       "denoise": 1.0
     }
   },
@@ -413,10 +395,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-crztlgls, surreal microscopic universe art, dynamic action scene,\ntiny girl (Choeun) and cute tardigrade (Moongi) surfing joyfully on water surface tension,\nelastic transparent water surface acting like a bouncy trampoline membrane,\nsurface tension membrane glowing with prismatic iridescent sheen,\nwater molecules personified as small round blue figures holding hands in a chain along the surface,\nChoeun standing with arms spread wide surfing across the membrane, hair flowing in motion,\nMoongi sliding alongside with all 8 legs spread out for balance, happy expression,\ndynamic action tracking shot with slight slow-motion effect,\nrainbow light refracting through the curved surface below their feet,\nsplash-like ripples of prismatic light spreading from their movement,\nmicroscopic world background: prismatic water drop interior visible above and below the surface layer,\ntransparent blue membrane with rainbow reflection highlights,\njoyful exhilarating moment, sense of freedom and adventure,\nscientific accuracy: surface tension creates a flexible elastic membrane-like layer"
+      "text": "masterpiece, best quality, absurdres, highres,\n1girl, child, creature, dynamic pose, action,\nfantasy, surreal, prismatic, iridescent, crystal, transparent, rainbow,\ninside water droplet, molecular structure, light refraction,\ntiny girl and cute tardigrade surfing joyfully on water surface tension,\nelastic transparent water surface, bouncy trampoline membrane,\nsurface tension membrane, prismatic iridescent sheen,\nwater molecules personified as small round blue figures holding hands in chain,\ngirl standing with arms spread wide, surfing, hair flowing in motion,\ntardigrade sliding alongside, 8 legs spread for balance, happy expression,\ndynamic action, tracking shot, slight slow-motion effect,\nrainbow light refracting through curved surface,\nsplash-like ripples of prismatic light spreading from movement,\nmicroscopic world background, prismatic water drop interior,\ntransparent blue membrane, rainbow reflection highlights,\njoyful exhilarating moment, freedom, adventure,\nscientific accuracy, surface tension, flexible elastic membrane-like layer"
     }
   },
   "52": {
@@ -437,7 +419,7 @@
     },
     "inputs": {
       "model": [
-        "3",
+        "1",
         0
       ],
       "positive": [
@@ -453,10 +435,10 @@
         0
       ],
       "seed": 1005302,
-      "steps": 35,
-      "cfg": 7.0,
-      "sampler_name": "dpmpp_2m",
-      "scheduler": "karras",
+      "steps": 30,
+      "cfg": 6.0,
+      "sampler_name": "euler",
+      "scheduler": "normal",
       "denoise": 1.0
     }
   },

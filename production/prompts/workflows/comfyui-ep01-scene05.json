@@ -1,11 +1,12 @@
 {
   "_meta": {
     "title": "WI-012 EP01 Scene 5: 결말 — 배경 이미지 4종",
-    "description": "Scene 5 (2:15~2:45)의 2개 서브씬. 5-1 보석빛 물방울(미시세계 최고조 키프레임 2장), 5-2 현실 복귀(수채화 키프레임 2장).",
-    "version": "1.0.0",
+    "description": "Scene 5 (2:15~2:45)의 2개 서브씬. 5-1 보석빛 물방울(미시세계 최고조 키프레임 2장), 5-2 현실 복귀(수채화 키프레임 2장). animagineXL v3.1 + Danbooru 태그 기반.",
+    "version": "2.0.0",
     "episode": "EP01",
     "scene": "Scene 5 — 결말",
     "style": "surreal prismatic (5-1) + watercolor (5-2)",
+    "checkpoint": "animagineXL31_v31.safetensors",
     "outputs": [
       "bg-s05-01a-jewel-farewell (보석빛 이별 — 감정 절정)",
       "bg-s05-01b-jewel-zoomout (보석빛 줌아웃 — 실루엣)",
@@ -18,51 +19,13 @@
   "1": {
     "class_type": "CheckpointLoaderSimple",
     "inputs": {
-      "ckpt_name": "DreamShaperXL_Turbo_v2_1.safetensors"
+      "ckpt_name": "animagineXL31_v31.safetensors"
     }
   },
   "2": {
     "class_type": "VAELoader",
     "inputs": {
       "vae_name": "sdxl_vae.safetensors"
-    }
-  },
-  "3": {
-    "class_type": "LoraLoader",
-    "_meta": {
-      "title": "LoRA - Prismatic Surreal 최고 강도 (5-1 비주얼 최고조)"
-    },
-    "inputs": {
-      "model": [
-        "1",
-        0
-      ],
-      "clip": [
-        "1",
-        1
-      ],
-      "lora_name": "ral-crztlgls-sdxl.safetensors",
-      "strength_model": 0.9,
-      "strength_clip": 0.9
-    }
-  },
-  "4": {
-    "class_type": "LoraLoader",
-    "_meta": {
-      "title": "LoRA - Watercolor Style (5-2 현실 복귀)"
-    },
-    "inputs": {
-      "model": [
-        "1",
-        0
-      ],
-      "clip": [
-        "1",
-        1
-      ],
-      "lora_name": "ral-wtrclr-sdxl.safetensors",
-      "strength_model": 0.7,
-      "strength_clip": 0.7
     }
   },
   "10": {
@@ -72,10 +35,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-crztlgls, surreal microscopic universe art, breathtaking cinematic moment,\ninterior of water drop flooded with brilliant sunlight entering from above,\nentire prismatic world transformed into a jewel-like radiance,\nwater drop glowing like a precious gemstone from inside — diamond-like brilliance,\nrainbow light refractions reaching maximum intensity, full visible spectrum in every direction,\ncrystalline structures blazing with captured sunlight, prismatic fire dancing on every surface,\nlight caustics creating intricate mandala-like patterns on the water walls,\ntiny girl (Choeun) waving goodbye to tardigrade (Moongi), bittersweet emotional moment,\nChoeun with a warm grateful smile, hand raised in farewell wave,\nMoongi looking up at Choeun with big glistening eyes, a single tiny prismatic tear,\nwarm emotional golden-rainbow lighting suffusing every element,\nwater molecules in the background gently pulsing with harmonious bioluminescent glow,\nsense of profound beauty in the microscopic world, awe and gentle sadness of parting,\nscientific accuracy: sunlight contains all visible wavelengths — when entering the spherical water drop each wavelength refracts at a different angle creating full spectrum dispersion"
+      "text": "masterpiece, best quality, absurdres, highres,\n1girl, child, creature, waving, farewell, emotional,\nfantasy, surreal, prismatic, iridescent, crystal, transparent, rainbow,\ninside water droplet, molecular structure, light refraction,\ninterior of water drop flooded with brilliant sunlight from above,\nprismatic world transformed into jewel-like radiance,\nwater drop glowing like precious gemstone, diamond-like brilliance,\nrainbow light refractions at maximum intensity, full visible spectrum,\ncrystalline structures blazing with captured sunlight, prismatic fire,\nlight caustics, intricate mandala-like patterns on water walls,\ngirl waving goodbye to tardigrade, bittersweet emotional moment,\nwarm grateful smile, hand raised in farewell wave,\ntardigrade looking up with big glistening eyes, tiny prismatic tear,\nwarm emotional golden-rainbow lighting,\nwater molecules gently pulsing with harmonious bioluminescent glow,\nprofound beauty in microscopic world, awe, gentle sadness of parting,\nscientific accuracy, sunlight all visible wavelengths, spherical water drop, full spectrum dispersion"
     }
   },
   "11": {
@@ -85,10 +48,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "dark gloomy farewell, tragic separation, crying in despair,\nhorror, scary, nightmarish atmosphere,\ndull flat lighting, no spectral brilliance,\ntext, watermark, signature, logo, UI elements,\nlow quality, blurry, pixelated, jpeg artifacts, noise,\nwatercolor style,\nflat 2D, no volumetric god rays, no light caustics,\nmonochrome, desaturated, muted colors,\nstatic camera,\ncharacters ignoring each other,\nempty minimalist space,\nincorrect light physics"
+      "text": "lowres, bad anatomy, bad hands, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, blurry, 3d, photorealistic, dark gloomy farewell, tragic separation, crying in despair, horror, scary, nightmarish, dull flat lighting, no spectral brilliance, watercolor style, flat 2D, no volumetric god rays, monochrome, desaturated, muted colors, characters ignoring each other, empty minimalist space, incorrect light physics"
     }
   },
   "12": {
@@ -109,7 +72,7 @@
     },
     "inputs": {
       "model": [
-        "3",
+        "1",
         0
       ],
       "positive": [
@@ -125,8 +88,8 @@
         0
       ],
       "seed": 1205701,
-      "steps": 45,
-      "cfg": 8.5,
+      "steps": 35,
+      "cfg": 7.0,
       "sampler_name": "dpmpp_2m",
       "scheduler": "karras",
       "denoise": 1.0
@@ -165,10 +128,10 @@
     },
     "inputs": {
       "clip": [
-        "3",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-crztlgls, surreal microscopic universe art, breathtaking cinematic moment,\nwide establishing shot of entire water drop interior from far away,\nbrilliant prismatic world at full majestic scale, jewel-like radiance in every direction,\nrainbow light refractions at maximum intensity, crystalline structures blazing with light,\nmandala-like caustic patterns covering the water walls,\ntiny silhouette of a girl becoming smaller as camera pulls away,\nthe girl's figure bathed in golden-rainbow light, gradually merging into the brilliance,\nvast cathedral-like interior space, sense of infinite beauty within the microscopic,\nwater molecules pulsing with harmonious bioluminescent glow at molecular floor level,\ngradual zoom-out revealing the full scope of the prismatic universe,\ngolden-rainbow emotional lighting, bittersweet beauty of scale and wonder,\nscientific accuracy: full spectrum dispersion creating rainbow patterns in all directions"
+      "text": "masterpiece, best quality, absurdres, highres,\nscenery, fantasy, surreal, silhouette,\nprismatic, iridescent, crystal, transparent, rainbow,\ninside water droplet, molecular structure, light refraction,\nwide establishing shot of entire water drop interior from far away,\nbrilliant prismatic world at full majestic scale, jewel-like radiance,\nrainbow light refractions at maximum intensity, crystalline structures blazing,\nmandala-like caustic patterns covering water walls,\ntiny silhouette of girl becoming smaller as camera pulls away,\ngirl's figure bathed in golden-rainbow light, gradually merging into brilliance,\nvast cathedral-like interior space, infinite beauty within the microscopic,\nwater molecules pulsing with harmonious bioluminescent glow at molecular floor,\nzoom-out revealing full scope of prismatic universe,\ngolden-rainbow emotional lighting, bittersweet beauty,\nscientific accuracy, full spectrum dispersion, rainbow patterns in all directions"
     }
   },
   "22": {
@@ -189,7 +152,7 @@
     },
     "inputs": {
       "model": [
-        "3",
+        "1",
         0
       ],
       "positive": [
@@ -205,8 +168,8 @@
         0
       ],
       "seed": 1205702,
-      "steps": 45,
-      "cfg": 8.5,
+      "steps": 35,
+      "cfg": 7.0,
       "sampler_name": "dpmpp_2m",
       "scheduler": "karras",
       "denoise": 1.0
@@ -245,10 +208,10 @@
     },
     "inputs": {
       "clip": [
-        "4",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-wtrclr, watercolor animation style, hand-painted texture, soft brush strokes,\n7-year-old Korean girl Choeun back in the garden, returning from microscopic adventure,\nexcited joyful expression, eyes sparkling with wonder from what she just witnessed,\nshort bobbed black hair with a single tiny braid on the right side tied with a sky-blue bead slightly disheveled from adventure,\nwearing a pastel mint field-explorer vest over a cream-colored long-sleeve shirt, khaki cargo shorts with oversized pockets,\nmismatched socks and worn brown lace-up boots, a brass magnifying glass on a leather cord around her neck,\nholding the brass magnifying glass in one hand, other hand gesturing excitedly,\nmouth open mid-speech telling grandfather about the adventure,\nwarm late afternoon golden sunlight bathing the garden,\ncozy garden background with trees, flowers, and glistening wet leaves,\nmedium shot framing Choeun from waist up,\nwatercolor skin tones with rosy cheeks flushed from excitement,\nsoft bokeh garden background with warm color palette,\na single water drop still visible on a nearby leaf, catching a tiny rainbow glint,\nchildren's animation character art, Studio Ghibli-inspired warm atmosphere"
+      "text": "masterpiece, best quality, absurdres, highres,\n1girl, child, 7 years old, korean,\nwatercolor (medium), illustration, warm colors, hand-painted texture, soft brush strokes,\nshort bob hair, black hair, single braid, blue bead hair tie, slightly disheveled,\npastel mint vest, cream long sleeve shirt, khaki cargo shorts, oversized pockets,\nmismatched socks, brown lace-up boots, brass magnifying glass, leather cord necklace,\nholding magnifying glass in one hand, other hand gesturing excitedly,\nexcited joyful expression, eyes sparkling with wonder, mouth open mid-speech,\nwarm late afternoon golden sunlight, garden,\ncozy garden background, trees, flowers, glistening wet leaves,\nmedium shot, waist up,\nrosy cheeks flushed from excitement, watercolor skin tones,\nsoft bokeh garden background, warm color palette,\nsingle water drop on nearby leaf, tiny rainbow glint,\nchildren's animation, warm atmosphere"
     }
   },
   "31": {
@@ -258,10 +221,10 @@
     },
     "inputs": {
       "clip": [
-        "4",
+        "1",
         1
       ],
-      "text": "photorealistic, 3D render, CGI, plastic skin texture,\nsurreal prismatic style,\ndark mood, sad expression, crying, traumatized look,\nadult proportions, mature face, makeup,\ntext, watermark, signature, logo, UI elements,\nlow quality, blurry, pixelated, jpeg artifacts, noise,\noversaturated neon colors, harsh shadows, cold lighting,\ndeformed face, extra fingers, mutated hands, bad anatomy,\nindoor scene, urban setting, night time,\ncalm quiet expression,\nmicroscopic world elements in background"
+      "text": "lowres, bad anatomy, bad hands, text, error, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, blurry, 3d, photorealistic, surreal prismatic style, dark mood, sad expression, crying, traumatized, adult proportions, mature face, makeup, oversaturated neon colors, harsh shadows, cold lighting, deformed face, extra fingers, mutated hands, indoor scene, urban, night time, microscopic world elements"
     }
   },
   "32": {
@@ -282,7 +245,7 @@
     },
     "inputs": {
       "model": [
-        "4",
+        "1",
         0
       ],
       "positive": [
@@ -298,10 +261,10 @@
         0
       ],
       "seed": 1202001,
-      "steps": 35,
-      "cfg": 7.5,
-      "sampler_name": "dpmpp_2m",
-      "scheduler": "karras",
+      "steps": 30,
+      "cfg": 6.5,
+      "sampler_name": "euler",
+      "scheduler": "normal",
       "denoise": 1.0
     }
   },
@@ -338,10 +301,10 @@
     },
     "inputs": {
       "clip": [
-        "4",
+        "1",
         1
       ],
-      "text": "masterpiece, best quality, ral-wtrclr, watercolor animation style, hand-painted texture, soft brush strokes,\n7-year-old Korean girl Choeun face close-up, back in the garden after microscopic adventure,\nexcited joyful expression, eyes sparkling brighter than before with wonder,\nshort bobbed black hair with a single tiny braid on the right side tied with a sky-blue bead slightly disheveled,\nround face with large expressive dark brown eyes, pupils catching brilliant highlights,\nmouth open in excited speech, telling grandfather about the adventure,\nrosy cheeks flushed from excitement, watercolor skin tones,\nwarm late afternoon golden sunlight on face,\ngentle watercolor shading, soft focus garden background,\neyes have extra bright star-like highlights — remnant of microscopic world wonder,\nchildren's animation character art, Studio Ghibli-inspired character close-up,\nsense of accomplishment, wonder, and joy"
+      "text": "masterpiece, best quality, absurdres, highres,\n1girl, child, 7 years old, korean, close-up, portrait,\nwatercolor (medium), illustration, warm colors, hand-painted texture, soft brush strokes,\nshort bob hair, black hair, single braid, blue bead hair tie, slightly disheveled,\nround face, large expressive dark brown eyes, pupils catching brilliant highlights,\nexcited joyful expression, eyes sparkling brighter than before, wonder,\nmouth open in excited speech,\nrosy cheeks flushed from excitement, watercolor skin tones,\nwarm late afternoon golden sunlight on face,\ngentle watercolor shading, soft focus garden background,\neyes with extra bright star-like highlights, remnant of microscopic world wonder,\nchildren's animation, character close-up,\naccomplishment, wonder, joy"
     }
   },
   "42": {
@@ -362,7 +325,7 @@
     },
     "inputs": {
       "model": [
-        "4",
+        "1",
         0
       ],
       "positive": [
@@ -378,10 +341,10 @@
         0
       ],
       "seed": 1202002,
-      "steps": 35,
-      "cfg": 7.5,
-      "sampler_name": "dpmpp_2m",
-      "scheduler": "karras",
+      "steps": 30,
+      "cfg": 6.5,
+      "sampler_name": "euler",
+      "scheduler": "normal",
       "denoise": 1.0
     }
   },

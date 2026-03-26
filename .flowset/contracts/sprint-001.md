@@ -44,5 +44,5 @@
 - `production/storyboard/ep01-scene-breakdown.md` (씬별 캐릭터 등장)
 
 ## 통과 기준
-- 총점 **7.0 이상** PASS
-- 7.0 미만 FAIL → 재작업 (최대 3회)
+- 총점 **9.0 이상** PASS
+- 9.0 미만 FAIL → 재작업 (최대 3회)
